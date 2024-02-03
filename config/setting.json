@@ -1,10 +1,29 @@
 {
 	"type": {
-		"DE118569718COS": "COS",
-		"DE118569718H&M": "H&M",
+		"DE116475353": "1A NEUWARE",
+		"DE 276366762": "43EINHALB",
+		"DE129469082": "Acne Studios",
 		"DE 132490588": "ADIDAS",
+		"DE286436092": "AFOUND",
 		"DE814584193": "AMAZON",
-		"DE 129473557": "BEST SECRET"
+		"DE327131882": "APO.COM",
+		"DE 17 594 4429": "APONEO",
+		"DE312080390": "ARKET",
+		"DE354679377": "ASPHALTGOLD",
+		"DE814634846": "BERG FREUNDE.DE",
+		"DE814724454": "BERGZEIT",
+		"DE 129473557": "BEST SECRET",
+		"DE299379692": "BIKE24",
+		"DE304138192": "BIRKENSTOCK",
+		"DE 219636488": "BOTTCHER AG",
+		"DE147505250": "BREUNINGER",
+		"DE299377687": "BSTN",
+		"DE349123312": "BUTYJANA",
+		"DE118569718COS": "COS",
+		"DE273923750": "cosmetic.de",
+		"DE256079331": "doorout.com",
+		"DE815275589": "FLACONI",
+		"DE118569718H&M": "H&M"
 	},
 	"property": [
 		{
@@ -17,61 +36,20 @@
 				"GESAMTSUMME",
 				"Exkl. MwSt.",
 				"MwSt.-Betrag",
-				"NAME",
-				"E-MAIL",
+				"",
+				"",
+				"",
 				"WOHNADRESSE"
-			]
-		},
-		{
-			"COS": [
-				"VAT number",
-				"ORDER DATE",
-				"RECEIPT DATE",
-				"RECEIPT NUMBER",
-				"ORDER NUMBER",
-				"TOTAL",
-				"Excluding VAT",
-				"VAT AMOUNT",
-				"NAME",
-				"EMAIL",
-				"home address"
-			]
-		},
-		{
-			"ADIDAS": [
-				"UST-IDNR",
-				"Lieferdatum",
-				"Rechnungsdatum",
-				"Rechnungsnr.",
-				"Bestell-Nr.",
-				"Rechnungsbetrag",
-				"Nettpbetrag",
-				"einschließlich 19,00% Mehrwertsteuer",
-				"",
-				"",
-				"Rechnungsadresse"
-			]
-		},
-		{
-			"AMAZON": [
-				"USt-IDNr.",
-				"Bestelldatum",
-				"Rechnungsdatum/Lieferdatum",
-				"Rechnungsnummer.",
-				"Bestellnummer",
-				"Gesamtpreis",
-				"Zwischensumme",
-				"Ust. Gesamt",
-				"",
-				"",
-				"Rechnungsadresse"
-			]
+			],
+			"H&M_OPTION": {
+				"WOHNADRESSE": ["03","In der Au 17","Deutschland","T","T"],
+			}
 		},
 		{
 			"BEST SECRET": [
 				"VAT ID",
+				"INVOICE DATE",
 				"",
-				"DELIVERY DATE/INVOICE DATE",
 				"INVOICE No.",
 				"Order No.",
 				"Total gross amount",
@@ -79,11 +57,54 @@
 				"19%",
 				"",
 				"",
+				"",
+				"address"
+			],
+			"BEST SECRET_OPTION": {
+				"VAT ID": ["03","VAT ID","PL","F","F"],
+				"INVOICE DATE": ["03","INVOICE DATE","CUSTOMER NUMBER","F","F"],
+				"Total net amount": ["03","Total net amount","19%","F","F"],
+				"19%": ["03","(19%",")","F","F"],
+				"address": ["03","Haewon Park","Germany","T","T"]
+			}
+		},
+		{
+			"BSTN": [
+				"USt-IdNr",
+				"Invoice date",
+				"",
+				"Invoice-No.",
+				"Order-No.",
+				"Total gross (Gesamt Brutto)",
+				"Total EUR Excl. VAT",
+				"19% VAT",
+				"",
+				"",
+				"",
+				"address"
+			],
+			"BSTN_OPTION": {
+				"address": ["03","BM & T GmbH Jihwan Chang, In der Au 17","Deutschland","T","T"],
+			}
+		},
+		{
+			"BUTYJANA": [
+				"Steuernummer",
+				"Verkaufsdatum",
+				"Ausstellungsdatum",
+				"FAKTURA/Rechnung",
+				"FAKTURA/Rechnung",
+				"Zusammen/Total: in PLN",
+				"Zusammen/Total: in PLN",
+				"Zusammen/Total: in PLN",
+				"",
+				"",
+				"",
 				""
 			]
 		}
 	],
-	"header" : [
+	"header": [
 		"구매처",
 		"세금번호(키값)",
 		"세금번호",
@@ -94,8 +115,9 @@
 		"총금액",
 		"부가세 제외",
 		"부가세",
-		"이름",
-		"이메일",
-		"인보이스 주소"
+		"인보이스 주소1",
+		"인보이스 주소2",
+		"인보이스 주소3",
+		"인보이스 주소4"
 	]
 }
