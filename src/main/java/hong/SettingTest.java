@@ -4,51 +4,54 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class SettingTest {
 
-	private static final String SETTING_FILE_PATH = "./config/setting.json";
+	private static final String SETTING_FILE_PATH = "./config/hong.json";
 
 	public static void main(String[] args) {
 
-		String vatId = "DE 129473557";
+		String vatId = "DE116475353";
+
+		SettingTest settingTest = new SettingTest();
+		settingTest.getSetting(vatId);
+
+	}
+
+	public Map<String, Object> getSetting(String vatId) {
+
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
 
-			Map<String, Object> map = new HashMap<String, Object>();
-
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonRoot = (JSONObject) jsonParser.parse(reader);
+
 			JSONObject typeObject = (JSONObject) jsonRoot.get("type");
-
 			String typeCd = typeObject.get(vatId).toString();
-
 			map.put("typeCd", typeCd);
 
-			JSONArray headerObject = (JSONArray) jsonRoot.get("header");
+			JSONObject object = (JSONObject) jsonRoot.get("property");
+			JSONObject vatObject = (JSONObject) object.get(typeCd);
 
-			map.put("headerNm", headerObject);
+			JSONArray itemArray = (JSONArray) vatObject.get("item");
+			map.put("itemCd", itemArray);
 
-			JSONArray jsonArray = (JSONArray) jsonRoot.get("property");
+			JSONObject optionObject = (JSONObject) vatObject.get("option");
 
-			for (int j = 0; j < jsonArray.size(); j++) {
-
-				JSONObject object = (JSONObject) jsonArray.get(j);
-
-				if (object.get(typeCd) != null) {
-
-					map.put("propertyCd", object.get(typeCd));
-
-					if (object.get(typeCd + "_OPTION") != null) {
-
-						map.put("optionCd", object.get(typeCd + "_OPTION"));
-					}
-				}
+			// 옵션추가
+			for (int k = 0; k < itemArray.size(); k++) {
+				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
 			}
 
 			System.out.println(Collections.singletonList(map));
@@ -58,6 +61,6 @@ public class SettingTest {
 			e.printStackTrace();
 		}
 
+		return map;
 	}
-
 }

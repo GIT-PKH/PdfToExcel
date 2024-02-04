@@ -33,17 +33,17 @@ public class PdfToExcel {
 
 	static Map<String, Object[]> excelData = new LinkedHashMap<>();
 
-	//	private static final String EXCEL_FILE_NM = "HONG_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".xlsx";
-	//
-	//	private static final String PDF_FOLDER_PATH = "./config/pdf/";
-	//
-	//	private static final String SETTING_FILE_PATH = "./config/setting.json";
+	//		private static final String EXCEL_FILE_NM = "HONG_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".xlsx";
+	//	
+	//		private static final String PDF_FOLDER_PATH = "./config/pdf/";
+	//	
+	//		private static final String SETTING_FILE_PATH = "./config/setting.json";
 
 	private static final String EXCEL_FILE_NM = "HONG.xlsx";
 
 	private static final String PDF_FOLDER_PATH = "../../";
 
-	private static final String SETTING_FILE_PATH = "../setting.json";
+	private static final String SETTING_FILE_PATH = "../hong.json";
 
 	public static void main(String[] args) {
 
@@ -326,5 +326,4 @@ public class PdfToExcel {
 
 		return files;
 	}
-
 }
