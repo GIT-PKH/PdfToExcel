@@ -74,7 +74,7 @@
 			],
 			"option": 
 			{
-				"Umsatzsteuergesetz" : ["PDF", "01", "", "", ["Umsatzsteuergesetz:"], ""],
+				"Umsatzsteuergesetz" : ["PDF", "01", "", "", ["Umsatzsteuergesetz", ":"], ""],
 				"Datum" : ["EXCEL", ["40/M"], ["Datum:",""], ""],
 				"Seller order no." : ["PDF", "01", "", "", ["Seller order no."], ""],
 				"Rechnungsnummer" : ["EXCEL", ["44/E"], ["Datum:",""], ""],
@@ -103,7 +103,7 @@
 			],
 			"option": 
 			{
-				"Steuernummer" : ["PDF", "01", "", "", ["Steuernummer:"], ""],
+				"Steuernummer" : ["PDF", "01", "", "", ["Steuernummer", ":"], ""],
 				"Verkaufsdatum" : ["EXCEL", ["11/X"], ["",""], ""],
 				"Ausstellungsdatum" : ["EXCEL", ["10/X"], ["",""], ""],
 				"FAKTURA/Rechnung" : ["EXCEL", ["7/V"], ["",""], ""],
@@ -159,7 +159,7 @@
 			],
 			"option": 
 			{
-				"Umsatzsteuer-ID" : ["PDF", "01", "", "", ["Umsatzsteuer-ID:"], ""],
+				"Umsatzsteuer-ID" : ["PDF", "01", "", "", ["Umsatzsteuer-ID", ":"], ""],
 				"vom" : ["PDF", "01", "", "", ["berechnen wir wie folgt:"], ""],
 				"Rechnungsdatum" : ["EXCEL", ["7/S"], ["",""], ""],
 				"Rechnungsnummer" : ["PDF", "01", "", "", ["Rechnungsnummer"], ""],

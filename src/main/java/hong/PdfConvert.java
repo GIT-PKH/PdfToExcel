@@ -37,17 +37,17 @@ public class PdfConvert {
 
 	static Map<String, Object[]> excelData = new LinkedHashMap<>();
 
-//	private static final String EXCEL_FILE_NM = "HONG_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".xlsx";
-//
-//	private static final String PDF_FOLDER_PATH = "./config/pdf/";
-//
-//	private static final String SETTING_FILE_PATH = "./config/hong.json";
+	private static final String EXCEL_FILE_NM = "HONG_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".xlsx";
 
-private static final String EXCEL_FILE_NM = "HONG.xlsx";
+	private static final String PDF_FOLDER_PATH = "./config/pdf/";
 
-private static final String PDF_FOLDER_PATH = "../../";
+	private static final String SETTING_FILE_PATH = "./config/hong.json";
 
-private static final String SETTING_FILE_PATH = "../hong.json";
+	//private static final String EXCEL_FILE_NM = "HONG.xlsx";
+	//
+	//private static final String PDF_FOLDER_PATH = "../../";
+	//
+	//private static final String SETTING_FILE_PATH = "../hong.json";
 
 	private static final String EXCEL_FOLDER_NM = "HONG_EXCEL/";
 
@@ -84,7 +84,7 @@ private static final String SETTING_FILE_PATH = "../hong.json";
 				// VAT ID 추출 (PK)
 				String vatId = getVatId(content);
 
-				System.out.println("########## [" + files[k].getName() + "] 시작 .. VAT ID (PK) : " + vatId);
+				System.out.println("########## [" + files[k].getName() + "] 시작 .. " + vatId);
 
 				// 설정정보 조회
 				Map<String, Object> attrMap = getSetting(vatId);
@@ -122,25 +122,20 @@ private static final String SETTING_FILE_PATH = "../hong.json";
 					String item = (String) itemArray.get(p);
 
 					if (StringUtils.isNotBlank(item)) {
-
+						
 						JSONArray optionArray = (JSONArray) attrMap.get(item);
-
+						
 						if (optionArray != null) {
-
-							//System.out.println("# item : " + item + ",optionArray : " + optionArray);
-
+							
 							if (optionArray.get(0).equals("PDF")) {
-
+								
 								String type = optionArray.get(1).toString();
-
+								
 								if (type.equals("01")) {
-
 									for (String text : content.split("\\n")) {
 
 										if (text.trim().indexOf(item) != -1) {
-
 											rslt = text.substring(text.indexOf(item) + item.length(), text.length());
-
 											break;
 										}
 									}
@@ -231,7 +226,7 @@ private static final String SETTING_FILE_PATH = "../hong.json";
 
 					if (StringUtils.isNoneBlank(item)) {
 
-						System.out.println("# [추출항목] : " + item + ", [결과] : " + rslt);
+						System.out.println("# [항목] " + item + ", [결과] " + rslt);
 					}
 
 					extraList.add(rslt);
@@ -249,11 +244,147 @@ private static final String SETTING_FILE_PATH = "../hong.json";
 
 		}
 
+		System.out.println("########## 결과 엑셀 작성  ..");
+
 		// 엑셀 생성
 		setExcelMake();
 
 		System.out.println("########## 종료 ..");
 
+	}
+
+	public void setExcelMake() {
+
+		XSSFWorkbook workbook = new XSSFWorkbook();
+
+		XSSFSheet sheet = workbook.createSheet("HONG");
+
+		Set<String> keyset = excelData.keySet();
+		int rownum = 0;
+
+		for (String key : keyset) {
+			Row row = sheet.createRow(rownum++);
+			Object[] objArr = excelData.get(key);
+			int cellnum = 0;
+			for (Object obj : objArr) {
+				Cell cell = row.createCell(cellnum++);
+				if (obj instanceof String) {
+					cell.setCellValue((String) obj);
+				} else if (obj instanceof Integer) {
+					cell.setCellValue((Integer) obj);
+				}
+			}
+		}
+
+		try (FileOutputStream out = new FileOutputStream(new File(PDF_FOLDER_PATH, EXCEL_FILE_NM));) {
+
+			workbook.write(out);
+			workbook.close();
+			out.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String getVatId(String content) {
+
+		String vatId = StringUtils.EMPTY;
+
+		Pattern pattern = Pattern.compile("DE[0-9]{9}|DE [0-9]{9}");
+		Matcher matcher = pattern.matcher(content);
+
+		while (matcher.find()) {
+
+			vatId = matcher.group();
+		}
+
+		if (StringUtils.isBlank(vatId)) {
+
+			vatId = "DE 17 594 4429";
+		}
+
+		if (vatId.equals("DE118569718")) {
+			Pattern patternDuplication = Pattern.compile("Umsatzsteuer-Identifikationsnummer");
+			Matcher matcherDuplication = patternDuplication.matcher(content);
+
+			vatId = matcherDuplication.find() ? vatId + "H&M" : vatId + "COS";
+		}
+
+		return vatId;
+	}
+
+	// pdf 파일 excel 변환
+	public void prcssPdfToExcel(File[] files) {
+
+		for (File file : files) {
+
+			//Create PDF document
+			PdfDocument pdf = new PdfDocument();
+
+			//Load the PDF document from disk.
+			pdf.loadFromFile(file.getPath());
+
+			//Save the document
+			pdf.saveToFile(PDF_FOLDER_PATH + EXCEL_FOLDER_NM + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx"),
+					FileFormat.XLSX);
+		}
+	}
+
+	// pdf 파일 목록 조회
+	public File[] getPdfFiles() {
+
+		File dir = new File(PDF_FOLDER_PATH);
+		File[] files = dir.listFiles(new FileFilter() {
+
+			@Override
+			public boolean accept(File file) {
+				if (file.isFile() && file.getName().toUpperCase().endsWith("PDF")) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		});
+
+		return files;
+	}
+
+	// 세팅정보 조회
+	public Map<String, Object> getSetting(String vatId) {
+
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
+
+		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
+
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonRoot = (JSONObject) jsonParser.parse(reader);
+
+			JSONObject typeObject = (JSONObject) jsonRoot.get("type");
+			String typeCd = typeObject.get(vatId).toString();
+			map.put("typeCd", typeCd);
+
+			JSONObject object = (JSONObject) jsonRoot.get("property");
+			JSONObject vatObject = (JSONObject) object.get(typeCd);
+
+			JSONArray itemArray = (JSONArray) vatObject.get("item");
+			map.put("itemCd", itemArray);
+
+			JSONObject optionObject = (JSONObject) vatObject.get("option");
+
+			// 옵션추가
+			for (int k = 0; k < itemArray.size(); k++) {
+				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
+			}
+
+			//System.out.println(Collections.singletonList(map));
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return map;
 	}
 
 	public int getCellConvert(String cellIdx) {
@@ -393,139 +524,5 @@ private static final String SETTING_FILE_PATH = "../hong.json";
 		}
 
 		return cellNumber;
-	}
-
-	public void setExcelMake() {
-
-		XSSFWorkbook workbook = new XSSFWorkbook();
-
-		XSSFSheet sheet = workbook.createSheet("HONG");
-
-		Set<String> keyset = excelData.keySet();
-		int rownum = 0;
-
-		for (String key : keyset) {
-			Row row = sheet.createRow(rownum++);
-			Object[] objArr = excelData.get(key);
-			int cellnum = 0;
-			for (Object obj : objArr) {
-				Cell cell = row.createCell(cellnum++);
-				if (obj instanceof String) {
-					cell.setCellValue((String) obj);
-				} else if (obj instanceof Integer) {
-					cell.setCellValue((Integer) obj);
-				}
-			}
-		}
-
-		try (FileOutputStream out = new FileOutputStream(new File(PDF_FOLDER_PATH, EXCEL_FILE_NM));) {
-
-			workbook.write(out);
-			workbook.close();
-			out.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public String getVatId(String content) {
-
-		String vatId = StringUtils.EMPTY;
-
-		Pattern pattern = Pattern.compile("DE[0-9]{9}|DE [0-9]{9}");
-		Matcher matcher = pattern.matcher(content);
-
-		while (matcher.find()) {
-
-			vatId = matcher.group();
-		}
-
-		if (StringUtils.isBlank(vatId)) {
-
-			vatId = "DE 17 594 4429";
-		}
-
-		if (vatId.equals("DE118569718")) {
-			Pattern patternDuplication = Pattern.compile("Umsatzsteuer-Identifikationsnummer");
-			Matcher matcherDuplication = patternDuplication.matcher(content);
-
-			vatId = matcherDuplication.find() ? vatId + "H&M" : vatId + "COS";
-		}
-
-		return vatId;
-	}
-
-	// pdf 파일 excel 변환
-	public void prcssPdfToExcel(File[] files) {
-
-		for (File file : files) {
-
-			//Create PDF document
-			PdfDocument pdf = new PdfDocument();
-
-			//Load the PDF document from disk.
-			pdf.loadFromFile(file.getPath());
-
-			//Save the document
-			pdf.saveToFile(PDF_FOLDER_PATH + EXCEL_FOLDER_NM + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx"),
-					FileFormat.XLSX);
-		}
-	}
-
-	// pdf 파일 목록 조회
-	public File[] getPdfFiles() {
-
-		File dir = new File(PDF_FOLDER_PATH);
-		File[] files = dir.listFiles(new FileFilter() {
-
-			@Override
-			public boolean accept(File file) {
-				if (file.isFile() && file.getName().toUpperCase().endsWith("PDF")) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		});
-
-		return files;
-	}
-
-	// 세팅정보 조회
-	public Map<String, Object> getSetting(String vatId) {
-
-		Map<String, Object> map = new LinkedHashMap<String, Object>();
-
-		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
-
-			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonRoot = (JSONObject) jsonParser.parse(reader);
-
-			JSONObject typeObject = (JSONObject) jsonRoot.get("type");
-			String typeCd = typeObject.get(vatId).toString();
-			map.put("typeCd", typeCd);
-
-			JSONObject object = (JSONObject) jsonRoot.get("property");
-			JSONObject vatObject = (JSONObject) object.get(typeCd);
-
-			JSONArray itemArray = (JSONArray) vatObject.get("item");
-			map.put("itemCd", itemArray);
-
-			JSONObject optionObject = (JSONObject) vatObject.get("option");
-
-			// 옵션추가
-			for (int k = 0; k < itemArray.size(); k++) {
-				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
-			}
-
-			//System.out.println(Collections.singletonList(map));
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-		return map;
 	}
 }
