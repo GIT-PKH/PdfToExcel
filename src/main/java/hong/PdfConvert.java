@@ -17,6 +17,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -43,11 +44,11 @@ public class PdfConvert {
 
 	private static final String SETTING_FILE_PATH = "./config/hong.json";
 
-	//private static final String EXCEL_FILE_NM = "HONG.xlsx";
+	//	private static final String EXCEL_FILE_NM = "HONG.xlsx";
 	//
-	//private static final String PDF_FOLDER_PATH = "../../";
+	//	private static final String PDF_FOLDER_PATH = "../../";
 	//
-	//private static final String SETTING_FILE_PATH = "../hong.json";
+	//	private static final String SETTING_FILE_PATH = "../hong.json";
 
 	private static final String EXCEL_FOLDER_NM = "HONG_EXCEL/";
 
@@ -114,63 +115,62 @@ public class PdfConvert {
 				extraList.add(files[k].getName());
 				extraList.add(typeCd);
 
-				// 추출항목 for (12개)
 				for (int p = 0; p < itemArray.size(); p++) {
 
 					String rslt = StringUtils.EMPTY;
-
 					String item = (String) itemArray.get(p);
 
 					if (StringUtils.isNotBlank(item)) {
-						
 						JSONArray optionArray = (JSONArray) attrMap.get(item);
-						
 						if (optionArray != null) {
 							
-							if (optionArray.get(0).equals("PDF")) {
-								
+							if (optionArray.get(0).equals("PDF")) { ////////////////////////////////////////////////////////////
 								String type = optionArray.get(1).toString();
-								
+
 								if (type.equals("01")) {
 									for (String text : content.split("\\n")) {
-
 										if (text.trim().indexOf(item) != -1) {
 											rslt = text.substring(text.indexOf(item) + item.length(), text.length());
 											break;
 										}
 									}
-
 								} else if (type.equals("02")) {
+
+									JSONArray replaceStart = (JSONArray) optionArray.get(2);
+									JSONArray replaceEnd = (JSONArray) optionArray.get(3);
+
+									int startIdx = 0;
+									for (int i = 0; i < replaceStart.size(); i++) {
+										startIdx = StringUtils.indexOf(contentLine, replaceStart.get(i).toString(), startIdx)
+												+ replaceStart.get(i).toString().length();
+									}
+
+									int endIdx = startIdx + 1;
+									for (int i = 0; i < replaceEnd.size(); i++) {
+										endIdx = StringUtils.indexOf(contentLine, replaceEnd.get(i).toString(), endIdx)
+												+ replaceEnd.get(i).toString().length();
+									}
+
+									rslt = contentLine.substring(startIdx, endIdx).trim();
 
 								} else if (type.equals("03")) {
 
-									String startStr = optionArray.get(2).toString();
-									String endStr = optionArray.get(3).toString();
-
-									int startIndex = contentLine.indexOf(startStr);
-
-									int endIndex = contentLine.indexOf(endStr, startIndex);
-
+									int startIndex = contentLine.indexOf(optionArray.get(2).toString());
+									int endIndex = contentLine.indexOf(optionArray.get(3).toString(), startIndex);
 									rslt = contentLine.substring(startIndex, endIndex);
-
 								}
 
 								JSONArray deleteArray = (JSONArray) optionArray.get(4);
 
 								if (deleteArray != null && deleteArray.size() > 0) {
 
-									String delete[] = new String[deleteArray.size()];
-									String replace[] = new String[deleteArray.size()];
-
 									for (int i = 0; i < deleteArray.size(); i++) {
-										delete[i] = (String) deleteArray.get(i);
-										replace[i] = StringUtils.EMPTY;
+										rslt = RegExUtils.replaceAll(rslt, Pattern.compile(deleteArray.get(i).toString()),
+												StringUtils.EMPTY).trim();
 									}
-
-									rslt = StringUtils.replaceEach(rslt, delete, replace).trim();
 								}
 
-							} else if (optionArray.get(0).equals("EXCEL")) {
+							} else if (optionArray.get(0).equals("EXCEL")) { ///////////////////////////////////////////////////
 
 								try (FileInputStream file = new FileInputStream(new File(PDF_FOLDER_PATH + EXCEL_FOLDER_NM
 										+ StringUtils.replaceIgnoreCase(files[k].getName(), "PDF", "xlsx")))) {
@@ -183,9 +183,7 @@ public class PdfConvert {
 									JSONArray deleteArray = (JSONArray) optionArray.get(2);
 
 									for (int z = 0; z < rowCellArray.size(); z++) {
-
 										String rowCells[] = rowCellArray.get(z).toString().split("/");
-
 										XSSFRow row = sheet.getRow(Integer.parseInt(rowCells[0]) - 1);
 										XSSFCell cell = row.getCell(getCellConvert(rowCells[1]));
 
@@ -198,15 +196,10 @@ public class PdfConvert {
 
 										if (deleteArray != null && deleteArray.size() > 0) {
 
-											String delete[] = new String[deleteArray.size()];
-											String replace[] = new String[deleteArray.size()];
-
 											for (int i = 0; i < deleteArray.size(); i++) {
-												delete[i] = (String) deleteArray.get(i);
-												replace[i] = StringUtils.EMPTY;
+												rslt = RegExUtils.replaceAll(rslt, Pattern.compile(deleteArray.get(i).toString()),
+														StringUtils.EMPTY).trim();
 											}
-
-											rslt = StringUtils.replaceEach(rslt, delete, replace).trim();
 										}
 									}
 
@@ -256,12 +249,9 @@ public class PdfConvert {
 	public void setExcelMake() {
 
 		XSSFWorkbook workbook = new XSSFWorkbook();
-
 		XSSFSheet sheet = workbook.createSheet("HONG");
-
 		Set<String> keyset = excelData.keySet();
 		int rownum = 0;
-
 		for (String key : keyset) {
 			Row row = sheet.createRow(rownum++);
 			Object[] objArr = excelData.get(key);
