@@ -12,13 +12,13 @@ public class replaceTest {
 
 		String aa = "Nettobetrag 39,29) 7,46 Der Rechnungsbetrag";
 
-		String bb = StringUtils.replaceEach(aa, new String[] { "Nettobetrag", "Der Rechnungsbetrag" }, new String[] { "", "" });
-
-		String cc = RegExUtils.replaceAll(aa, Pattern.compile("[Nettobetrag](.*?)[)]"), StringUtils.EMPTY);
+//		String bb = StringUtils.replaceEach(aa, new String[] { "Nettobetrag", "Der Rechnungsbetrag" }, new String[] { "", "" });
+//
+//		String cc = RegExUtils.replaceAll(aa, Pattern.compile("[Nettobetrag](.*?)[)]"), StringUtils.EMPTY);
 		
-		cc = RegExUtils.replaceAll(cc, Pattern.compile("Der Rechnungsbetrag"), StringUtils.EMPTY);
+		aa = RegExUtils.replaceAll(aa, Pattern.compile("\\)"), StringUtils.EMPTY);
 
-		System.out.println(cc);
+		System.out.println(aa);
 
 	}
 

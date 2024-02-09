@@ -63,13 +63,13 @@ public class PdfConvert {
 
 	public void prcssConvert() {
 
-		System.out.println("########## 변환시작 ..");
+		System.out.println("## 변환시작 ..");
 
 		File[] files = getPdfFiles();
 
 		// pdf -> excel 변환
 		prcssPdfToExcel(files);
-		System.out.println("########## PDF -> EXCEL 변환완료 ..");
+		System.out.println("## PDF -> EXCEL 변환완료 ..");
 
 		int index = 0;
 
@@ -85,13 +85,13 @@ public class PdfConvert {
 				// VAT ID 추출 (PK)
 				String vatId = getVatId(content);
 
-				System.out.println("########## [" + files[k].getName() + "] 시작 .. " + vatId);
+				System.out.println("## [" + StringUtils.replaceIgnoreCase(files[k].getName(), ".PDF", "") + "] 시작 .. " + vatId);
 
 				// 설정정보 조회
 				Map<String, Object> attrMap = getSetting(vatId);
 
 				if (attrMap.size() == 0) {
-					System.out.println("########## [ERROR] 설정정보를 불러 수 없습니다..");
+					System.out.println("## [ERROR] 설정정보를 불러 수 없습니다..");
 					return;
 				}
 
@@ -123,7 +123,7 @@ public class PdfConvert {
 					if (StringUtils.isNotBlank(item)) {
 						JSONArray optionArray = (JSONArray) attrMap.get(item);
 						if (optionArray != null) {
-							
+
 							if (optionArray.get(0).equals("PDF")) { ////////////////////////////////////////////////////////////
 								String type = optionArray.get(1).toString();
 
@@ -188,10 +188,13 @@ public class PdfConvert {
 										XSSFCell cell = row.getCell(getCellConvert(rowCells[1]));
 
 										if (cell != null) {
-											rslt = rslt + " " + cell.toString();
+											if (z == 0) {
+												rslt = cell.toString().trim();
+											} else {
+												rslt = rslt + " " + cell.toString().trim();
+											}
 										} else {
-											System.out.println(
-													"########## [ERROR] " + item + " 항목 엑셀을 읽을 수 없습니다. hong.json 을 확인하세요.");
+											System.out.println("## [ERROR] " + item + " 항목 엑셀을 읽을 수 없습니다. hong.json 을 확인하세요.");
 										}
 
 										if (deleteArray != null && deleteArray.size() > 0) {
@@ -213,13 +216,13 @@ public class PdfConvert {
 
 						} else {
 
-							System.out.println("########## [ERROR] " + item + " 항목에 해당하는 option 항목이 존재하지 않습니다.");
+							System.out.println("## [ERROR] " + item + " 항목에 해당하는 option 항목이 존재하지 않습니다.");
 						}
 					}
 
 					if (StringUtils.isNoneBlank(item)) {
 
-						System.out.println("# [항목] " + item + ", [결과] " + rslt);
+						System.out.println("# [" + item + "] 결과 [" + rslt + "]");
 					}
 
 					extraList.add(rslt);
@@ -237,12 +240,12 @@ public class PdfConvert {
 
 		}
 
-		System.out.println("########## 결과 엑셀 작성  ..");
+		System.out.println("## 결과 엑셀 작성  ..");
 
 		// 엑셀 생성
 		setExcelMake();
 
-		System.out.println("########## 종료 ..");
+		System.out.println("## 종료 ..");
 
 	}
 
@@ -307,6 +310,7 @@ public class PdfConvert {
 	// pdf 파일 excel 변환
 	public void prcssPdfToExcel(File[] files) {
 
+		int cnt = 1;
 		for (File file : files) {
 
 			//Create PDF document
@@ -318,6 +322,8 @@ public class PdfConvert {
 			//Save the document
 			pdf.saveToFile(PDF_FOLDER_PATH + EXCEL_FOLDER_NM + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx"),
 					FileFormat.XLSX);
+
+			System.out.println("# " + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx") + " 완료[" + (cnt++) + "] .. ");
 		}
 	}
 
