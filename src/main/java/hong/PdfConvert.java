@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,12 +54,8 @@ public class PdfConvert {
 	private static final String EXCEL_FOLDER_NM = "HONG_EXCEL/";
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 		PdfConvert pdfConvert = new PdfConvert();
-
 		pdfConvert.prcssConvert();
-
 	}
 
 	public void prcssConvert() {
@@ -69,7 +66,7 @@ public class PdfConvert {
 
 		// pdf -> excel 변환
 		prcssPdfToExcel(files);
-		System.out.println("## PDF -> EXCEL 변환완료 ..");
+		// System.out.println("## PDF -> EXCEL 변환완료 ..");
 
 		int index = 0;
 
@@ -94,8 +91,16 @@ public class PdfConvert {
 					System.out.println("## [ERROR] 설정정보를 불러 수 없습니다..");
 					return;
 				}
+				// 최초한번헤더세팅
+				if (k == 0) {
+					@SuppressWarnings("unchecked")
+					List<String> headerArray = (List<String>) attrMap.get("headerCd");
+					excelData.put(String.valueOf(index++), headerArray.toArray());
+				}
 
 				String typeCd = (String) attrMap.get("typeCd");
+
+				@SuppressWarnings("unchecked")
 				List<String> itemArray = (List<String>) attrMap.get("itemCd");
 
 				// 구매처별 제목
@@ -108,8 +113,6 @@ public class PdfConvert {
 
 				// excel add
 				excelData.put(String.valueOf(index++), titleList.toArray());
-
-				//System.out.println("# titleList : " + titleList);
 
 				List<String> extraList = new ArrayList<String>();
 				extraList.add(files[k].getName());
@@ -124,18 +127,18 @@ public class PdfConvert {
 						JSONArray optionArray = (JSONArray) attrMap.get(item);
 						if (optionArray != null) {
 
-							if (optionArray.get(0).equals("PDF")) { ////////////////////////////////////////////////////////////
-								String type = optionArray.get(1).toString();
+							String pdfExcel = (String) optionArray.get(0);
 
+							if (pdfExcel.equals("PDF")) {
+								String type = optionArray.get(1).toString();
 								if (type.equals("01")) {
 									for (String text : content.split("\\n")) {
-										if (text.trim().indexOf(item) != -1) {
-											rslt = text.substring(text.indexOf(item) + item.length(), text.length());
+										if (text.indexOf(item) != -1) {
+											rslt = text.substring(text.indexOf(item) + item.length(), text.length()).trim();
 											break;
 										}
 									}
 								} else if (type.equals("02")) {
-
 									JSONArray replaceStart = (JSONArray) optionArray.get(2);
 									JSONArray replaceEnd = (JSONArray) optionArray.get(3);
 
@@ -154,28 +157,19 @@ public class PdfConvert {
 									rslt = contentLine.substring(startIdx, endIdx).trim();
 
 								} else if (type.equals("03")) {
-
 									int startIndex = contentLine.indexOf(optionArray.get(2).toString());
 									int endIndex = contentLine.indexOf(optionArray.get(3).toString(), startIndex);
 									rslt = contentLine.substring(startIndex, endIndex);
 								}
 
-								JSONArray deleteArray = (JSONArray) optionArray.get(4);
+								// 단어삭제
+								rslt = getDeleteText(rslt, ((JSONArray) optionArray.get(4)));
 
-								if (deleteArray != null && deleteArray.size() > 0) {
-
-									for (int i = 0; i < deleteArray.size(); i++) {
-										rslt = RegExUtils.replaceAll(rslt, Pattern.compile(deleteArray.get(i).toString()),
-												StringUtils.EMPTY).trim();
-									}
-								}
-
-							} else if (optionArray.get(0).equals("EXCEL")) { ///////////////////////////////////////////////////
+							} else if (pdfExcel.equals("EXCEL")) {
 
 								try (FileInputStream file = new FileInputStream(new File(PDF_FOLDER_PATH + EXCEL_FOLDER_NM
 										+ StringUtils.replaceIgnoreCase(files[k].getName(), "PDF", "xlsx")))) {
 
-									// 엑셀 파일로 Workbook instance를 생성한다.
 									XSSFWorkbook workbook = new XSSFWorkbook(file);
 									XSSFSheet sheet = workbook.getSheetAt(0);
 
@@ -185,25 +179,21 @@ public class PdfConvert {
 									for (int z = 0; z < rowCellArray.size(); z++) {
 										String rowCells[] = rowCellArray.get(z).toString().split("/");
 										XSSFRow row = sheet.getRow(Integer.parseInt(rowCells[0]) - 1);
-										XSSFCell cell = row.getCell(getCellConvert(rowCells[1]));
-
-										if (cell != null) {
-											if (z == 0) {
-												rslt = cell.toString().trim();
+										if (row != null) {
+											XSSFCell cell = row.getCell(getCellConvert(rowCells[1]));
+											if (cell != null) {
+												if (z == 0) {
+													rslt = cell.toString().trim();
+												} else {
+													rslt = rslt + " " + cell.toString().trim();
+												}
 											} else {
-												rslt = rslt + " " + cell.toString().trim();
-											}
-										} else {
-											System.out.println("## [ERROR] " + item + " 항목 엑셀을 읽을 수 없습니다. hong.json 을 확인하세요.");
-										}
-
-										if (deleteArray != null && deleteArray.size() > 0) {
-
-											for (int i = 0; i < deleteArray.size(); i++) {
-												rslt = RegExUtils.replaceAll(rslt, Pattern.compile(deleteArray.get(i).toString()),
-														StringUtils.EMPTY).trim();
+												System.out
+														.println("## [ERROR] " + item + " 항목 엑셀을 읽을 수 없습니다. hong.json 을 확인하세요.");
 											}
 										}
+										// 단어삭제
+										rslt = getDeleteText(rslt, deleteArray);
 									}
 
 									workbook.close();
@@ -215,29 +205,28 @@ public class PdfConvert {
 							}
 
 						} else {
-
 							System.out.println("## [ERROR] " + item + " 항목에 해당하는 option 항목이 존재하지 않습니다.");
 						}
 					}
 
 					if (StringUtils.isNoneBlank(item)) {
-
 						System.out.println("# [" + item + "] 결과 [" + rslt + "]");
 					}
 
 					extraList.add(rslt);
 				}
 
+				// pdf 전체내용
 				extraList.add(content);
 				extraList.add(contentLine);
+
+				// System.out.println(contentLine);
 
 				excelData.put(String.valueOf(index++), extraList.toArray());
 
 			} catch (Exception e) {
-
 				e.printStackTrace();
 			}
-
 		}
 
 		System.out.println("## 결과 엑셀 작성  ..");
@@ -249,8 +238,23 @@ public class PdfConvert {
 
 	}
 
-	public void setExcelMake() {
+	// 단어삭제
+	public String getDeleteText(String text, JSONArray deleteArray) {
+		if (deleteArray != null && deleteArray.size() > 0) {
+			for (int i = 0; i < deleteArray.size(); i++) {
+				String delText = deleteArray.get(i).toString();
+				if (delText.equals("(") || delText.equals(")") || delText.equals("{") || delText.equals("}")
+						|| delText.equals("^") || delText.equals("[") || delText.equals("]") || delText.equals("?")) {
+					delText = "\\" + delText;
+				}
+				text = RegExUtils.replaceAll(RegExUtils.replaceAll(text, Pattern.compile(delText), StringUtils.EMPTY),
+						Pattern.compile("\r\n"), StringUtils.EMPTY).trim();
+			}
+		}
+		return text;
+	}
 
+	public void setExcelMake() {
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFSheet sheet = workbook.createSheet("HONG");
 		Set<String> keyset = excelData.keySet();
@@ -270,59 +274,44 @@ public class PdfConvert {
 		}
 
 		try (FileOutputStream out = new FileOutputStream(new File(PDF_FOLDER_PATH, EXCEL_FILE_NM));) {
-
 			workbook.write(out);
 			workbook.close();
 			out.close();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	// VAT 번호 추출
 	public String getVatId(String content) {
-
 		String vatId = StringUtils.EMPTY;
-
 		Pattern pattern = Pattern.compile("DE[0-9]{9}|DE [0-9]{9}");
 		Matcher matcher = pattern.matcher(content);
 
 		while (matcher.find()) {
-
 			vatId = matcher.group();
 		}
 
 		if (StringUtils.isBlank(vatId)) {
-
 			vatId = "DE 17 594 4429";
 		}
 
 		if (vatId.equals("DE118569718")) {
 			Pattern patternDuplication = Pattern.compile("Umsatzsteuer-Identifikationsnummer");
 			Matcher matcherDuplication = patternDuplication.matcher(content);
-
 			vatId = matcherDuplication.find() ? vatId + "H&M" : vatId + "COS";
 		}
-
 		return vatId;
 	}
 
 	// pdf 파일 excel 변환
 	public void prcssPdfToExcel(File[] files) {
-
 		int cnt = 1;
 		for (File file : files) {
-
-			//Create PDF document
 			PdfDocument pdf = new PdfDocument();
-
-			//Load the PDF document from disk.
 			pdf.loadFromFile(file.getPath());
-
-			//Save the document
 			pdf.saveToFile(PDF_FOLDER_PATH + EXCEL_FOLDER_NM + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx"),
 					FileFormat.XLSX);
-
 			System.out.println("# " + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx") + " 완료[" + (cnt++) + "] .. ");
 		}
 	}
@@ -332,7 +321,6 @@ public class PdfConvert {
 
 		File dir = new File(PDF_FOLDER_PATH);
 		File[] files = dir.listFiles(new FileFilter() {
-
 			@Override
 			public boolean accept(File file) {
 				if (file.isFile() && file.getName().toUpperCase().endsWith("PDF")) {
@@ -342,7 +330,6 @@ public class PdfConvert {
 				}
 			}
 		});
-
 		return files;
 	}
 
@@ -360,6 +347,9 @@ public class PdfConvert {
 			String typeCd = typeObject.get(vatId).toString();
 			map.put("typeCd", typeCd);
 
+			JSONArray headerArray = (JSONArray) jsonRoot.get("header");
+			map.put("headerCd", headerArray);
+
 			JSONObject object = (JSONObject) jsonRoot.get("property");
 			JSONObject vatObject = (JSONObject) object.get(typeCd);
 
@@ -376,10 +366,8 @@ public class PdfConvert {
 			//System.out.println(Collections.singletonList(map));
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
 		}
-
 		return map;
 	}
 
@@ -516,6 +504,33 @@ public class PdfConvert {
 			break;
 		case "AQ":
 			cellNumber = 42;
+			break;
+		case "AR":
+			cellNumber = 43;
+			break;
+		case "AS":
+			cellNumber = 44;
+			break;
+		case "AT":
+			cellNumber = 45;
+			break;
+		case "AU":
+			cellNumber = 46;
+			break;
+		case "AV":
+			cellNumber = 47;
+			break;
+		case "AW":
+			cellNumber = 48;
+			break;
+		case "AX":
+			cellNumber = 49;
+			break;
+		case "AY":
+			cellNumber = 50;
+			break;
+		case "AZ":
+			cellNumber = 51;
 			break;
 		}
 
