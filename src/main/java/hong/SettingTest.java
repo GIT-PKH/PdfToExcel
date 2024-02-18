@@ -17,7 +17,7 @@ import org.json.simple.parser.JSONParser;
 
 public class SettingTest {
 
-	private static final String SETTING_FILE_PATH = "./config/hong.json";
+	private static final String SETTING_FILE_PATH = "../config/hong.json";
 
 	public static void main(String[] args) {
 
