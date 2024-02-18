@@ -2,7 +2,7 @@ package hong;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class AbcTest {
+public class SwitchTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

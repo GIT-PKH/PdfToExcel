@@ -3,7 +3,7 @@ package hong;
 import com.spire.pdf.FileFormat;
 import com.spire.pdf.PdfDocument;
 
-public class pdfToOther {
+public class PdfToOther {
 
 	private static final String PDF_FOLDER_PATH = "./config/pdf/";
 	

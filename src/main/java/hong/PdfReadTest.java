@@ -5,7 +5,7 @@ import java.io.File;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-public class PdfRead {
+public class PdfReadTest {
 
 	private static final String PDF_FOLDER_PATH = "./config/pdf/";
 
