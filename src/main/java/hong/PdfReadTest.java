@@ -14,10 +14,10 @@ public class PdfReadTest {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-		PDDocument document = PDDocument.load(new File(PDF_FOLDER_PATH + FILE_NM));
-		String content = new PDFTextStripper().getText(document);
-
-		System.out.println(content);
+//		PDDocument document = PDDocument.load(new File(PDF_FOLDER_PATH + FILE_NM));
+//		String content = new PDFTextStripper().getText(document);
+//
+//		System.out.println(content);
 	}
 
 }

@@ -47,12 +47,12 @@ public class PdfConvert {
 
 	private static final String SETTING_FILE_PATH = "../config/hong.json";
 
-	//		private static final String EXCEL_FILE_NM = "00.HONG.xlsx";
-	//	
-	//		private static final String PDF_FOLDER_PATH = "../../";
-	//	
-	//		private static final String SETTING_FILE_PATH = "../hong.json";
-
+	//	private static final String EXCEL_FILE_NM = "00.HONG.xlsx";
+	//
+	//	private static final String PDF_FOLDER_PATH = "../../";
+	//
+	//	private static final String SETTING_FILE_PATH = "../hong.json";
+	//
 	private static final String EXCEL_FOLDER_NM = "HONG_EXCEL/";
 
 	public static void main(String[] args) {
@@ -71,8 +71,10 @@ public class PdfConvert {
 
 			// PDF ------------------------------------------------------------
 			try (PDDocument document = PDDocument.load(files[k]);) {
+				//try (PDDocument document = Loader.loadPDF(new RandomAccessReadBufferedFile(files[k]));) {
 				String content = new PDFTextStripper().getText(document);
 				String contentLine = content.replaceAll("(\\r\\n|\\r|\\n|\\n\\r)", " ");
+				String contentDecompose = contentLine.replaceAll(" ", "\n");
 
 				// VAT ID 추출 (PK)
 				String vatId = getVatId(contentLine);
@@ -102,7 +104,7 @@ public class PdfConvert {
 
 					for (String item : itemArray) {
 						// add
-						String rslt = processItem(files[k], content, contentLine, item, attrMap);
+						String rslt = processItem(files[k], content, contentLine, contentDecompose, item, attrMap);
 						extraList.add(rslt);
 						System.out.println("# [" + item + "] 결과 [" + rslt + "]");
 					}
@@ -110,6 +112,7 @@ public class PdfConvert {
 					// pdf 전체내용
 					extraList.add(content);
 					extraList.add(contentLine);
+					extraList.add(contentDecompose);
 				} else {
 					// add
 					extraList.add(vatId);
@@ -134,15 +137,18 @@ public class PdfConvert {
 
 	}
 
-	private String processItem(File file, String content, String contentLine, String item, Map<String, Object> attrMap) {
+	private String processItem(File file, String content, String contentLine, String contentDecompose, String item,
+			Map<String, Object> attrMap) {
 
 		String rslt = StringUtils.EMPTY;
+
 		if (StringUtils.isNotBlank(item)) {
 			JSONArray optionArray = (JSONArray) attrMap.get(item);
 			if (optionArray != null) {
 
 				String pdfExcel = (String) optionArray.get(0);
 
+				int delStrIndx = 4;
 				if (pdfExcel.equals("PDF")) {
 					String type = optionArray.get(1).toString();
 					if (type.equals("01")) {
@@ -152,32 +158,38 @@ public class PdfConvert {
 								break;
 							}
 						}
+						delStrIndx = 4;
 					} else if (type.equals("02")) {
 						JSONArray replaceStart = (JSONArray) optionArray.get(2);
 						JSONArray replaceEnd = (JSONArray) optionArray.get(3);
-
 						int startIdx = 0;
 						for (int i = 0; i < replaceStart.size(); i++) {
 							startIdx = StringUtils.indexOf(contentLine, replaceStart.get(i).toString(), startIdx)
 									+ replaceStart.get(i).toString().length();
 						}
-
 						int endIdx = startIdx + 1;
 						for (int i = 0; i < replaceEnd.size(); i++) {
 							endIdx = StringUtils.indexOf(contentLine, replaceEnd.get(i).toString(), endIdx)
 									+ replaceEnd.get(i).toString().length();
 						}
-
 						rslt = contentLine.substring(startIdx, endIdx).trim();
+						delStrIndx = 4;
 
 					} else if (type.equals("03")) {
 						int startIndex = contentLine.indexOf(optionArray.get(2).toString());
 						int endIndex = contentLine.indexOf(optionArray.get(3).toString(), startIndex);
 						rslt = contentLine.substring(startIndex, endIndex);
+					} else if (type.equals("04")) {
+						JSONArray readLines = (JSONArray) optionArray.get(2);
+
+						delStrIndx = 4;
+					} else if (type.equals("05")) {
+						
+						delStrIndx = 4;
 					}
 
 					// 단어삭제
-					rslt = getDeleteText(rslt, ((JSONArray) optionArray.get(4)));
+					rslt = getDeleteText(rslt, ((JSONArray) optionArray.get(delStrIndx)));
 
 				} else if (pdfExcel.equals("EXCEL")) {
 
@@ -375,61 +387,18 @@ public class PdfConvert {
 	public int getCellConvert(String cellIdx) {
 		// @formatter:off
 		int cellNumber = 0;
-
 		switch (cellIdx) {
-		case "A":cellNumber = 0;break;
-		case "B":cellNumber = 1;break;
-		case "C":cellNumber = 2;break;
-		case "D":cellNumber = 3;break;
-		case "E":cellNumber = 4;break;
-		case "F":cellNumber = 5;break;
-		case "G":cellNumber = 6;break;
-		case "H":cellNumber = 7;break;
-		case "I":cellNumber = 8;break;
-		case "J":cellNumber = 9;break;
-		case "K":cellNumber = 10;break;
-		case "L":cellNumber = 11;break;
-		case "M":cellNumber = 12;break;
-		case "N":cellNumber = 13;break;
-		case "O":cellNumber = 14;break;
-		case "P":cellNumber = 15;break;
-		case "Q":cellNumber = 16;break;
-		case "R":cellNumber = 17;break;
-		case "S":cellNumber = 18;break;
-		case "T":cellNumber = 19;break;
-		case "U":cellNumber = 20;break;
-		case "V":cellNumber = 21;break;
-		case "W":cellNumber = 22;break;
-		case "X":cellNumber = 23;break;
-		case "Y":cellNumber = 24;break;
-		case "Z":cellNumber = 25;break;
-		case "AA":cellNumber = 26;break;
-		case "AB":cellNumber = 27;break;
-		case "AC":cellNumber = 28;break;
-		case "AD":cellNumber = 29;break;
-		case "AE":cellNumber = 30;break;
-		case "AF":cellNumber = 31;break;
-		case "AG":cellNumber = 32;break;
-		case "AH":cellNumber = 33;break;
-		case "AI":cellNumber = 34;break;
-		case "AJ":cellNumber = 35;break;
-		case "AK":cellNumber = 36;break;
-		case "AL":cellNumber = 37;break;
-		case "AM":cellNumber = 38;break;
-		case "AN":cellNumber = 39;break;
-		case "AO":cellNumber = 40;break;
-		case "AP":cellNumber = 41;break;
-		case "AQ":cellNumber = 42;break;
-		case "AR":cellNumber = 43;break;
-		case "AS":cellNumber = 44;break;
-		case "AT":cellNumber = 45;break;
-		case "AU":cellNumber = 46;break;
-		case "AV":cellNumber = 47;break;
-		case "AW":cellNumber = 48;break;
-		case "AX":cellNumber = 49;break;
-		case "AY":cellNumber = 50;break;
-		case "AZ":cellNumber = 51;break;
-		}
+		case "A":cellNumber = 0;break;	case "B":cellNumber = 1;break;	case "C":cellNumber = 2;break;	case "D":cellNumber = 3;break;	case "E":cellNumber = 4;break;
+		case "F":cellNumber = 5;break;	case "G":cellNumber = 6;break;	case "H":cellNumber = 7;break;	case "I":cellNumber = 8;break;	case "J":cellNumber = 9;break;
+		case "K":cellNumber = 10;break;	case "L":cellNumber = 11;break;	case "M":cellNumber = 12;break;	case "N":cellNumber = 13;break;	case "O":cellNumber = 14;break;
+		case "P":cellNumber = 15;break;	case "Q":cellNumber = 16;break;	case "R":cellNumber = 17;break;	case "S":cellNumber = 18;break;	case "T":cellNumber = 19;break;
+		case "U":cellNumber = 20;break;	case "V":cellNumber = 21;break;	case "W":cellNumber = 22;break;	case "X":cellNumber = 23;break;	case "Y":cellNumber = 24;break;
+		case "Z":cellNumber = 25;break;	case "AA":cellNumber = 26;break;case "AB":cellNumber = 27;break;case "AC":cellNumber = 28;break;case "AD":cellNumber = 29;break;
+		case "AE":cellNumber = 30;break;case "AF":cellNumber = 31;break;case "AG":cellNumber = 32;break;case "AH":cellNumber = 33;break;case "AI":cellNumber = 34;break;
+		case "AJ":cellNumber = 35;break;case "AK":cellNumber = 36;break;case "AL":cellNumber = 37;break;case "AM":cellNumber = 38;break;case "AN":cellNumber = 39;break;
+		case "AO":cellNumber = 40;break;case "AP":cellNumber = 41;break;case "AQ":cellNumber = 42;break;case "AR":cellNumber = 43;break;case "AS":cellNumber = 44;break;
+		case "AT":cellNumber = 45;break;case "AU":cellNumber = 46;break;case "AV":cellNumber = 47;break;case "AW":cellNumber = 48;break;case "AX":cellNumber = 49;break;
+		case "AY":cellNumber = 50;break;case "AZ":cellNumber = 51;break;}
 		return cellNumber;
 		// @formatter:on
 	}
