@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -40,19 +40,19 @@ public class PdfConvert {
 
 	static Map<String, Object[]> excelData = new LinkedHashMap<>();
 
-	private static final String EXCEL_FILE_NM = "00.HONG_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"))
-			+ ".xlsx";
+//	private static final String EXCEL_FILE_NM = "00.HONG_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"))
+//			+ ".xlsx";
+//
+//	private static final String PDF_FOLDER_PATH = "../config/pdf/";
+//
+//	private static final String SETTING_FILE_PATH = "../config/hong.json";
 
-	private static final String PDF_FOLDER_PATH = "../config/pdf/";
+			private static final String EXCEL_FILE_NM = "00.HONG.xlsx";
+		
+			private static final String PDF_FOLDER_PATH = "../../";
+		
+			private static final String SETTING_FILE_PATH = "../hong.json";
 
-	private static final String SETTING_FILE_PATH = "../config/hong.json";
-
-	//	private static final String EXCEL_FILE_NM = "00.HONG.xlsx";
-	//
-	//	private static final String PDF_FOLDER_PATH = "../../";
-	//
-	//	private static final String SETTING_FILE_PATH = "../hong.json";
-	//
 	private static final String EXCEL_FOLDER_NM = "HONG_EXCEL/";
 
 	public static void main(String[] args) {
@@ -74,7 +74,6 @@ public class PdfConvert {
 				//try (PDDocument document = Loader.loadPDF(new RandomAccessReadBufferedFile(files[k]));) {
 				String content = new PDFTextStripper().getText(document);
 				String contentLine = content.replaceAll("(\\r\\n|\\r|\\n|\\n\\r)", " ");
-				String contentDecompose = contentLine.replaceAll(" ", "\n");
 
 				// VAT ID 추출 (PK)
 				String vatId = getVatId(contentLine);
@@ -103,16 +102,21 @@ public class PdfConvert {
 					List<String> itemArray = (List<String>) attrMap.get("itemCd");
 
 					for (String item : itemArray) {
+						String rslt = StringUtils.EMPTY;
 						// add
-						String rslt = processItem(files[k], content, contentLine, contentDecompose, item, attrMap);
+						try {
+							rslt = processItem(files[k], content, contentLine, item, attrMap);
+							System.out.println("# [" + item + "] 결과 [" + rslt + "]");
+						} catch (Exception e) {
+							rslt = "[ERROR] " + item + " 오류 발생";
+							e.printStackTrace();
+						}
 						extraList.add(rslt);
-						System.out.println("# [" + item + "] 결과 [" + rslt + "]");
 					}
 
 					// pdf 전체내용
 					extraList.add(content);
 					extraList.add(contentLine);
-					extraList.add(contentDecompose);
 				} else {
 					// add
 					extraList.add(vatId);
@@ -137,8 +141,7 @@ public class PdfConvert {
 
 	}
 
-	private String processItem(File file, String content, String contentLine, String contentDecompose, String item,
-			Map<String, Object> attrMap) {
+	private String processItem(File file, String content, String contentLine, String item, Map<String, Object> attrMap) {
 
 		String rslt = StringUtils.EMPTY;
 
@@ -151,6 +154,7 @@ public class PdfConvert {
 				int delStrIndx = 4;
 				if (pdfExcel.equals("PDF")) {
 					String type = optionArray.get(1).toString();
+
 					if (type.equals("01")) {
 						for (String text : content.split("\\n")) {
 							if (text.indexOf(item) != -1) {
@@ -158,7 +162,7 @@ public class PdfConvert {
 								break;
 							}
 						}
-						delStrIndx = 4;
+						delStrIndx = 2;
 					} else if (type.equals("02")) {
 						JSONArray replaceStart = (JSONArray) optionArray.get(2);
 						JSONArray replaceEnd = (JSONArray) optionArray.get(3);
@@ -172,6 +176,7 @@ public class PdfConvert {
 							endIdx = StringUtils.indexOf(contentLine, replaceEnd.get(i).toString(), endIdx)
 									+ replaceEnd.get(i).toString().length();
 						}
+						//System.out.println("## item : " + item + "## startIdx : " + startIdx + " : endIdx : " + endIdx);
 						rslt = contentLine.substring(startIdx, endIdx).trim();
 						delStrIndx = 4;
 
@@ -179,13 +184,38 @@ public class PdfConvert {
 						int startIndex = contentLine.indexOf(optionArray.get(2).toString());
 						int endIndex = contentLine.indexOf(optionArray.get(3).toString(), startIndex);
 						rslt = contentLine.substring(startIndex, endIndex);
+						delStrIndx = 4;
 					} else if (type.equals("04")) {
-						JSONArray readLines = (JSONArray) optionArray.get(2);
+						JSONArray replaceStart = (JSONArray) optionArray.get(2);
+						JSONArray replaceEnd = (JSONArray) optionArray.get(3);
+						int startIdx = 0;
+						for (int i = 0; i < replaceStart.size(); i++) {
+							startIdx = StringUtils.indexOf(contentLine, replaceStart.get(i).toString(), startIdx);
+						}
+						int endIdx = startIdx;
+						for (int i = 0; i < replaceEnd.size(); i++) {
+							endIdx = StringUtils.lastIndexOf(contentLine, replaceEnd.get(i).toString(), endIdx)
+									- replaceEnd.get(i).toString().length();
+							;
+						}
+						rslt = contentLine.substring(endIdx + 1, startIdx).trim();
+						delStrIndx = 4;
 
-						delStrIndx = 4;
 					} else if (type.equals("05")) {
-						
-						delStrIndx = 4;
+						StringBuilder sb = new StringBuilder();
+						@SuppressWarnings("unchecked")
+						List<String> readLines = (List<String>) optionArray.get(2);
+						int idx = 1;
+						for (String text : content.split("\\n")) {
+							for (String lineNumber : readLines) {
+								if (idx == Integer.parseInt(lineNumber)) {
+									sb.append(text.replaceAll("(\\r\\n|\\r|\\n|\\n\\r)", "")).append(" ");
+								}
+							}
+							idx++;
+						}
+						rslt = sb.toString().trim();
+						delStrIndx = 3;
 					}
 
 					// 단어삭제
@@ -222,6 +252,7 @@ public class PdfConvert {
 						}
 						workbook.close();
 					} catch (Exception e) {
+
 						e.printStackTrace();
 					}
 				}
@@ -359,7 +390,6 @@ public class PdfConvert {
 			for (int k = 0; k < itemArray.size(); k++) {
 				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
 			}
-
 			//System.out.println(Collections.singletonList(map));
 
 		} catch (Exception e) {
@@ -373,12 +403,12 @@ public class PdfConvert {
 		if (deleteArray != null && deleteArray.size() > 0) {
 			for (int i = 0; i < deleteArray.size(); i++) {
 				String delText = deleteArray.get(i).toString();
-				if (delText.equals("(") || delText.equals(")") || delText.equals("{") || delText.equals("}")
-						|| delText.equals("^") || delText.equals("[") || delText.equals("]") || delText.equals("?")) {
-					delText = "\\" + delText;
-				}
-				text = RegExUtils.replaceAll(RegExUtils.replaceAll(text, Pattern.compile(delText), StringUtils.EMPTY),
-						Pattern.compile("\r\n"), StringUtils.EMPTY).trim();
+				// @formatter:off
+				text = text.replace(delText, StringUtils.EMPTY)
+						   .replaceAll("\\r\\n", StringUtils.EMPTY)
+						   .replaceAll(" ", StringUtils.EMPTY) // 아스키코드 (160번)
+						   .trim();
+				// @formatter:on
 			}
 		}
 		return text;

@@ -7,23 +7,11 @@ public class StrSubstringTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		String attrKey = "Datum";
+		String str = "A!C@B#C$D%E^D&C*G";
 
-		//String text = "Rechnung/Lieferschein Datum:  25.12.2023";
-
-		//String text = "Datum:  25.12.2023";
-
-		//String text = "Datum:  25.12.2023 Rechnung/Lieferschein";
-
-		String text = "bezahlt Datum:  25.12.2023 Rechnung/Lieferschein";
-
-		System.out.println(text.indexOf(attrKey));
-
-		System.out.println(text.indexOf(attrKey) + attrKey.length());
-
-		String rslt = text.substring(text.indexOf(attrKey) + attrKey.length(), text.length());
-
-		System.out.println(StringUtils.replaceEach(rslt, new String[] { ":", "€" }, new String[] { "", "" }));
+		// D = 8
+		System.out.println(str.indexOf("D", -14));
+		System.out.println(str.lastIndexOf("C", 8));
 
 	}
 }

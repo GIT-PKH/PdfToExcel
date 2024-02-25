@@ -15,7 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class SettingTest {
+public class SettingJacksonTest {
 
 	private static final String SETTING_FILE_PATH = "../config/hong_test.json";
 
@@ -23,7 +23,7 @@ public class SettingTest {
 
 		String vatId = "DE116475353";
 
-		SettingTest settingTest = new SettingTest();
+		SettingJacksonTest settingTest = new SettingJacksonTest();
 		settingTest.getSetting(vatId);
 
 	}
@@ -40,24 +40,21 @@ public class SettingTest {
 			JSONObject typeObject = (JSONObject) jsonRoot.get("type");
 			String typeCd = typeObject.get(vatId).toString();
 			map.put("typeCd", typeCd);
-			
-			System.out.println(Collections.singletonList(typeObject));
+
+			JSONObject object = (JSONObject) jsonRoot.get("property");
+			JSONObject vatObject = (JSONObject) object.get(typeCd);
+
+			JSONArray itemArray = (JSONArray) vatObject.get("item");
+			map.put("itemCd", itemArray);
+
+			JSONObject optionObject = (JSONObject) vatObject.get("option");
+
+			// 옵션추가
+			for (int k = 0; k < itemArray.size(); k++) {
+				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
+			}
+
 			System.out.println(Collections.singletonList(map));
-
-//			JSONObject object = (JSONObject) jsonRoot.get("property");
-//			JSONObject vatObject = (JSONObject) object.get(typeCd);
-//
-//			JSONArray itemArray = (JSONArray) vatObject.get("item");
-//			map.put("itemCd", itemArray);
-//
-//			JSONObject optionObject = (JSONObject) vatObject.get("option");
-//
-//			// 옵션추가
-//			for (int k = 0; k < itemArray.size(); k++) {
-//				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
-//			}
-
-			
 
 		} catch (Exception e) {
 
