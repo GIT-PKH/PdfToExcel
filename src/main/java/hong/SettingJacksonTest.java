@@ -1,5 +1,6 @@
 package hong;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.Collections;
@@ -15,9 +16,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.MapType;
+
 public class SettingJacksonTest {
 
-	private static final String SETTING_FILE_PATH = "../config/hong_test.json";
+	private static final String SETTING_FILE_PATH = "../config/hong.json";
 
 	public static void main(String[] args) {
 
@@ -28,33 +32,40 @@ public class SettingJacksonTest {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> getSetting(String vatId) {
 
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
 
-			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonRoot = (JSONObject) jsonParser.parse(reader);
+			JSONParser jsonParser2 = new JSONParser();
+			Map<String, Object> jsonMap = (Map<String, Object>) jsonParser2.parse(reader);
 
-			JSONObject typeObject = (JSONObject) jsonRoot.get("type");
-			String typeCd = typeObject.get(vatId).toString();
-			map.put("typeCd", typeCd);
+			//System.out.println(Collections.singletonList(jsonRoot2));
 
-			JSONObject object = (JSONObject) jsonRoot.get("property");
-			JSONObject vatObject = (JSONObject) object.get(typeCd);
+			Map<String, Object> typeMap = (Map<String, Object>) jsonMap.get("type");
 
-			JSONArray itemArray = (JSONArray) vatObject.get("item");
-			map.put("itemCd", itemArray);
+			String vatMap = (String) typeMap.get("DE116475353");
 
-			JSONObject optionObject = (JSONObject) vatObject.get("option");
+			System.out.println(vatMap);
 
-			// 옵션추가
-			for (int k = 0; k < itemArray.size(); k++) {
-				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
+			Map<String, Object> propertyMap = (Map<String, Object>) jsonMap.get("property");
+
+			Map<String, Object> brandMap = (Map<String, Object>) propertyMap.get(vatMap);
+
+			List<String> itemList = (List<String>) brandMap.get("item");
+			
+			System.out.println(itemList);
+
+			for (String item : itemList) {
+
+				List<String> optionList = (List<String>) ((Map<String, Object>) brandMap.get("option")).get(item);
+				
+				System.out.println(item + " = " + optionList);
 			}
 
-			System.out.println(Collections.singletonList(map));
+			
 
 		} catch (Exception e) {
 

@@ -11,107 +11,146 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+@SuppressWarnings("unchecked")
 public class VatIdTest {
 
-	private static final String SETTING_FILE_PATH = "../config/hong.json";
+	private static final String SETTING_FILE_PATH = "../config/hong_test2.json";
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		JSONObject typeObject = null;
+		String contentLine = "GmbH • Weldenstraße 1a • 85356 Freising Kaffee.de GmbH · Weldenstraße 1a, D-85356 Freising · HRB 204636, München · Geschäftsführer: Andreas Goclik, Oliver Pflüger Telefon: +49 8161 976259-10 · Fax: +49 8161 976259-19 · E-Mail: info@kaffee.de · Internet: www.kaffee.de Allgemeine Geschäftsbedingungen: www.kaffee.de/agb · Steuer-Nr.: 115/134/60076 · Ust-Id-Nr.: DE815419765 · DE-ÖKO-037 Bank: SPK Freising, BLZ: 700 510 03 · Kontonummer: 25457045 · SWIFT-BIC: BYLADEM1FSI · IBAN: DE85 7005 1003 0025 4570 45 BM & T GmbH GSP26478 Herr BM & T GmbH PARK HYUNG SEO In der Au 17 (GSP26478) 61440 Oberursel Auftragsbestätigung der Kaffee.de GmbH Kundennummer: C-202229007 Auftragsbestätigungsnummer: 20240215005 Datum: 15.02.2024 Sehr geehrte/r Herr PARK HYUNG SEO, nochmals herzlichen Dank für Ihren Auftrag! Anbei darf ich Ihnen die Auftragsbestätigung zu Ihrer Bestellung übermitteln. Ihre Lieferung wird, sofern nicht abweichend vermerkt, unser Lager umgehend verlassen. Pos Anzahl Preis Einheit Beschreibung Netto 2140 # Mahlkönig Bohnenbehälter / Mini Hopper / Trichter für  EK43/S 250 g Mini-Trichter für EK43 und EK43S, ca. 250 g Fassungsvermögen 1 1 102,05 € Stück 102,05 € 9000 # Verpackung und Versand (Nebenleistung mit 19% MwSt.) per Paketdienst (DHL) Gesamtgewicht brutto: 1,00 kg Gesamtgewicht netto: 1,00 kg Gesamtvolumen: 0,0034 m³ Anzahl Pakete: 1 (Schätzung) Die Daten entsprechen den im System der Kaffee.de GmbH gespeicherten Artikel-Eigenschaften und können von den Versanddaten abweichen. 2 1 3,85 € Paket 3,85 € Seite 1 von 2 Zwischensumme netto: 105,90 € 19% MwSt. 19 % (105,90 €): 20,12 € Gesamt brutto: 126,02 € Für Rückfragen stehen wir Ihnen gern jederzeit zur Verfügung; per E-Mail erreichen Sie uns unter info@kaffee.de. Alle Preise verstehen sich, sofern nicht anders ausgewiesen, inkl. Kaffeesteuer und zzgl. Verpackung sowie Versand. Die Kaffeesteuer wird an das Hauptzollamt Landshut entrichtet. Die Kaffee.de GmbH bietet die Möglichkeit, Rechnungen per SEPA-Lastschrifteinzug begleichen zu lassen. Ihre Zustimmung zum SEPA-Lastschriftverfahren benötigen wir in Schriftform - bitte kontaktieren Sie uns dazu! Seite 2 von 2";
 
-		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
+		VatIdTest vatIdTest = new VatIdTest();
+		Map<String, Object> jsonMap = vatIdTest.getSetting2();
+		Map<String, Object> typeMap = (Map<String, Object>) jsonMap.get("type");
+		String vatId = vatIdTest.getVatId(typeMap, contentLine);
 
-			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonRoot = (JSONObject) jsonParser.parse(reader);
+		System.out.println("ddddddd : " + vatId);
 
-			typeObject = (JSONObject) jsonRoot.get("type");
+		if (!vatId.equals(StringUtils.EMPTY)) {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			System.out.println(typeMap.get(vatId).getClass());
 
-		String content = "A. INVOICE invoice no.: DE038046578 date: 30.01.24 payment method: mastercard shipping method: DHL standard billing address shipping address first name: BM & T GmbH first name: BM & T GmbH last name: LEEJONGSEO last name: LEEJONGSEO address line: In der Au 17 GSP39449 address line: In der Au 17 GSP39449 c/o company: BM & T GmbH c/o company: BM & T GmbH postcode: 61440 postcode: 61440 city: Oberursel city: Oberursel country: Germany country: Germany phone: 061719893156 phone: 061719893156 email: daniel8256@naver.com items ordered item no. item unit price quantity subtotal P00828141 C.P. Company knits  € 140,00 1 € 140,00 size: 50 SALE € 250,00 shipment: € 5,95 GRAND TOTAL: € 145,95 incl. VAT 19 %: € 23,30 net total: € 122,65 paid with  mastercard: € 145,95 mytheresa.com GmbH Contact Phone +49 89 127695 -100 Fax +49 89 127695-200 Email customercare@mytheresa.com HypoVereinsbank München  ·  Kto.: 666866142  ·  BLZ: 70020270  ·  IBAN: DE85700202700666866142  ·  SWIFT-BIC: HYVEDEMM  Registered of ce: Munich, Germany  ·  Commercial registry: Munich HRB 135 658  ·  VAT registration number: DE213277271  Managing Directors Michael Kliger, Dr. Martin Beer, Sebastian Dietzmann, Gareth Locke, Isabel May  Office Einsteinring 9 85609 Aschheim/München Germany *DE038046578* ";
+			if (typeMap.get(vatId) instanceof JSONObject) {
 
-		List<Map.Entry<String, Object>> vatIdList = (List<Entry<String, Object>>) typeObject.entrySet().stream().collect(Collectors.toList());
+				Map<String, Object> brandMap = (Map<String, Object>) typeMap.get(vatId);
 
-		for (java.util.Map.Entry<String, Object> entry : vatIdList) {
-			Pattern pattern = Pattern.compile(entry.getKey());
-			Matcher matcher = pattern.matcher(content);
+				String brandId = StringUtils.EMPTY;
+				if (brandMap.containsKey("TYPE_HONG_01")) {
 
-			System.out.println(matcher.find());
-		}
+					Map<String, Object> typeHongMap = (Map<String, Object>) brandMap.get("TYPE_HONG_01");
 
-		//
-		//		String vatIdNames[] = { "VAT registration number" };
-		//
-		//		for (String vatIdName : vatIdNames) {
-		//			Pattern pattern = Pattern.compile(vatIdName);
-		//			Matcher matcher = pattern.matcher(content);
-		//
-		//			System.out.println(matcher.find());
-		//
-		//		}
-		//
-		//		content = content.replaceAll(" ", "");
+					List<Map.Entry<String, Object>> vatIdList = (List<Entry<String, Object>>) typeHongMap.entrySet().stream()
+							.collect(Collectors.toList());
 
-		//		
-		//		
-		//		
-		//		
-		//		
-		//		
-		//		
-		//		
-		//		
-		//		
-		//		String vatId = StringUtils.EMPTY;
-		//		Pattern pattern = Pattern.compile("DE[0-9]{9}");
-		//		Matcher matcher = pattern.matcher(content);
-		//
-		//		while(matcher.find()) {
-		//			vatId = matcher.group();
-		//			System.out.println("## vatId : " + vatId);
-		//		}
-	}
+					for (Map.Entry<String, Object> entry : vatIdList) {
 
-	public Map<String, Object> getSetting(String vatId) {
+						String tmpVatId = entry.getKey();
+						//System.out.println(tmpVatId);
+						Pattern pattern = Pattern.compile(tmpVatId);
+						Matcher matcher = pattern.matcher(contentLine);
 
-		Map<String, Object> map = new LinkedHashMap<String, Object>();
+						if (matcher.find()) {
+							brandId = (String) typeHongMap.get(tmpVatId);
+							break;
+						}
+					}
 
-		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
+					//System.out.println("TYPE_HONG_01");
 
-			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonRoot = (JSONObject) jsonParser.parse(reader);
+				} else if (brandMap.containsKey("TYPE_HONG_02")) {
 
-			JSONObject typeObject = (JSONObject) jsonRoot.get("type");
-			String typeCd = typeObject.get(vatId).toString();
-			map.put("typeCd", typeCd);
+					Map<String, Object> typeHongMap = (Map<String, Object>) brandMap.get("TYPE_HONG_02");
+					brandId = (String) typeHongMap.get("BRAND");
 
-			JSONObject object = (JSONObject) jsonRoot.get("property");
-			JSONObject vatObject = (JSONObject) object.get(typeCd);
+					//System.out.println("TYPE_HONG_02");
 
-			JSONArray itemArray = (JSONArray) vatObject.get("item");
-			map.put("itemCd", itemArray);
+				} else if (brandMap.containsKey("TYPE_HONG_03")) {
 
-			JSONObject optionObject = (JSONObject) vatObject.get("option");
+					//System.out.println("TYPE_HONG_03");
+				}
 
-			// 옵션추가
-			for (int k = 0; k < itemArray.size(); k++) {
-				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
+				System.out.println("brandId : " + brandId);
+
+			} else {
+
 			}
+		}
+	}
 
-			System.out.println(Collections.singletonList(map));
+	// VAT 번호 추출
+	public String getVatId(Map<String, Object> typeMap, String contentLine) {
+		String vatId = StringUtils.EMPTY;
 
-		} catch (Exception e) {
+		List<Map.Entry<String, Object>> vatIdList = (List<Entry<String, Object>>) typeMap.entrySet().stream()
+				.collect(Collectors.toList());
 
-			e.printStackTrace();
+		for (Map.Entry<String, Object> entry : vatIdList) {
+			String tmpVatId = entry.getKey();
+			Pattern pattern = Pattern.compile(tmpVatId);
+			Matcher matcher = pattern.matcher(contentLine);
+
+			if (matcher.find()) {
+				vatId = tmpVatId;
+				break;
+			}
 		}
 
-		return map;
+		if (StringUtils.isBlank(vatId)) {
+			Pattern pattern = Pattern.compile("DE[0-9]{9}|DE [0-9]{9}");
+			Matcher matcher = pattern.matcher(contentLine.replaceAll(" ", ""));
+			if (matcher.find()) {
+				vatId = matcher.group();
+			}
+		}
+
+		if (StringUtils.isBlank(vatId)) {
+			for (Map.Entry<String, Object> entry : vatIdList) {
+				String tmpVatId = entry.getKey();
+				if (typeMap.get(tmpVatId) instanceof JSONObject) {
+					Map<String, Object> brandMap = (Map<String, Object>) typeMap.get(tmpVatId);
+					if (brandMap.containsKey("TYPE_HONG_02")) {
+						Map<String, Object> typeHongMap = (Map<String, Object>) brandMap.get("TYPE_HONG_02");
+						List<String> keywordList = (List<String>) typeHongMap.get("KEYWORD");
+						int wordIdx = 0;
+						for (String keyword : keywordList) {
+							Pattern pattern = Pattern.compile(keyword);
+							Matcher matcher = pattern.matcher(contentLine);
+							if (matcher.find()) {
+								wordIdx++;
+							}
+							if (keywordList.size() == wordIdx) {
+								vatId = tmpVatId;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return vatId;
 	}
+
+	public Map<String, Object> getSetting2() {
+
+		Map<String, Object> jsonMap = null;
+
+		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
+
+			JSONParser jsonParser = new JSONParser();
+			jsonMap = (Map<String, Object>) jsonParser.parse(reader);
+
+			//System.out.println(Collections.singletonList(map));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jsonMap;
+	}
+
 }

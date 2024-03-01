@@ -2,29 +2,113 @@
 	"type": {
 		"DE116475353": "1ANEUWARE",
 		"DE 276366762": "43EINHALB",
+		"DE339819462": {"TYPE_HONG_01":{"UST-IDNR":"ABOUT YOU_DE","VAT ID":"ABOUT YOU_ENG"}},
+		"DE345254508": "ABU Europe",
 		"DE129469082": "ACNESTUDIOS",
 		"DE 132490588": "ADIDAS",
 		"DE286436092": "AFOUND",
-		"DE814584193": "AMAZON",
+		"DE 814584193": "AMAZON.es",
+		"DE814584193": "AMAZON.de",
+		"DE250923069": "AMAZON.it",
 		"DE327131882": "APO.COM",
-		"DE 17 594 4429": "APONEO",
+		"DE327131882": "apolux",
+		"DE175944429" : {"TYPE_HONG_02":{"BRAND":"APONEO","KEYWORD":["Kunden-Nr","Rechnungs-Nr","Beleg-Nr","Rechnungsbetrag"]}},
 		"DE312080390": "ARKET",
 		"DE354679377": "ASPHALTGOLD",
+		"DE265885241": "BEAUTYWELL24",
 		"DE814634846": "BERG FREUNDE.DE",
 		"DE814724454": "BERGZEIT",
+		"DE135798186": "bergruft24",
 		"DE 129473557": "BESTSECRET",
 		"DE299379692": "BIKE24",
+		"DE204042912": "BIKE-DISCOUNT",
 		"DE304138192": "BIRKENSTOCK",
 		"DE 219636488": "BOTTCHER AG",
 		"DE147505250": "BREUNINGER",
+		"DE223874503": "brima",
 		"DE299377687": "BSTN",
 		"DE349123312": "BUTYJANA",
-		"DE118569718COS": "COS",
+		"DE 285 277 713": "CHECK24",
+		"DE118569718": {"TYPE_HONG_01":{"Umsatzsteuer-Identifikationsnummer":"H&M","VAT number":"COS"}},
 		"DE273923750": "cosmetic.de",
+		"DE200716584": "CUTCO",
+		"DE309928677": "digitalo",
+		"DE 143619945": "dm",
 		"DE256079331": "doorout.com",
+		"DE 8111 46 132": "DOUGLAS",
+		"DE 220351589": "EASTSIDE",
+		"DE309243972": "easy cosmetic",
+		"DE 189913338": "ebay",
+		"DE263364556": "EBURYA",
+		"DE 815553518": "ESCHUHE.de",
+		"DE196252995": {"TYPE_HONG_02":{"BRAND":"expert","KEYWORD":["Rechnungsbetrag","Zwischensumme","Vielen Dank für Ihren Auftrag"]}},
+		"DE337163886": "FARFETCH",
+		"DE299599736": "FCMOTO",
 		"DE815275589": "FLACONI",
-		"DE118569718H&M": "H&M"
+		"DE815419677": "funktionells.de",
+		"DE118703774": "GLOBETROTTER",
+		"DE811167998": "GALERIA",
+		"DE 260 272 944": "GODEL",
+		"DE263440712": "hhv",
+		"DE261441153": "JACOB",
+		"DE815419765": {"TYPE_HONG_01":{"Umsatzsteuer-ID":"KAFFEE.DE_1","Auftragsbestätigungsnummer":"KAFFEE.DE_2"}},
+		"DE 256604493": "KOFFERWORLD"
+		"DE135334685": "Leuchtturm Gruppe",
+		"DE 133 567 330": "LEVIS",
+		"DE300488238": "maje",
+		"DE261466354": "markenkoffer.de",
+		"DE 318973547": "MARKET Lifestore",
+		"DE283798201": "MATCHESFASHION",
+		"DE210797605": "medpex",
+		"DE815733998": "modeherz",
+		"DE  815553518": "MODIVO",
+		"DE286335051": "MICHAS",
+		"DE326812732": "Muller",
+		"DE213277271": "MYTHERESA",
+		"DE224771936": "Nike",
+		"DE28/286/48505": "norsGAAD.de",
+		"DE190622868": "okluge.de",
+		"DE135006960": "OUTBACK"
+		"DE257985729": "PALZ",
+		"DE335659632": {"TYPE_HONG_02":{"BRAND":"PARFUM GROUP","KEYWORD":["Anzahl","Einzelpreis","Gesamtpreis","Brutto","freuen!"]}},
+		"DE126686649": "Pieper",
+		"DE295085185": "PUMA",
+		"DE815200790": "RALPHLAUREN.COM",
+		"DE 279998346": "Rare Parfum",
+		"DE306951859": "SANDRO",
+		"DE 276 512 610": "SCandinavian",
+		"DE 812 627 141": "schuster",
+		"DE 127 334 433": "SEGMULLER",
+		"DE298428021": "SEPHORA",
+		"DE 265480044": "SMIT SPORT",
+		"DE-146364624": "SOL EXPERT",
+		"DE284220346": "SPORT WERK"
+		"DE 304885126": "Star Home",
+		"DE 280221638": "STEIN schwimmsport",
+		"DE 815366358": "SUPPA",
+		"DE232425374": "uhrenonline24",
+		"DE286488402": "wardow",
+		"DE152251906": "WE LOVE BAGS",
+		"DE270080206": "WOLFZEIT",
+		"DE214453112": "YOOX",
+		"DE260543043": "zalando",
+		"DE 815218175": "ZARA",
 	},
+	"header" : [
+		"파일명",
+		"구매처",
+		"세금번호",
+		"인보이스 발행날짜",
+		"인보이스 번호",
+		"주문번호",
+		"총금액",
+		"부가세 제외",
+		"부가세1",
+		"부가세2",
+		"All ADD",
+		"All Text1",
+		"All Text2"
+	],
 	"property": 
 	{
 		"1ANEUWARE": 
@@ -38,6 +122,7 @@
 				"Gesamt-Brutto",
 				"Gesamt ohne MwSt.",
 				"Mwst. Betrag",
+				"",
 				"ADDRESS"
 			],
 			"option": 
@@ -46,10 +131,10 @@
 				"Ihre Zahlung ist" : ["PDF","03","Ihre Zahlung ist am","bei uns eingegangen",["Ihre Zahlung ist am","bei uns eingegangen"],""],
 				"Rechnung" : ["EXCEL",["16/C"],["Rechnung Nr.",":"],""],
 				"Rechnung Nr." : ["EXCEL",["16/C"],["Rechnung Nr.",":"],""],
-				"Gesamt-Brutto" : ["PDF","01","","",["EUR"],""],
-				"Gesamt ohne MwSt." : ["PDF","01","","",["EUR"],""],
-				"Mwst. Betrag" : ["PDF","01","","",["19%","EUR",":"," ","?"],""],
-				"ADDRESS" : ["EXCEL",["11/C","12/C"],[],""],
+				"Gesamt-Brutto" : ["PDF","01",["EUR"],""],
+				"Gesamt ohne MwSt." : ["PDF","01",["EUR"],""],
+				"Mwst. Betrag" : ["PDF","01",["19%","EUR",":"," ","?"],""],
+				"ADDRESS" : ["PDF","05",["9","10"],[],""],
 			}
 		},
 		"43EINHALB":
@@ -63,18 +148,99 @@
 				"Total gross (Gesamt Brutto)",
 				"Total without VAT (Gesamt Netto)",
 				"Tax Amount (MwSt.): 19,00%",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"USt.-ID:" : ["PDF","01","","",[""],""],
+				"USt.-ID:" : ["PDF","01",[""],""],
 				"Invoice date" : ["EXCEL",["20/U"],[":"],""],
 				"Invoice-No." : ["EXCEL",["22/U"],[":"],""],
 				"Order-No." : ["EXCEL",["23/U"],[":"],""],
-				"Total gross (Gesamt Brutto)" : ["PDF","01","","",[":","€"],""],
-				"Total without VAT (Gesamt Netto)" : ["PDF","01","","",[":","€"],""],
-				"Tax Amount (MwSt.): 19,00%" : ["PDF","01","","",["19%","€"],""],
-				"ADDRESS" : ["EXCEL",["14/C","15/C","16/C","17/C"],[],""],
+				"Total gross (Gesamt Brutto)" : ["PDF","01",[":","€"],""],
+				"Total without VAT (Gesamt Netto)" : ["PDF","01",[":","€"],""],
+				"Tax Amount (MwSt.): 19,00%" : ["PDF","01",["19%","€"],""],
+				"ADDRESS" : ["EXCEL",["14/C","15/C","16/C","17/C"],[""],""],
+			}
+		},
+		"ABOUT YOU_DE":
+		{
+			"item": 
+			[
+				"UST-IDNR.",
+				"Bestellung vom:",
+				"Rechnungsnummer:",
+				"Bestellnummer:",
+				"Gesamtsumme (inkl. MwSt.)",
+				"Nettowarenwert",
+				"MwSt. auf Nettowarenwert",
+				"MwSt. auf Versandkosten (19%)",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"UST-IDNR." : ["PDF","02",["UST-IDNR."," "],[" "],["UST-IDNR."," "],""],
+				"Bestellung vom:" : ["PDF","02",["Bestellung vom:"," "," "," "],["Rechnungsnummer:"],["Bestellung vom:"," ","Rechnungsnummer:"],""],
+				"Rechnungsnummer:" : ["PDF","03","Zahlart:","Menge",["Zahlart:","Menge"],""],
+				"Bestellnummer:" : ["PDF","02",["Bestellung vom:"," "," "],[" "],["Bestellung vom:"," "],""],
+				"Gesamtsumme (inkl. MwSt.)" : ["PDF","01",["€"," "],""],
+				"Nettowarenwert" : ["PDF","02",["ABOUT YOU","Nettowarenwert"],["€"],["ABOUT YOU","Nettowarenwert","€"," "],""],
+				"MwSt. auf Nettowarenwert" : ["PDF","01",["(19%)","€"," "],""],
+				"MwSt. auf Versandkosten (19%)" : ["PDF","01",["€"," "],""],
+				"ADDRESS" : ["EXCEL",["5/C","6/C","7/C","8/C","9/C","10/C","11/C","12/C","13/C"],["RECHNUNG"],""],
+			}
+		},
+		"ABOUT YOU_ENG":
+		{
+			"item": 
+			[
+				"VAT-ID.",
+				"Order date:",
+				"Receipt number:",
+				"Order number:",
+				"Total (incl. VAT)",
+				"Net value of goods",
+				"VAT on net value of goods (19%)",
+				"MwSt. auf Versandkosten (19%)",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"VAT-ID." : ["PDF","01",["VAT-ID.",":"],""],
+				"Order date:" : ["PDF","02",["Order date:"," "," "," "],["Receipt"],["Order date:","Receipt"],""],
+				"Receipt number:" : ["PDF","03","Payment method:","Paypal",["Payment method:","Paypal"],""],
+				"Order number:" : ["PDF","02",["Order date:"," "," "],[" "],["Order date:"," "],""],
+				"Total (incl. VAT)" : ["PDF","01",["€"," "],""],
+				"Net value of goods" : ["PDF","01",["€"," "],""],
+				"VAT on net value of goods (19%)" : ["PDF","01",["","€"," "],""],
+				"MwSt. auf Versandkosten (19%)" : ["PDF","01",["€"," "],""],
+				"ADDRESS" : ["EXCEL",["5/C","6/C","7/C","8/C","9/C","10/C","11/C","12/C","13/C"],["RECHNUNG"],""],
+			}
+		},
+		"ABU Europe":
+		{
+			"item": 
+			[
+				"VAT No:",
+				"Issue Date",
+				"Invoice",
+				"Order Number",
+				"Total incl. VAT",
+				"Total excl. VAT",
+				"VAT (DE MwSt) 19%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"VAT No:" : ["PDF","01",[""],""],
+				"Issue Date" : ["PDF","01",[":"],""],
+				"Invoice" : ["PDF","01",[""],""],
+				"Order Number" : ["PDF","01",[":"],""],
+				"Total incl. VAT" : ["PDF","01",["€"],""],
+				"Total excl. VAT" : ["PDF","01",["€"],""],
+				"VAT (DE MwSt) 19%" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["PDF","03","Client:","Payment",["Client:","Payment"],""],
 			}
 		},
 		"ACNESTUDIOS":
@@ -88,18 +254,19 @@
 				"TOTAL",
 				"Subtotal",
 				"Tax",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"VAT" : ["PDF","01","","",[":"],""],
-				"Proof of purchase date:" : ["PDF","01","","",[""],""],
+				"VAT" : ["PDF","01",[":"],""],
+				"Proof of purchase date:" : ["PDF","01",[""],""],
 				"Order No" : ["PDF","03","Order No","Proof of purchase date",["Order No","Proof of purchase date",":"],""],
-				"Proof of purchase" : ["PDF","01","","",[],""],
-				"TOTAL" : ["PDF","01","","",["EUR"],""],
-				"Subtotal" : ["PDF","01","","",["EUR"],""],
+				"Proof of purchase" : ["PDF","01",[""],""],
+				"TOTAL" : ["PDF","01",["EUR"],""],
+				"Subtotal" : ["PDF","01",["EUR"],""],
 				"Tax" : ["PDF","03","EUR Tax","EUR TOTAL",["EUR Tax","EUR TOTAL"],""],
-				"ADDRESS" : ["EXCEL",["11/C","12/C","13/C","14/C"],[],""],
+				"ADDRESS" : ["EXCEL",["11/C","12/C","13/C","14/C"],[""],""],
 			}
 		},
 		"ADIDAS":
@@ -113,18 +280,19 @@
 				"Rechnungsbetrag",
 				"Nettobetrag",
 				"19,00%",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"UST-IDNR" : ["PDF","01","","",[":"],""],
-				"Rechnungsdatum" : ["PDF","01","","",[":"],""],
-				"Rechnungsnr." : ["PDF","01","","",[":"],""],
-				"Bestell-Nr." : ["PDF","01","","",[":"],""],
-				"Rechnungsbetrag" : ["PDF","01","","",[""],""],
-				"Nettobetrag" : ["PDF","03","Nettobetrag","Der Rechnungsbetrag",["[Nettobetrag](.*?)[)]","Der Rechnungsbetrag"],""],
-				"19,00%" : ["PDF","03","Nettobetrag","Der Rechnungsbetrag",["[Nettobetrag](.*?)[)]","Der Rechnungsbetrag"],""],
-				"ADDRESS" : ["EXCEL",["9/B","10/B","11/B","12/B"],[],""],
+				"UST-IDNR" : ["PDF","01",[":"],""],
+				"Rechnungsdatum" : ["PDF","01",[":"],""],
+				"Rechnungsnr." : ["PDF","01",[":"],""],
+				"Bestell-Nr." : ["PDF","01",[":"],""],
+				"Rechnungsbetrag" : ["PDF","01",[""],""],
+				"Nettobetrag" : ["PDF","04",["Versandkosten","Der"],[" "," "],[""],""],
+				"19,00%" : ["PDF","04",["Versandkosten","Der"],[" "," "],[""],""],
+				"ADDRESS" : ["EXCEL",["9/B","10/B","11/B","12/B"],[""],""],
 			}
 		},
 		"AFOUND":
@@ -138,21 +306,48 @@
 				"Total incl. VAT",
 				"Total excl. VAT",
 				"VAT 19%",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"VATnr" : ["PDF","01","","",[""],""],
-				"Order Date" : ["EXCEL",["10/H"],[],""],
-				"Seller order no." : ["EXCEL",["11/O"],[],""],
-				"Afound Order no." : ["EXCEL",["12/O"],[],""],
-				"Total incl. VAT" : ["PDF","01","","",["Euro"],""],
-				"Total excl. VAT" : ["PDF","01","","",["Euro"],""],
-				"VAT 19%" : ["PDF","01","","",[""],""],
-				"ADDRESS" : ["EXCEL",["10/C","11/C","12/C","13/C"],[],""],
+				"VATnr" : ["PDF","01",[""],""],
+				"Order Date" : ["PDF","04",["Seller"],[" "," "],[""],""],
+				"Seller order no." : ["PDF","02",["Seller order no."],[" "],["Seller order no."],""],
+				"Afound Order no." : ["PDF","01",[""],""],
+				"Total incl. VAT" : ["PDF","01",["Euro","€"],""],
+				"Total excl. VAT" : ["PDF","01",["Euro","€"],""],
+				"VAT 19%" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["10/C","11/C","12/C","13/C"],[""],""],
 			}
 		},
-		"AMAZON":
+		"AMAZON.es":
+		{
+			"item": 
+			[
+				"USt-ID :",
+				"Fecha de la factura/Fecha de la entrega",
+				"Número de la factura",
+				"Número del pedido",
+				"Total pendiente",
+				"IVA 19%",
+				"19%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-ID :" : ["PDF","01",[""],""],
+				"Fecha de la factura/Fecha de la entrega" : ["PDF","01",[""],""],
+				"Número de la factura" : ["PDF","01",[""],""],
+				"Número del pedido" : ["PDF","01",[""],""],
+				"Total pendiente" : ["PDF","01",["€"],""],
+				"IVA 19%" : ["PDF","02",["USt-ID","Total"," "],[" "],["USt-ID","Total"],""],
+				"19%" : ["PDF","02",["USt-ID","Total","€"," "],[" "],["USt-ID","Total","€"],""],
+				"ADDRESS" : ["EXCEL",["14/D","15/D","16/D","17/D","18/D","19/D","20/D","21/D"],[""],""],
+			}
+		},
+		"AMAZON.de":
 		{
 			"item": 
 			[
@@ -163,18 +358,45 @@
 				"Gesamtpreis",
 				"Gesamt",
 				"Ust. Gesamt",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"USt-IDNr." : ["PDF","01","","",[],""],
-				"Lieferdatum" : ["PDF","01","","",[],""],
-				"Rechnungsnummer" : ["EXCEL",["16/O"],[],""],
-				"Bestellnummer" : ["PDF","01","","",[],""],
-				"Gesamtpreis" : ["PDF","01","","",[" €"],""],
+				"USt-IDNr." : ["PDF","01",[""],""],
+				"Lieferdatum" : ["PDF","01",[""],""],
+				"Rechnungsnummer" : ["EXCEL",["16/O"],[""],""],
+				"Bestellnummer" : ["PDF","01",[""],""],
+				"Gesamtpreis" : ["PDF","01",[" €"],""],
 				"Gesamt" : ["PDF","03","USt. Gesamt","€",["USt. Gesamt","€"],""],
-				"Ust. Gesamt" : ["PDF","03","USt. Gesamt","€",["USt. Gesamt","€"],""],
-				"ADDRESS" : ["EXCEL",["26/C","28/C","30/C"],[],""],
+				"Ust. Gesamt" : ["PDF","02",["USt. Gesamt","€"],["€"],["USt. Gesamt","€"],""],
+				"ADDRESS" : ["PDF","03","Rechnungsadresse","Lieferadresse",["Rechnungsadresse","Lieferadresse"],""],
+			}
+		},
+		"AMAZON.it":
+		{
+			"item": 
+			[
+				"P.IVA:",
+				"Data di fatturazione / Data di consegna",
+				"Numero fattura",
+				"Contratto",
+				"Totale fattura",
+				"IVA 19%",
+				"19%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"P.IVA:" : ["PDF","01",[""],""],
+				"Data di fatturazione / Data di consegna" : ["PDF","01",[""],""],
+				"Numero fattura" : ["PDF","01",[""],""],
+				"Contratto" : ["PDF","01",[""],""],
+				"Totale fattura" : ["PDF","01",["€"],""],
+				"IVA 19%" : ["PDF","02",["IVA 19%","Totale","€"],["€"],["IVA 19%","Totale","€"],""],
+				"19%" : ["PDF","02",["IVA 19%","Totale","€","€"],["Totale fattura"],["IVA 19%","Totale","€","Totale fattura","fattura"],""],
+				"ADDRESS" : ["PDF","03","Indirizzo di fatturazione","Indirizzo di spedizione",["Indirizzo di fatturazione","Indirizzo di spedizione"],""],
 			}
 		},
 		"APO.COM":
@@ -188,18 +410,71 @@
 				"Gesamtsumme",
 				"Summe netto",
 				"inkl. MwSt. 19%:",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"Umsatzsteuergesetz" : ["PDF","01","","",[":"],""],
-				"Datum" : ["PDF","01","","",[":"],""],
-				"Rechnungsnummer" : ["PDF","01","","",[":"],""],
-				"Bestellnummer" : ["PDF","01","","",[":"],""],
-				"Gesamtsumme" : ["PDF","01","","",["EUR"],""],
-				"Summe netto" : ["PDF","01","","",["EUR"],""],
-				"inkl. MwSt. 19%:" : ["PDF","01","","",["EUR"],""],
-				"ADDRESS" : ["EXCEL",["34/H","35/H","36/H","37/H"],[],""],
+				"Umsatzsteuergesetz" : ["PDF","01",[":"],""],
+				"Datum" : ["PDF","01",[":"],""],
+				"Rechnungsnummer" : ["PDF","01",[":"],""],
+				"Bestellnummer" : ["PDF","01",[":"],""],
+				"Gesamtsumme" : ["PDF","01",["EUR"],""],
+				"Summe netto" : ["PDF","01",["EUR"],""],
+				"inkl. MwSt. 19%:" : ["PDF","01",["EUR"],""],
+				"ADDRESS" : ["EXCEL",["34/H","35/H","36/H","37/H"],[""],""],
+			}
+		},
+		"apolux":
+		{
+			"item": 
+			[
+				"Umsatzsteuergesetz:",
+				"Datum:",
+				"Rechnungsnummer:",
+				"Bestellnummer:",
+				"Gesamtsumme",
+				"Summe netto",
+				"inkl. MwSt. 19%:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Umsatzsteuergesetz:" : ["PDF","01",[":"],""],
+				"Datum:" : ["PDF","01",[":"],""],
+				"Rechnungsnummer:" : ["PDF","01",[":"],""],
+				"Bestellnummer:" : ["PDF","01",[":"],""],
+				"Gesamtsumme" : ["PDF","01",["EUR"],""],
+				"Summe netto" : ["PDF","01",["EUR"],""],
+				"inkl. MwSt. 19%:" : ["PDF","01",[":","EUR"],""],
+				"ADDRESS" : ["PDF","02",["Rechnungsanschrift","Deutschland"],["Deutschland"],["Rechnungsanschrift","Deutschland"],""],
+			}
+		},
+		"APONEO":
+		{
+			"item": 
+			[
+				"USt-IdNr:",
+				"Rechnungsdatum:",
+				"Rechnungs-Nr.:",
+				"Beleg-Nr.:",
+				"Zahlbetrag:",
+				"Netto:",
+				"19 % MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr:" : ["PDF","01",[""],""],
+				"Rechnungsdatum:" : ["PDF","03","Rechnungsdatum:","Lieferdatum:",["Rechnungsdatum:","Lieferdatum:"],""],
+				"Rechnungs-Nr.:" : ["PDF","03","Rechnungs-Nr.:","Beleg-Nr",["Rechnungs-Nr.:","Beleg-Nr"],""],
+				"Beleg-Nr.:" : ["PDF","01",[""],""],
+				"Zahlbetrag:" : ["PDF","01",["€"],""],
+				"Netto:" : ["PDF","03","Netto:","EUR",["Netto:","EUR"],""],
+				"19 % MwSt." : ["PDF","03","19 % MwSt.","EUR",["19 % MwSt.","EUR"],""],
+				"ADDRESS" : ["EXCEL",["6/E","7/E","8/E","9/E","10/E","11/E","12/E"],[""],""],
 			}
 		},
 		"ARKET":
@@ -213,18 +488,19 @@
 				"PRODUCTS TOTAL:",
 				"Excluding VAT",
 				"VAT 19%:",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"VAT number:" : ["PDF","01","","",[""],""],
-				"RECEIPT DATE" : ["PDF","01","","",[""],""],
-				"RECEIPT NUMBER" : ["PDF","01","","",[""],""],
-				"ORDER NUMBER" : ["PDF","01","","",[""],""],
-				"PRODUCTS TOTAL:" : ["PDF","01","","",["€"],""],
-				"Excluding VAT" : ["PDF","01","","",["€"],""],
-				"VAT 19%:" : ["PDF","01","","",["€"],""],
-				"ADDRESS" : ["EXCEL",["8/D","11/D","13/D"],[],""],
+				"VAT number:" : ["PDF","01",[""],""],
+				"RECEIPT DATE" : ["PDF","01",[""],""],
+				"RECEIPT NUMBER" : ["PDF","01",[""],""],
+				"ORDER NUMBER" : ["PDF","01",[""],""],
+				"PRODUCTS TOTAL:" : ["PDF","01",["€"],""],
+				"Excluding VAT" : ["PDF","01",["€"],""],
+				"VAT 19%:" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["8/D","11/D","13/D"],[""],""],
 			}
 		},
 		"ASPHALTGOLD":
@@ -238,18 +514,45 @@
 				"Gesamtbetrag",
 				"netto",
 				"MwSt 19.00%",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"USt-IdNr." : ["PDF","01","","",[""],""],
+				"USt-IdNr." : ["PDF","01",[""],""],
 				"Rechnungsdatum" : ["PDF","03","Rechnungsdatum","Auftragsdatum",["Rechnungsdatum","Auftragsdatum"],""],
-				"Rechnungsnummer" : ["PDF","03","Auftragsdatum","Rechnungsnummer",["Auftragsdatum","Rechnungsnummer"],""],
-				"Bestellnummer" : ["PDF","03","Rechnungsnummer","Zahlungsart",["Rechnungsnummer","Zahlungsart"],""],
-				"Gesamtbetrag" : ["EXCEL",["38/AR","39/AR","40/AR","41/AR","42/AR","43/AR","44/AR","45/AR"],["EU"],""],
+				"Rechnungsnummer" : ["PDF","03","Rechnungsnummer","Zahlungsart",["Rechnungsnummer","Zahlungsart"],""],
+				"Bestellnummer" : ["PDF","02",["Bestellnummer"," "],[" "],[""],""],
+				"Gesamtbetrag" : ["PDF","04",["EUR"],[" "," "],["EUR"],""],
 				"netto" : ["PDF","02",["netto","Rabatt","€"],["€"],["€"],""],
-				"MwSt 19.00%" : ["PDF","03","MwSt 19.00%","€",["MwSt 19.00%"," €"],""],
-				"ADDRESS" : ["EXCEL",["8/K","9/K","10/K","11/K","11/X"],[],""],
+				"MwSt 19.00%" : ["PDF","03","MwSt 19.00%","€",["MwSt 19.00%","€"],""],
+				"ADDRESS" : ["PDF","03","DE354679377","HRB104932",["DE354679377","HRB104932"],""],
+			}
+		},
+		"BEAUTYWELL24":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Datum:",
+				"Rechnungsnr.:",
+				"Rechnungsnr.:",
+				"Gesamtbetrag*",
+				"Netto:",
+				"USt 19 %",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","01",[""],""],
+				"Datum:" : ["EXCEL",["13/T","13/U","13/V","13/W"],[""],""],
+				"Rechnungsnr.:" : ["EXCEL",["11/T","11/U"],[""],""],
+				"Rechnungsnr.:" : ["EXCEL",["11/T","11/U"],[""],""],
+				"Gesamtbetrag*" : ["PDF","03","Gesamtbetrag von","€",["Gesamtbetrag von","€"],""],
+				"Netto:" : ["PDF","03","Netto:","€",["Netto:","€"],""],
+				"USt 19 %" : ["PDF","03","USt 19 %","€",["USt 19 %","€","("],""],
+				"ADDRESS" : ["EXCEL",["12/C","13/C","14/C","15/C","16/C"],[""],""],
 			}
 		},
 		"BERG FREUNDE.DE":
@@ -263,18 +566,19 @@
 				"Rechnungsbetrag gesamt",
 				"Nettorechnungsbetrag",
 				"MwSt. 19%",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"USt-IdNr. DE:" : ["PDF","01","","",[""],""],
-				"Rechnungsdatum" : ["EXCEL",["18/I"],[],""],
-				"Rechnungsnummer" : ["EXCEL",["18/G"],[],""],
-				"Bestellnummer" : ["EXCEL",["18/D"],[],""],
-				"Rechnungsbetrag gesamt" : ["PDF","01","","",["EUR"],""],
-				"Nettorechnungsbetrag" : ["PDF","01","","",[""],""],
+				"USt-IdNr. DE:" : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["EXCEL",["18/I"],[""],""],
+				"Rechnungsnummer" : ["EXCEL",["18/G"],[""],""],
+				"Bestellnummer" : ["EXCEL",["18/D"],[""],""],
+				"Rechnungsbetrag gesamt" : ["PDF","01",["EUR"],""],
+				"Nettorechnungsbetrag" : ["PDF","01",[""],""],
 				"MwSt. 19%" : ["PDF","02",["MwSt. 19%","von"," "," "],["Rechnungsbetrag"],["Rechnungsbetrag"],""],
-				"ADDRESS" : ["EXCEL",["6/C","7/C","8/C","9/C"],[],""],
+				"ADDRESS" : ["EXCEL",["6/C","7/C","8/C","9/C"],[""],""],
 			}
 		},
 		"BERGZEIT":
@@ -288,18 +592,45 @@
 				"Gesamt EUR inkl. MwSt.",
 				"Gesamt EUR ohne MwSt.",
 				"19% MwSt.",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"Ust.-IdNr.:" : ["PDF","01","","",[""],""],
-				"Rechnungsdatum" : ["EXCEL",["14/E"],[],""],
-				"Rechnungsnr." : ["EXCEL",["13/E"],[],""],
-				"Auftragsnr." : ["EXCEL",["15/E"],[],""],
-				"Gesamt EUR inkl. MwSt." : ["PDF","01","","",[""],""],
-				"Gesamt EUR ohne MwSt." : ["PDF","01","","",[""],""],
-				"19% MwSt." : ["PDF","01","","",[""],""],
-				"ADDRESS" : ["EXCEL",["6/C","7/C","8/C"],[],""],
+				"Ust.-IdNr.:" : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["EXCEL",["14/E"],[""],""],
+				"Rechnungsnr." : ["EXCEL",["13/E"],[""],""],
+				"Auftragsnr." : ["EXCEL",["15/E"],[""],""],
+				"Gesamt EUR inkl. MwSt." : ["PDF","01",[""],""],
+				"Gesamt EUR ohne MwSt." : ["PDF","01",[""],""],
+				"19% MwSt." : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["6/C","7/C","8/C"],[""],""],
+			}
+		},
+		"bergruft24":
+		{
+			"item": 
+			[
+				"Ust.-IdentNr:",
+				"Rechnung",
+				"Rechnungsnr.",
+				"Auftragsnummer:",
+				"Gesamtbetrag",
+				"Gesamt EUR ohne MwSt.",
+				"inkl. 19,00% MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Ust.-IdentNr:" : ["PDF","01",["SteuerNr:"],""],
+				"Rechnung" : ["PDF","02",["Rechnung"," "," "],["Seite:"],["Rechnung"," ","Seite:"],""],
+				"Rechnungsnr." : ["PDF","03","Rechnungsnr.","bzgl.",["Rechnungsnr.","bzgl."],""],
+				"Auftragsnummer:" : ["PDF","03","Auftragsnummer:","Pos.",["Auftragsnummer:","Pos."],""],
+				"Gesamtbetrag" : ["PDF","01",["€"],""],
+				"Gesamt EUR ohne MwSt." : ["PDF","01",["€"],""],
+				"inkl. 19,00% MwSt." : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["6/E","7/E","8/E"],[""],""],
 			}
 		},
 		"BESTSECRET":
@@ -310,21 +641,22 @@
 				"INVOICE DATE",
 				"INVOICE No.",
 				"Order No.",
-				"Total gross amount",
-				"Total net amount",
+				"Total gross amount:",
+				"Total net amount:",
 				"19%",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"VAT ID" : ["EXCEL",["60/M"],[],""],
-				"INVOICE DATE" : ["EXCEL",["13/M"],[],""],
-				"INVOICE No." : ["EXCEL",["16/C"],["INVOICE No."],""],
-				"Order No." : ["EXCEL",["17/C"],["Order No."],""],
-				"Total gross amount" : ["PDF","01","","",[":"],""],
-				"Total net amount" : ["PDF","01","","",[":","19%"],""],
+				"VAT ID" : ["PDF","03","VAT ID","PL",["VAT ID","PL"],""],
+				"INVOICE DATE" : ["PDF","03","INVOICE DATE","CUSTOMER",["INVOICE DATE","CUSTOMER"],""],
+				"INVOICE No." : ["PDF","03","INVOICE No.","Order No.",["INVOICE No.","Order No."],""],
+				"Order No." : ["PDF","01",["Order No."],""],
+				"Total gross amount:" : ["PDF","01",[" "],""],
+				"Total net amount:" : ["PDF","01",[" ","19%"],""],
 				"19%" : ["PDF","02",["Total gross amount","19%"],[")"],[")"],""],
-				"ADDRESS" : ["EXCEL",["5/C","6/C","7/C","8/C"],[],""],
+				"ADDRESS" : ["EXCEL",["5/C","6/C","7/C","8/C"],[""],""],
 			}
 		},
 		"BIKE24":
@@ -338,18 +670,45 @@
 				"Total",
 				"Net EUR",
 				"VAT EUR",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"USt-IdNr." : ["PDF","01","","",[":"],""],
-				"Invoice date:" : ["EXCEL",["26/O"],["Invoice date:"],""],
+				"USt-IdNr." : ["PDF","01",[":"],""],
+				"Invoice date:" : ["PDF","01",["Invoice date:"],""],
 				"Invoice No" : ["EXCEL",["24/H"],[":"],""],
 				"Order No" : ["EXCEL",["26/H"],[":"],""],
-				"Total" : ["PDF","01","","",[":","EUR"],""],
-				"Net EUR" : ["PDF","02",["Net EUR","19%"," "],[" "],[],""],
-				"VAT EUR" : ["PDF","02",["VAT EUR","19%"," "," "," "],[" "],[],""],
-				"ADDRESS" : ["EXCEL",["12/D","14/D","16/D","18/D","20/D"],[],""],
+				"Total" : ["PDF","01",[":","EUR"],""],
+				"Net EUR" : ["PDF","02",["Net EUR","19%"," "],[" "],[""],""],
+				"VAT EUR" : ["PDF","02",["VAT EUR","19%"," "," "," "],[" "],[""],""],
+				"ADDRESS" : ["EXCEL",["12/D","14/D","16/D","18/D","20/D"],[""],""],
+			}
+		},
+		"BIKE-DISCOUNT":
+		{
+			"item": 
+			[
+				"USt. ID-Nr.",
+				"Invoice date:",
+				"Invoice No.:",
+				"Order No.:",
+				"Invoice Amount ",
+				"Net-Sum",
+				"19%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt. ID-Nr." : ["PDF","01",["USt. ID-Nr."],""],
+				"Invoice date:" : ["EXCEL",["12/P"],[""],""],
+				"Invoice No.:" : ["EXCEL",["11/P"],[""],""],
+				"Order No.:" : ["EXCEL",["10/P"],[""],""],
+				"Invoice Amount " : ["PDF","01",[":","EUR"],""],
+				"Net-Sum" : ["PDF","03","Net-Sum",")",["Net-Sum",")"],""],
+				"19%" : ["PDF","02",["VAT:","19%"," "," "," "],[" "],[""],""],
+				"ADDRESS" : ["PDF","05",["1","2","3","4","5"],[],""],
 			}
 		},
 		"BIRKENSTOCK":
@@ -360,21 +719,22 @@
 				"Rechnungsdatum",
 				"Rechnungs-Nr.",
 				"Bestell-Nr.",
-				"Rechnungsbetrag",
-				"Nettobetrag",
-				"19,00% MwSt",
+				"Rechnungsbetrag:",
+				"Nettobetrag:",
+				"19,00% MwSt:",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"USt-IdNr.:" : ["PDF","01","","",[":"],""],
-				"Rechnungsdatum" : ["EXCEL",["13/L"],[""],""],
-				"Rechnungs-Nr." : ["EXCEL",["12/L"],[],""],
-				"Bestell-Nr." : ["EXCEL",["14/L"],[],""],
-				"Rechnungsbetrag" : ["EXCEL",["24/M"],[],""],
-				"Nettobetrag" : ["EXCEL",["22/M"],[],""],
-				"19,00% MwSt" : ["EXCEL",["23/M"],[],""],
-				"ADDRESS" : ["EXCEL",["8/C","9/C","10/C"],[],""],
+				"USt-IdNr.:" : ["PDF","01",[":"],""],
+				"Rechnungsdatum" : ["PDF","02",["Kunden-Nr.:"," "," "],[" "],["Kunden-Nr.:"," "],""],
+				"Rechnungs-Nr." : ["PDF","02",["Kunden-Nr.:"," "],[" "],["Kunden-Nr.:"," "],""],
+				"Bestell-Nr." : ["PDF","02",["Kunden-Nr.:"," "," "," "," "],["Bestell-Nr.:"],["Kunden-Nr.:"," ","Bestell-Nr.:"],""],
+				"Rechnungsbetrag:" : ["PDF","01",["EUR"],""],
+				"Nettobetrag:" : ["PDF","01",["EUR"],""],
+				"19,00% MwSt:" : ["PDF","01",["EUR"],""],
+				"ADDRESS" : ["EXCEL",["8/C","9/C","10/C"],[""],""],
 			}
 		},
 		"BOTTCHER AG":
@@ -388,18 +748,19 @@
 				"Gesamtwert",
 				"Netto",
 				"MwSt 19%",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"Ust-Ident-Nummer" : ["EXCEL",["44/X"],[""],""],
-				"Datum" : ["EXCEL",["9/V"],[""],""],
-				"Rechnung Nr." : ["EXCEL",["8/V"],[],""],
-				"Auftrag Nr." : ["EXCEL",["11/V"],[],""],
-				"Gesamtwert" : ["EXCEL",["37/AC"],[],""],
-				"Netto" : ["EXCEL",["37/D"],[],""],
-				"MwSt 19%" : ["EXCEL",["37/G"],[],""],
-				"ADDRESS" : ["EXCEL",["15/D","17/D","19/D","20/D"],[],""],
+				"Ust-Ident-Nummer" : ["PDF","03","Ust-Ident-Nummer","Aufsichtsratsvorsitzende",["Ust-Ident-Nummer",":","Aufsichtsratsvorsitzende"],""],
+				"Datum" : ["PDF","01",[":"],""],
+				"Rechnung Nr." : ["PDF","01",[":"],""],
+				"Auftrag Nr." : ["PDF","01",[":"],""],
+				"Gesamtwert" : ["PDF","03","Gesamtwert","MwSt",["Gesamtwert","MwSt"],""],
+				"Netto" : ["PDF","03","Steuerfrei","EUR",["Steuerfrei","EUR"],""],
+				"MwSt 19%" : ["PDF","04",["Kunden-Nr","MwSt 19%"],[" ", " "],[""],""],
+				"ADDRESS" : ["EXCEL",["15/D","17/D","19/D","20/D"],[""],""],
 			}
 		},
 		"BREUNINGER":
@@ -407,24 +768,51 @@
 			"item": 
 			[
 				"USt-IdNr",
-				"Rechnungsdatum",
-				"Rechnungsnummer",
+				"Rechnungsdatum:",
+				"Rechnungsnummer:",
 				"Bestellnummer",
 				"Gesamtsumme",
 				"Nettosumme",
 				"Umsatzsteuer 19%",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
 				"USt-IdNr" : ["PDF","03","USt-IdNr","Zwischensumme",["USt-IdNr","Zwischensumme"],""],
-				"Rechnungsdatum" : ["EXCEL",["20/K"],["Rechnungsdatum:"],""],
-				"Rechnungsnummer" : ["EXCEL",["8/J"],["Rechnungsnummer:"],""],
+				"Rechnungsdatum:" : ["PDF","01",["Rechnungsdatum:"],""],
+				"Rechnungsnummer:" : ["PDF","01",["Rechnungsdatum:"],""],
 				"Bestellnummer" : ["PDF","03","Bestellnummer:","Liefernummer:",["Bestellnummer:","Liefernummer:"],""],
 				"Gesamtsumme" : ["PDF","02",["Umsatzsteuer","€","€"],["€"],["€"],""],
 				"Nettosumme" : ["PDF","02",["Nettosumme","€"],["€"],["€"],""],
-				"Umsatzsteuer 19%" : ["PDF","01","","",[" €"],""],
-				"ADDRESS" : ["EXCEL",["14/C","15/C","16/C","17/C"],[],""],
+				"Umsatzsteuer 19%" : ["PDF","01",[" €"],""],
+				"ADDRESS" : ["EXCEL",["14/C","15/C","16/C","17/C"],[""],""],
+			}
+		},
+		"brima":
+		{
+			"item": 
+			[
+				"USt-IdNr.",
+				"Datum:",
+				"Rechnung Nr.",
+				"Bestellnr.",
+				"Gesamtbetrag",
+				"Gesamt Netto",
+				"zzgl. 19,00 % USt. auf",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr." : ["PDF","01",[":"],""],
+				"Datum:" : ["PDF","01",[":"],""],
+				"Rechnung Nr." : ["PDF","01",[""],""],
+				"Bestellnr." : ["PDF","01",[":"],""],
+				"Gesamtbetrag" : ["PDF","03","Gesamtbetrag","bereits",["Gesamtbetrag","bereits"],""],
+				"Gesamt Netto" : ["PDF","03","Gesamt Netto","zzgl.",["Gesamt Netto","zzgl."],""],
+				"zzgl. 19,00 % USt. auf" : ["PDF","02",["zzgl. 19,00 % USt. auf"," "," "],["Gesamtbetrag"],["zzgl. 19,00 % USt. auf"," ","Gesamtbetrag"],""],
+				"ADDRESS" : ["PDF","03","Lieferanschrift:","Deutschland",["Lieferanschrift:","Deutschland"],""],
 			}
 		},
 		"BSTN":
@@ -438,18 +826,19 @@
 				"Total gross (Gesamt Brutto):",
 				"Total EUR Excl. VAT",
 				"19% VAT",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"UST-IDNR." : ["PDF","01","","",[":"],""],
+				"UST-IDNR." : ["PDF","01",[":"],""],
 				"Invoice date:" : ["EXCEL",["7/N"],[""],""],
-				"Invoice-No.:" : ["EXCEL",["10/N"],[],""],
-				"Order-No.:" : ["EXCEL",["11/N"],[],""],
-				"Total gross (Gesamt Brutto):" : ["PDF","01","","",[""],""],
-				"Total EUR Excl. VAT" : ["PDF","01","","",[""],""],
-				"19% VAT" : ["PDF","01","","",[""],""],
-				"ADDRESS" : ["EXCEL",["7/C","8/C","9/C"],[],""],
+				"Invoice-No.:" : ["EXCEL",["10/N"],[""],""],
+				"Order-No.:" : ["EXCEL",["11/N"],[""],""],
+				"Total gross (Gesamt Brutto):" : ["PDF","01",[""],""],
+				"Total EUR Excl. VAT" : ["PDF","01",[""],""],
+				"19% VAT" : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["7/C","8/C","9/C"],[""],""],
 			}
 		},
 		"BUTYJANA":
@@ -460,21 +849,48 @@
 				"Ausstellungsdatum:",
 				"FAKTURA/Rechnung",
 				"OrderId",
-				"Zusammen/Total: in PLN",
-				"Zusammen/Total: in PLN",
-				"Zusammen/Total: in PLN",
+				"Zapłacono/Bezahlt:",
+				"Inklusive VAT: in EUR",
+				"Zusammen/Total: in EUR",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"Steuernummer" : ["PDF","01","","",[":"],""],
+				"Steuernummer" : ["PDF","01",[":"],""],
 				"Ausstellungsdatum:" : ["EXCEL",["10/X"],[""],""],
-				"FAKTURA/Rechnung" : ["EXCEL",["7/V"],[],""],
+				"FAKTURA/Rechnung" : ["EXCEL",["7/V"],[""],""],
 				"OrderId" : ["PDF","03","OrderMarketplaceId:","OrderDomain:",["OrderMarketplaceId:","OrderDomain:"],""],
-				"Zusammen/Total: in PLN" : ["PDF","01","","",[" 19%"],""],
-				"Zusammen/Total: in PLN" : ["PDF","01","","",[" 19%"],""],
-				"Zusammen/Total: in PLN" : ["PDF","03","VAT: in EUR","AdministratorB2B",["VAT: in EUR","AdministratorB2B"],""],
-				"ADDRESS" : ["EXCEL",["22/B","24/C","25/C"],[],""],
+				"Zapłacono/Bezahlt:" : ["PDF","01",["Zapłacono/Bezahlt:","EUR"],""],
+				"Inklusive VAT: in EUR" : ["PDF","02",["Zusammen/Total: in EUR"," "," "," "],[" "],["Zusammen/Total: in EUR"," "," "," "],""],
+				"Zusammen/Total: in EUR" : ["PDF","02",["Zusammen/Total: in EUR"," "," "],[" "],["Zusammen/Total: in EUR"," "," "],""],
+				"ADDRESS" : ["EXCEL",["22/B","24/C","25/C"],[""],""],
+			}
+		},
+		"CHECK24":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Rechnungsdatum:",
+				"Rechnungsnummer",
+				"Rechnungsnummer",
+				"Gesamtbetrag",
+				"Nettobetrag:",
+				"inkl. 19% Mehrwertsteuer",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","01",[":"],""],
+				"Rechnungsdatum:" : ["PDF","01",[":"],""],
+				"Rechnungsnummer" : ["PDF","01",[""],""],
+				"Rechnungsnummer" : ["PDF","01",[""],""],
+				"Gesamtbetrag" : ["PDF","01",[""],""],
+				"Nettobetrag:" : ["PDF","02",["Nettobetrag:","€"],[")"],["Nettobetrag:","€",")"],""],
+				"inkl. 19% Mehrwertsteuer" : ["PDF","02",["Nettobetrag:",")"],["Nettobetrag"],["Nettobetrag:",")","Nettobetrag"],""],
+				"ADDRESS" : ["EXCEL",["5/C","6/C","7/C","8/C","9/C"],[""],""],
 			}
 		},
 		"COS":
@@ -488,16 +904,17 @@
 				"TOTAL",
 				"Excluding VAT",
 				"VAT AMOUNT",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"VAT number" : ["PDF","01","","",[":"],""],
+				"VAT number" : ["PDF","01",[":"],""],
 				"RECEIPT DATE" : ["EXCEL",["5/O"],[""],""],
 				"RECEIPT NUMBER" : ["EXCEL",["7/P"],[],""],
 				"ORDER NUMBER" : ["EXCEL",["9/P"],[],""],
 				"TOTAL" : ["PDF","02",["TOTAL","TOTAL","TOTAL",""],["Excluding"],["€",":","Excluding"],""],
-				"Excluding VAT" : ["PDF","01","","",["€"],""],
+				"Excluding VAT" : ["PDF","01",["€"],""],
 				"VAT AMOUNT" : ["PDF","02",["VAT AMOUNT","VAT AMOUNT"],["TOTAL"],["€",":","TOTAL"],""],
 				"ADDRESS" : ["EXCEL",["8/D","11/D","13/D","15/D"],[],""],
 			}
@@ -513,56 +930,372 @@
 				"Gesamtbetrag (Brutto)",
 				"Nettobetrag",
 				"enthaltene MwSt.(19%)",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"USt-IDNr.:" : ["PDF","01","","",[",","SteuerNr.103/126/51128"],""],
+				"USt-IDNr.:" : ["PDF","01",[",","SteuerNr.103/126/51128"],""],
 				"Zahlungseingang" : ["EXCEL",["22/O"],["Zahlungseingang",":"],""],
 				"RECHNUNG Nr." : ["EXCEL",["20/D"],["RECHNUNG Nr."],""],
 				"RECHNUNG Nr." : ["EXCEL",["20/D"],["RECHNUNG Nr."],""],
-				"Gesamtbetrag (Brutto)" : ["PDF","01","","",["EUR",":"],""],
-				"Nettobetrag" : ["PDF","01","","",["EUR",":"],""],
-				"enthaltene MwSt.(19%)" : ["PDF","01","","",["EUR",":"],""],
+				"Gesamtbetrag (Brutto)" : ["PDF","01",["EUR",":"],""],
+				"Nettobetrag" : ["PDF","01",["EUR",":"],""],
+				"enthaltene MwSt.(19%)" : ["PDF","01",["EUR",":"],""],
 				"ADDRESS" : ["EXCEL",["14/D","15/D","17/D","15/D"],[],""],
+			}
+		},
+		"CUTCO":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Rechnungsdatum",
+				"Rechnung",
+				"Rechnung",
+				"Gesamtsumme",
+				"Gesamt netto",
+				"Umsatzsteuer (19,0%)",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["PDF","01",[""],""],
+				"Rechnung" : ["PDF","02",["Rechnungsdatum","Rechnung"," "],[" "],["Rechnungsdatum","Rechnung"," "],""],
+				"Rechnung" : ["PDF","02",["Rechnungsdatum","Rechnung"," "],[" "],["Rechnungsdatum","Rechnung"," "],""],
+				"Gesamtsumme" : ["PDF","04",["Preis Summe","€Gesamtsumme"],[" ", " "],[""],""],
+				"Gesamt netto" : ["PDF","01",["€"],""],
+				"Umsatzsteuer (19,0%)" : ["PDF","03","€Versand","€Umsatzsteuer",["€Versand","€Umsatzsteuer"],""],
+				"ADDRESS" : ["PDF","05",["2","3","4","5"],[""],""],
+			}
+		},
+		"digitalo":
+		{
+			"item": 
+			[
+				"Ust-IdNr.:",
+				"Rechnungs-/Leistungsdatum",
+				"Rechnungs-Nr.",
+				"Rechnungs-Nr.",
+				"Summe Bruttowert",
+				"Summe Nettowert",
+				"USt. 19,0 %",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Ust-IdNr.:" : ["PDF","01",[""],""],
+				"Rechnungs-/Leistungsdatum" : ["PDF","05",["5"],[""],""],
+				"Rechnungs-Nr." : ["PDF","05",["4"],[""],""],
+				"Rechnungs-Nr." : ["PDF","05",["4"],[""],""],
+				"Summe Bruttowert" : ["PDF","01",[""],""],
+				"Summe Nettowert" : ["PDF","01",[""],""],
+				"USt. 19,0 %" : ["PDF","04",["USt. 19,0 %","StK"],[" ", " "],[""],""],
+				"ADDRESS" : ["EXCEL",["13/E","14/E","15/E","16/E","17/E"],[],""],
+			}
+		},
+		"dm":
+		{
+			"item": 
+			[
+				"USt-ID-Nr.",
+				"Rechnungsdatum:",
+				"Rechnungsnummer:",
+				"Bestellnummer:",
+				"Rechnungsbetrag",
+				"Netto",
+				"MwSt.-Satz",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-ID-Nr." : ["PDF","01",[""],""],
+				"Rechnungsdatum:" : ["PDF","01",[""],""],
+				"Rechnungsnummer:" : ["PDF","01",[""],""],
+				"Bestellnummer:" : ["PDF","01",[""],""],
+				"Rechnungsbetrag" : ["PDF","02",["Netto MwSt.","19,00 %"," "],["€"],["Netto MwSt.","19,00 %","€"],""],
+				"Netto" : ["PDF","02",["Netto MwSt.","19,00 %","€"],["€"],["Netto MwSt.","19,00 %","€"],""],
+				"MwSt.-Satz" : ["PDF","02",["Netto MwSt.","19,00 %","€","€"],["€"],["Netto MwSt.","19,00 %","€"],""],
+				"ADDRESS" : ["PDF","03","Deine Rechnungsadresse","Deine Kunden-Daten",["Deine Rechnungsadresse","Deine Kunden-Daten"],""],
 			}
 		},
 		"doorout.com":
 		{
 			"item": 
 			[
-				"Umsatzsteuer-ID"
+				"Umsatzsteuer-ID",
 				"Rechnungsdatum",
 				"Rechnungsnummer",
 				"Bestellung",
 				"Gesamt Brutto:",
 				"Gesamt Netto:",
 				"19,00% MwSt.:",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"Umsatzsteuer-ID" : ["PDF","01","","",[":"],""],
+				"Umsatzsteuer-ID" : ["PDF","01",[":"],""],
 				"Rechnungsdatum" : ["EXCEL",["7/S"],[""],""],
 				"Rechnungsnummer" : ["EXCEL",["10/S"],["RECHNUNG Nr."],""],
 				"Bestellung" : ["PDF","03","Bestellung","vom",["Bestellung","vom","#"],""],
-				"Gesamt Brutto:" : ["PDF","01","","",["€"],""],
-				"Gesamt Netto:" : ["PDF","01","","",["€"],""],
-				"19,00% MwSt.:" : ["PDF","01","","",["€"],""],
-				"ADDRESS" : ["EXCEL",["5/D","6/D","7/D","8/D"],[],""],
+				"Gesamt Brutto:" : ["PDF","01",["€"],""],
+				"Gesamt Netto:" : ["PDF","01",["€"],""],
+				"19,00% MwSt.:" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["5/D","6/D","7/D","8/D"],[""],""],
+			}
+		},
+		"DOUGLAS":
+		{
+			"item": 
+			[
+				"Umsatzsteuer-Identifikationsnummer:",
+				"Rechnungsdatum:",
+				"Rechnungsnummer:",
+				"Rechnungsnummer:",
+				"Rechnungsbetrag",
+				"Zwischensumme",
+				"Mwst. Gesamtbetrag",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Umsatzsteuer-Identifikationsnummer:" : ["PDF","02",["Umsatzsteuer-Identifikationsnummer:"," "],["|"],["Umsatzsteuer-Identifikationsnummer:"," ","|"],""],
+				"Rechnungsdatum:" : ["PDF","03","Rechnungsdatum:","Kunden-Nr",["Rechnungsdatum:","Kunden-Nr"],""],
+				"Rechnungsnummer:" : ["PDF","03","Rechnungsnummer:","Rechnungsdatum",["Rechnungsnummer:","Rechnungsdatum"],""],
+				"Rechnungsnummer:" : ["PDF","03","Rechnungsnummer:","Rechnungsdatum",["Rechnungsnummer:","Rechnungsdatum"],""],
+				"Rechnungsbetrag" : ["PDF","01",["€"],""],
+				"Zwischensumme" : ["PDF","01",["€"],""],
+				"Mwst. Gesamtbetrag" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["PDF","03","Düsseldorf","Rechnung",["Düsseldorf","Rechnung"],""],
+			}
+		},
+		"EASTSIDE":
+		{
+			"item": 
+			[
+				"Steuernummer:",
+				"Datum",
+				"Belegnummer",
+				"Referenz",
+				"Total EUR",
+				"Nettobetrag (Total)",
+				"Mehrwertsteuer 19,0%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Steuernummer:" : ["PDF","03","vision.com","Bankverbindung",["vision.com","Bankverbindung"],""],
+				"Datum" : ["EXCEL",["7/U"],[""],""],
+				"Belegnummer" : ["EXCEL",["7/Q"],[""],""],
+				"Referenz" : ["EXCEL",["14/Q"],[""],""],
+				"Total EUR" : ["PDF","02",["Mehrwertsteuer","Total EUR"],["Wir"],["Mehrwertsteuer","Total EUR","Wir"],""],
+				"Nettobetrag (Total)" : ["PDF","02",["Mehrwertsteuer","auf"],["Total"],["Mehrwertsteuer","auf","Total"],""],
+				"Mehrwertsteuer 19,0%" : ["PDF","02",["Nettobetrag",")"],["Mehrwertsteuer"],["Nettobetrag",")","Mehrwertsteuer"],""],
+				"ADDRESS" : ["EXCEL",["14/E","15/E","16/E","17/E","18/E"],[""],""],
+			}
+		},
+		"easy cosmetic":
+		{
+			"item": 
+			[
+				"Umsatzsteuer-Identnummer",
+				"Datum",
+				"Rechnung",
+				"Rechnung",
+				"Endsumme",
+				"Netto",
+				"19% MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Umsatzsteuer-Identnummer" : ["PDF","01",[""],""],
+				"Datum" : ["PDF","01",[":"],""],
+				"Rechnung" : ["PDF","01",[""],""],
+				"Rechnung" : ["PDF","01",[""],""],
+				"Endsumme" : ["PDF","01",[":","EUR"],""],
+				"Netto" : ["PDF","03","Steuerausweis","EUR",["Steuerausweis","EUR"],""],
+				"19% MwSt." : ["PDF","02",["Steuerausweis","EUR"],["EUR"],["EUR"],""],
+				"ADDRESS" : ["EXCEL",["6/C","7/C","8/C","9/C"],[""],""],
+			}
+		},
+		"ebay":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Bestelldatum:",
+				"Verkaufsprotokoll Nr.:",
+				"BESTELLNR.:",
+				"Gesamtbetrag",
+				"Zwischensumme (ohne MwSt.)",
+				"MwSt. EUR",
+				"Versand (ohne MwSt.)",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","01",[""],""],
+				"Bestelldatum:" : ["PDF","01",[""],""],
+				"Verkaufsprotokoll Nr.:" : ["PDF","01",[""],""],
+				"BESTELLNR.:" : ["PDF","03","BESTELLNR.:","Bestelldatum:",["BESTELLNR.:","Bestelldatum:"],""],
+				"Gesamtbetrag" : ["PDF","01",["EUR"],""],
+				"Zwischensumme (ohne MwSt.)" : ["PDF","01",["EUR"],""],
+				"MwSt. EUR" : ["PDF","01",["EUR"],""],
+				"Versand (ohne MwSt.)" : ["PDF","01",["EUR"],""],
+				"ADDRESS" : ["PDF","05",["4","5","6","7"],[""],""],
+			}
+		},
+		"EBURYA":
+		{
+			"item": 
+			[
+				"USt-IdNr.",
+				"Datum",
+				"Rechnungs-Nr.",
+				"Bestelldatum",
+				"Gesamtsumme:",
+				"Gesamtsumme (Netto):",
+				"zzgl. 19% MwSt.:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr." : ["PDF","03","USt-IdNr.:","Kontakt",["USt-IdNr.:","Kontakt"],""],
+				"Datum" : ["PDF","01",["Datum"],""],
+				"Rechnungs-Nr." : ["PDF","01",["Rechnungs-Nr."],""],
+				"Bestelldatum" : ["PDF","03","Bestell-Nr.","Bestelldatum",["Bestell-Nr.","Bestelldatum"],""],
+				"Gesamtsumme:" : ["PDF","01",[" ","€"],""],
+				"Gesamtsumme (Netto):" : ["PDF","01",[" ","€"],""],
+				"zzgl. 19% MwSt.:" : ["PDF","01",[" ","€"],""],
+				"ADDRESS" : ["EXCEL",["11/C","12/C","13/C"],[""],""],
+			}
+		},
+		"ESCHUHE.de":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Rechnungsdatum",
+				"RECHNUNG",
+				"Bestellnummer",
+				"Rechnungsbetrag(Brutto)",
+				"Nettopreis",
+				"USt  Betrag",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","02",["Geschäftsführer:","USt-IdNr.:"],["Steuernummer"],["Geschäftsführer:","USt-IdNr.:","Steuernummer",","],""],
+				"Rechnungsdatum" : ["PDF","01",[""],""],
+				"RECHNUNG" : ["PDF","02",["USt-IdNr","RECHNUNG"],["Bestellnummer"],["USt-IdNr","RECHNUNG","Bestellnummer"],""],
+				"Bestellnummer" : ["PDF","01",[""],""],
+				"Rechnungsbetrag(Brutto)" : ["PDF","01",["EUR"],""],
+				"Nettopreis" : ["PDF","02",["Zusammen"," "],[" "],["Zusammen"," "],""],
+				"USt  Betrag" : ["PDF","02",["Zusammen"," "," "],[" "],["Zusammen"," "],""],
+				"ADDRESS" : ["PDF","05",["11","12","13"],["JAYDEN"],""],
+			}
+		},
+		"expert":
+		{
+			"item": 
+			[
+				"USt-IdNr.",
+				"Datum",
+				"Rechnung",
+				"Order ID",
+				"Rechnungsbetrag EUR",
+				"Zwischensumme (netto) EUR",
+				"19,00% MwSt. EUR",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","01",[""],""],
+				"Datum" : ["PDF","01",[""],""],
+				"Rechnung" : ["PDF","01",[""],""],
+				"Order ID" : ["PDF","01",[""],""],
+				"Rechnungsbetrag EUR" : ["PDF","01",[""],""],
+				"Zwischensumme (netto) EUR" : ["PDF","01",[""],""],
+				"19,00% MwSt. EUR" : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["5/C","6/C","7/C","8/C"],[""],""],
+			}
+		},
+		"FARFETCH":
+		{
+			"item": 
+			[
+				"VAT Number:",
+				"Invoice Date: ",
+				"Invoice Number:",
+				"Order Number:",
+				"Grand Total",
+				"Taxable Amount",
+				"Tax Amount",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"VAT Number:" : ["PDF","01",[":"],""],
+				"Invoice Date: " : ["PDF","01",[":"],""],
+				"Invoice Number:" : ["PDF","01",[":"],""],
+				"Order Number:" : ["PDF","01",[":"],""],
+				"Grand Total" : ["PDF","02",["(EUR) 19 %","TOTAL"," "," "," "],["VAT"],["(EUR) 19 %","TOTAL","VAT"],""],
+				"Taxable Amount" : ["PDF","02",["(EUR) 19 %","TOTAL"," "],[" "],["(EUR) 19 %","TOTAL"," "],""],
+				"Tax Amount" : ["PDF","02",["(EUR) 19 %","TOTAL"," "," "],[" "],["(EUR) 19 %","TOTAL"," "],""],
+				"ADDRESS" : ["PDF","03","Invoice To","Germany",["Invoice To","Germany"],""],
+			}
+		},
+		"FCMOTO":
+		{
+			"item": 
+			[
+				"USt-Id Nr.",
+				"Rechnungsdatum:",
+				"Rechnung",
+				"Bestellnummer:",
+				"Rechnungsendbetrag:",
+				"Warenwert netto:",
+				"MwSt 19%:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-Id Nr." : ["PDF","01",[""],""],
+				"Rechnungsdatum:" : ["PDF","03","Rechnungsdatum:","Bestelldatum:",["Rechnungsdatum:","Bestelldatum:"],""],
+				"Rechnung" : ["PDF","03","Rechnung","Kundennummer:",["Rechnung","Kundennummer:"],""],
+				"Bestellnummer:" : ["PDF","03","Bestellnummer:","Zahlart:",["Bestellnummer:","Zahlart:"],""],
+				"Rechnungsendbetrag:" : ["PDF","01",["EUR"],""],
+				"Warenwert netto:" : ["PDF","01",["EUR"],""],
+				"MwSt 19%:" : ["PDF","01",["EUR"],""],
+				"ADDRESS" : ["EXCEL",["8/C","9/C","10/C"],[""],""],
 			}
 		},
 		"FLACONI":
 		{
 			"item": 
 			[
-				"USt-ID Nr."
+				"USt-ID Nr.",
 				"Bestelldatum",
 				"Rechnungsnummer",
 				"Auftragsnummer",
 				"Gesamtbetrag EUR inkl. MwSt.",
-				"Gesamtbetrag EUR ohne MwSt.",
+				"ohne MwSt.",
 				"zzgl. 19% MwSt.",
+				"",
 				"ADDRESS"
 			],
 			"option": 
@@ -571,46 +1304,1308 @@
 				"Bestelldatum" : ["EXCEL",["6/F"],[""],""],
 				"Rechnungsnummer" : ["EXCEL",["4/F"],[""],""],
 				"Auftragsnummer" : ["EXCEL",["7/F"],[""],""],
-				"Gesamtbetrag EUR inkl. MwSt." : ["PDF","01","","",[""],""],
-				"Gesamtbetrag EUR ohne MwSt." : ["PDF","01","","",[""],""],
-				"zzgl. 19% MwSt." : ["PDF","01","","",[""],""],
-				"ADDRESS" : ["EXCEL",["11/B","12/B","13/B","14/B"],[],""],
+				"Gesamtbetrag EUR inkl. MwSt." : ["PDF","01",[""],""],
+				"ohne MwSt." : ["PDF","01",[""],""],
+				"zzgl. 19% MwSt." : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["11/B","12/B","13/B","14/B"],[""],""],
+			}
+		},
+		"funktionells.de":
+		{
+			"item": 
+			[
+				"UID:",
+				"Lieferdatum:",
+				"Rechnungs-Nr.:",
+				"Beleg-Nr.:",
+				"Gesamtpreis in EUR:",
+				"Nettobetrag",
+				"19,00 %",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"UID:" : ["PDF","02",["BIC:","UID:"],["verkauf"],["BIC:","UID:","verkauf"],""],
+				"Lieferdatum:" : ["PDF","01",[":"],""],
+				"Rechnungs-Nr.:" : ["PDF","02",["Beleg-Nr.:"," "," "],["Rechnungs-Nr.:"],["Beleg-Nr.:"," ","Rechnungs-Nr.:"],""],
+				"Beleg-Nr.:" : ["PDF","01",[""],""],
+				"Gesamtpreis in EUR:" : ["PDF","02",["Material (Summe):"," "," "],["Gesamtpreis"],["Material (Summe):"," ","Gesamtpreis"],""],
+				"Nettobetrag" : ["PDF","02",["Nettobetrag","19,00 %"," "],[" "],["Nettobetrag","19,00%"," "],""],
+				"19,00 %" : ["PDF","02",["Nettobetrag"," "],["19,00 %"],["Material (Summe):"," ","19,00%"],""],
+				"ADDRESS" : ["PDF","02",["Kunden-Nr.:"," "," "],["Beleg-Nr.:"],["Kunden-Nr.:","Beleg-Nr.:"],""],
+			}
+		},
+		"GLOBETROTTER":
+		{
+			"item": 
+			[
+				"USt-IDNr",
+				"Rechnungsdatum",
+				"Rechnungsnummer",
+				"Auftragsnummer",
+				"Zu zahlender Betrag",
+				"Nettobetrag",
+				"Mehrwertsteuer",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IDNr" : ["PDF","02",["HRB","USt-IDNr"," "],["SWIFT"],["HRB","USt-IDNr","SWIFT"],""],
+				"Rechnungsdatum" : ["PDF","02",["WEEE-Reg-nr.","Rechnung"," "," "],[" "],["WEEE-Reg-nr.","Rechnung"," "],""],
+				"Rechnungsnummer" : ["PDF","02",["WEEE-Reg-nr.","Rechnung"," "],[" "],["WEEE-Reg-nr.","Rechnung"," "],""],
+				"Auftragsnummer" : ["PDF","03","Bestelldatum","Lieferschein",["Bestelldatum","Lieferschein"],""],
+				"Zu zahlender Betrag" : ["PDF","01",["EUR"],""],
+				"Nettobetrag" : ["PDF","02",["Mehrwertsteuer","Nettobetrag"," "],[" "],["Mehrwertsteuer","Nettobetrag"," "],""],
+				"Mehrwertsteuer" : ["PDF","04",["Lieferadresse","Nettobetrag"],[" ", " "],[""],""],
+				"ADDRESS" : ["PDF","05",["1","2","3","4","5"],[""],""],
+			}
+		},
+		"GALERIA":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Rechnungsdatum:",
+				"Rechnungsnummer:",
+				"Auftragsnummer:",
+				"Rechnungsbetrag",
+				"Nettobetrag",
+				"zzgl. 19 % MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","01",[""],""],
+				"Rechnungsdatum:" : ["PDF","02",["Seite"," "," "," "],[" "],["Seite"," "],""],
+				"Rechnungsnummer:" : ["PDF","02",["Seite"," "," "],[" "],["Seite"," "],""],
+				"Auftragsnummer:" : ["PDF","02",["Seite"," "," "," "," "],[" "],["Seite"," "],""],
+				"Rechnungsbetrag" : ["PDF","01",["EUR"],""],
+				"Nettobetrag" : ["PDF","02",["Nettobetrag",")"],["EUR"],["Nettobetrag",")","EUR"],""],
+				"zzgl. 19 % MwSt." : ["PDF","01",["EUR"],""],
+				"ADDRESS" : ["EXCEL",["9/F","10/F","11/F","12/F","13/F","14/F","15/F","16/F"],[""],""],
+			}
+		},
+		"GODEL":
+		{
+			"item": 
+			[
+				"USt.-ID-Nr.",
+				"Datum:",
+				"Rechnung Nr.",
+				"Bestell-Nr.:",
+				"Gesamtkosten:",
+				"Gesamtkosten Netto:",
+				"zzgl. 19 % MwSt:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt.-ID-Nr." : ["PDF","01",[""],""],
+				"Datum:" : ["PDF","01",[""],""],
+				"Rechnung Nr." : ["PDF","01",[""],""],
+				"Bestell-Nr.:" : ["PDF","01",[""],""],
+				"Gesamtkosten:" : ["PDF","01",["€"],""],
+				"Gesamtkosten Netto:" : ["PDF","01",["€"],""],
+				"zzgl. 19 % MwSt:" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["9/C","10/C","11/C","12/C","13/C","14/C","15/C","16/C"],[""],""],
 			}
 		},
 		"H&M":
 		{
 			"item": 
 			[
-				"Umsatzsteuer-Identifikationsnummer"
+				"Umsatzsteuer-Identifikationsnummer",
 				"BELEGDATUM",
 				"BELEGNUMMER",
 				"BESTELLNUMMER",
 				"GESAMTSUMME",
 				"Exkl. MwSt.",
 				"MwSt.-Betrag",
+				"",
 				"ADDRESS"
 			],
 			"option": 
 			{
-				"Umsatzsteuer-Identifikationsnummer" : ["PDF","01","","",[":"],""],
+				"Umsatzsteuer-Identifikationsnummer" : ["PDF","01",[":"],""],
 				"BELEGDATUM" : ["EXCEL",["5/R"],[""],""],
 				"BELEGNUMMER" : ["EXCEL",["7/R"],[""],""],
 				"BESTELLNUMMER" : ["EXCEL",["9/R"],[""],""],
-				"GESAMTSUMME" : ["PDF","01","","",["€",":"],""],
-				"Exkl. MwSt." : ["PDF","01","","",["€",":"],""],
-				"MwSt.-Betrag" : ["PDF","01","","",["€"],""],
-				"ADDRESS" : ["EXCEL",["8/E","11/E","13/E"],[],""],
+				"GESAMTSUMME" : ["PDF","01",["€",":"],""],
+				"Exkl. MwSt." : ["PDF","01",["€",":"],""],
+				"MwSt.-Betrag" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["8/E","11/E","13/E"],[""],""],
 			}
 		},
-	},
-	"header" : [
-		"구매처",
-		"세금번호(키값)",
-		"세금번호",
-		"주문날짜",
-		"인보이스 발행날짜",
-		"인보이스 번호",
-		"주문번호",
-		"인보이스 주소"
-	]
+		"hhv":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Rechnungsdatum",
+				"Rechnungsnummer",
+				"Bestellnummer",
+				"Gesamtbetrag",
+				"Warenwert",
+				"19,0%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","02",["Web:"," "],[" "],["Web:"," "],""],
+				"Rechnungsdatum" : ["PDF","03","Rechnungsdatum","Bestelldatum",["Rechnungsdatum","Bestelldatum"],""],
+				"Rechnungsnummer" : ["PDF","03","Rechnungsnummer","Zahlungsart",["Rechnungsnummer","Zahlungsart"],""],
+				"Bestellnummer" : ["PDF","03","Bestellnummer","HHV",["Bestellnummer","HHV"],""],
+				"Gesamtbetrag" : ["PDF","02",["Warenwert","€"],["EUR"],["Warenwert","€","EUR"],""],
+				"Warenwert" : ["PDF","01",["€"],""],
+				"19,0%" : ["PDF","02",["€Versand","€"],["netto"],["Versand","€","netto"],""],
+				"ADDRESS" : ["EXCEL",["8/C","9/C","10/C","11/C"],[""],""],
+			}
+		},
+		"JACOB":
+		{
+			"item": 
+			[
+				"USt.-ID-Nr.:",
+				"Rechnungs-/Lieferdatum",
+				"Rechnung (SRE) Nr.",
+				"JacobNr.",
+				"Rechnungsbetrag",
+				"Warenwert",
+				"MwSt. 19%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt.-ID-Nr.:" : ["PDF","03","USt.-ID-Nr.:","Amtsgericht",["USt.-ID-Nr.:","Amtsgericht"],""],
+				"Rechnungs-/Lieferdatum" : ["PDF","02",["Seite"," "],[" "],["Seite"," "],""],
+				"Rechnung (SRE) Nr." : ["PDF","01",[""],""],
+				"JacobNr." : ["PDF","02",["Lieferschein-Nr:","Seite"," "," "," "],[" "],["Lieferschein-Nr:","Seite"," "],""],
+				"Rechnungsbetrag" : ["PDF","02",["Rechnungsbetrag","€ € €"," "," "," "],[" "],["Rechnungsbetrag","€ € €"," "],""],
+				"Warenwert" : ["PDF","02",["Rechnungsbetrag","€ € €"," "],[" "],["Rechnungsbetrag","€ € €"," "],""],
+				"MwSt. 19%" : ["PDF","02",["Rechnungsbetrag","€ € €"," "," "],[" "],["Rechnungsbetrag","€ € €"," "],""],
+				"ADDRESS" : ["PDF","05",["1","2","3","4","5"],[""],""],
+			}
+		},
+		"KAFFEE.DE_1":
+		{
+			"item": 
+			[
+				"Ust-Id-Nr.:",
+				"Rechnungs-Datum",
+				"Rechnungs-Nummer",
+				"Rechnungs-Nummer",
+				"Gesamt inkl. MwSt.",
+				"Zwischensumme netto",
+				"zzgl. 19% MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Ust-Id-Nr.:" : ["PDF","02",["Ust-Id-Nr.:"," "],[" "],["Ust-Id-Nr.:"," "],""],
+				"Rechnungs-Datum" : ["PDF","03","Rechnungs-Datum","Ansprechpartner",["Rechnungs-Datum","Ansprechpartner"],""],
+				"Rechnungs-Nummer" : ["PDF","03","Rechnungs-Nummer","Rechnungs-Datum",["Rechnungs-Nummer","Rechnungs-Datum"],""],
+				"Rechnungs-Nummer" : ["PDF","03","Rechnungs-Nummer","Rechnungs-Datum",["Rechnungs-Nummer","Rechnungs-Datum"],""],
+				"Gesamt inkl. MwSt." : ["PDF","01",["€"],""],
+				"Zwischensumme netto" : ["PDF","01",["€"],""],
+				"zzgl. 19% MwSt." : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["6/D","7/D","8/D","9/D","10/D","11/D","12/D","13/D","14/D","15/D","16/D"],[""],""],
+			}
+		},
+		"KAFFEE.DE_2":
+		{
+			"item": 
+			[
+				"Ust-Id-Nr.:",
+				"Rechnungs-Datum",
+				"Rechnungs-Nummer",
+				"Rechnungs-Nummer",
+				"Gesamt inkl. MwSt.",
+				"Zwischensumme netto",
+				"zzgl. 19% MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Ust-Id-Nr.:" : ["PDF","02",["Ust-Id-Nr.:"," "],[" "],["Ust-Id-Nr.:"," "],""],
+				"Rechnungs-Datum" : ["PDF","03","Rechnungs-Datum","Ansprechpartner",["Rechnungs-Datum","Ansprechpartner"],""],
+				"Rechnungs-Nummer" : ["PDF","03","Rechnungs-Nummer","Rechnungs-Datum",["Rechnungs-Nummer","Rechnungs-Datum"],""],
+				"Rechnungs-Nummer" : ["PDF","03","Rechnungs-Nummer","Rechnungs-Datum",["Rechnungs-Nummer","Rechnungs-Datum"],""],
+				"Gesamt inkl. MwSt." : ["PDF","01",["€"],""],
+				"Zwischensumme netto" : ["PDF","01",["€"],""],
+				"zzgl. 19% MwSt." : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["6/D","7/D","8/D","9/D","10/D","11/D","12/D","13/D","14/D","15/D","16/D"],[""],""],
+			}
+		},
+		"KOFFERWORLD":
+		{
+			"item": 
+			[
+				"USt.-ID:",
+				"Rechnungsdatum:",
+				"Rechnung #:",
+				"Bestellung #:",
+				"Gesamtsumme (inkl. USt.)",
+				"Nettosumme",
+				"USt. (19%)",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt.-ID:" : ["PDF","01",[""],""],
+				"Rechnungsdatum:" : ["PDF","01",[""],""],
+				"Rechnung #:" : ["PDF","01",[""],""],
+				"Bestellung #:" : ["PDF","01",[""],""],
+				"Gesamtsumme (inkl. USt.)" : ["PDF","01",["€"],""],
+				"Nettosumme" : ["PDF","01",["€"],""],
+				"USt. (19%)" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["PDF","03","Versandadresse","Deutschland",["Versandadresse","Deutschland"],""],
+			}
+		},
+		"Leuchtturm Gruppe":
+		{
+			"item": 
+			[
+				"USt-IdNr.",
+				"Rechnungsdatum:",
+				"Rechnungs-Nr.:",
+				"Amazon-Bestell-Nr.:",
+				"Zahlungsbetrag (brutto):",
+				"Gesamtbetrag (netto):",
+				"MwSt.-Satz: 19,00 %",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr." : ["PDF","01",[""],""],
+				"Rechnungsdatum:" : ["PDF","01",[""],""],
+				"Rechnungs-Nr.:" : ["PDF","01",[""],""],
+				"Amazon-Bestell-Nr.:" : ["PDF","01",[""],""],
+				"Zahlungsbetrag (brutto):" : ["PDF","01",["€"],""],
+				"Gesamtbetrag (netto):" : ["PDF","01",["€"],""],
+				"MwSt.-Satz: 19,00 %" : ["PDF","02",["MwSt.-Satz:","€:"],["€"],["MwSt.-Satz:","€:","€"," ","(1)"],""],
+				"ADDRESS" : ["EXCEL",["6/F","7/F","8/F","9/F"],[""],""],
+			}
+		},
+		"LEVIS":
+		{
+			"item": 
+			[
+				"DE VAT registration number:",
+				"Invoice date:",
+				"Invoice number:",
+				"Order number:",
+				"Invoice amount:",
+				"Net invoice amount in EUR:",
+				"Included value-added tax in EUR:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"DE VAT registration number:" : ["PDF","01",[""],""],
+				"Invoice date:" : ["PDF","01",[""],""],
+				"Invoice number:" : ["PDF","03","Invoice number:","Customer number:",["Invoice number:","Customer number:"],""],
+				"Order number:" : ["PDF","03","Order number:","Invoice date:",["Order number:","Invoice date:"],""],
+				"Invoice amount:" : ["PDF","01",[""],""],
+				"Net invoice amount in EUR:" : ["PDF","01",[""],""],
+				"Included value-added tax in EUR:" : ["PDF","03","tax in EUR:","Net",["tax in EUR:","Net"],""],
+				"ADDRESS" : ["EXCEL",["10/B","11/B","12/B","13/B"],[""],""],
+			}
+		},
+		"maje":
+		{
+			"item": 
+			[
+				"TVA :",
+				"Datum der Rechnung",
+				"RECHNUNG N°",
+				"Bestellnummer. ",
+				"Gesamtbetrag (brutto) ",
+				"Gesamtbetrag (netto) ",
+				"Gesamtsteuer",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"TVA :" : ["PDF","01",[""],""],
+				"Datum der Rechnung" : ["PDF","01",[":"],""],
+				"RECHNUNG N°" : ["PDF","01",["RECHNUNG N°"],""],
+				"Bestellnummer. " : ["PDF","01",["Bestellnummer."],""],
+				"Gesamtbetrag (brutto) " : ["PDF","01",["€",":"],""],
+				"Gesamtbetrag (netto) " : ["PDF","01",["€",":"],""],
+				"Gesamtsteuer" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["PDF","03","RECHNUNGSANSCHRIFT","Deutschland",["RECHNUNGSANSCHRIFT","Deutschland"],""],
+			}
+		},
+		"markenkoffer.de":
+		{
+			"item": 
+			[
+				"USt-ID.:",
+				"Rechnungs-/Lieferdatum",
+				"Rechnung",
+				"Auftragsnummer",
+				"Gesamtbetrag",
+				"Gesamtbetrag netto:",
+				"MwSt.:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-ID.:" : ["PDF","01",[""],""],
+				"Rechnungs-/Lieferdatum" : ["PDF","03","Rechnungs-/Lieferdatum","Auftragsdatum",["Rechnungs-/Lieferdatum","Auftragsdatum"],""],
+				"Rechnung" : ["PDF","02",["LIEFERADRESSE","Rechnung"," "],[" "],["LIEFERADRESSE","Rechnung"," "],""],
+				"Auftragsnummer" : ["PDF","03","Auftragsnummer","Markenkoffer",["Auftragsnummer","Markenkoffer"],""],
+				"Gesamtbetrag" : ["PDF","02",["Warenwert netto:","EUR","EUR","EUR","EUR"],["EUR"],["Warenwert netto:","EUR"],""],
+				"Gesamtbetrag netto:" : ["PDF","02",["Warenwert netto:","EUR","EUR"],["EUR"],["Warenwert netto:","EUR"],""],
+				"MwSt.:" : ["PDF","02",["Warenwert netto:"," "],["EUR"],["Warenwert netto:","EUR"],""],
+				"ADDRESS" : ["EXCEL",["9/C","10/C","11/C","12/C"],[""],""],
+			}
+		},
+		"MARKET Lifestore":
+		{
+			"item": 
+			[
+				"Umsatzsteuer ID:",
+				"Date:",
+				"Order:",
+				"Order:",
+				"Total EUR:",
+				"Total net:",
+				"Incl. 19% tax:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Umsatzsteuer ID:" : ["PDF","01",[""],""],
+				"Date:" : ["PDF","01",[""],""],
+				"Order:" : ["PDF","01",[""],""],
+				"Order:" : ["PDF","01",[""],""],
+				"Total EUR:" : ["PDF","01",[""],""],
+				"Total net:" : ["PDF","01",[""],""],
+				"Incl. 19% tax:" : ["PDF","01",[""],""],
+				"ADDRESS" : ["PDF","05",["8","9","10","11"],[""],""],
+			}
+		},
+		"MATCHESFASHION":
+		{
+			"item": 
+			[
+				"VAT Registration Number:",
+				"Invoice Date",
+				"Order number",
+				"Order number",
+				"TOTAL EUR",
+				"TOTAL EUR",
+				"TOTAL EUR",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"VAT Registration Number:" : ["PDF","01",[""],""],
+				"Invoice Date" : ["EXCEL",["4/M"],[""],""],
+				"Order number" : ["PDF","01",[""],""],
+				"Order number" : ["PDF","01",[""],""],
+				"TOTAL EUR" : ["PDF","04",["Return Authorisation"],[" "," "],[""],""],
+				"TOTAL EUR" : ["PDF","01",[""],""],
+				"TOTAL EUR" : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["10/K","11/K","12/K","13/K"],[""],""],
+			}
+		},
+		"medpex":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Datum",
+				"Rechnung -",
+				"Online Bestellung",
+				"Gesamtbetrag",
+				"Nettobetrag EUR",
+				"MwSt. EUR",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","03","USt-IdNr.:","NL-USt-Nr.:",["USt-IdNr.:","NL-USt-Nr.:"],""],
+				"Datum" : ["PDF","04",["Rechnung"],[" "," "],[""],""],
+				"Rechnung -" : ["PDF","01",[""],""],
+				"Online Bestellung" : ["PDF","03","Online Bestellung","vom",["Online Bestellung","vom"],""],
+				"Gesamtbetrag" : ["PDF","01",[""],""],
+				"Nettobetrag EUR" : ["PDF","03","MwSt. EUR","19%",["MwSt. EUR","19%"],""],
+				"MwSt. EUR" : ["PDF","02",["MwSt. EUR","19%"," "],[" "],["MwSt. EUR"," ","19%"],""],
+				"ADDRESS" : ["EXCEL",["6/C","7/C","8/C","9/C","10/C","11/C"],[""],""],
+			}
+		},
+		"modeherz":
+		{
+			"item": 
+			[
+				"Umsatzsteuer-Identifikationsnummern:",
+				"Datum:",
+				"Rechnungs Nr.",
+				"Auftrags-ID:",
+				"Rechnungsbetrag EUR",
+				"netto Zwischensumme EUR",
+				"19,00% MwSt. inkl. EUR",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Umsatzsteuer-Identifikationsnummern:" : ["PDF","03","Umsatzsteuer-Identifikationsnummern:","IT",["Umsatzsteuer-Identifikationsnummern:","IT"],""],
+				"Datum:" : ["PDF","01",[""],""],
+				"Rechnungs Nr." : ["PDF","01",[""],""],
+				"Auftrags-ID:" : ["PDF","01",[""],""],
+				"Rechnungsbetrag EUR" : ["PDF","01",[""],""],
+				"netto Zwischensumme EUR" : ["PDF","01",[""],""],
+				"19,00% MwSt. inkl. EUR" : ["PDF","01",[""],""],
+				"ADDRESS" : ["PDF","02",["HRB"," "," "],["Rechnungs Nr."],["Rechnungs Nr."," "],""],
+			}
+		},
+		"MODIVO":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Rechnungsdatum",
+				"RECHNUNG",
+				"Bestellnummer",
+				"Gesamtbetrag",
+				"Nettopreis",
+				"USt  Betrag",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["PDF","01",[""],""],
+				"RECHNUNG" : ["PDF","01",[""],""],
+				"Bestellnummer" : ["PDF","01",[""],""],
+				"Gesamtbetrag" : ["PDF","01",[""],""],
+				"Nettopreis" : ["PDF","02",["Zusammen"," "],[" "],["Zusammen"," "],""],
+				"USt  Betrag" : ["PDF","02",["Zusammen"," "," "],[" "],["Zusammen"," "],""],
+				"ADDRESS" : ["PDF","02",["ufer ("," "],["USt-IdNr"],["ufer (","USt-IdNr"],""],
+			}
+		},
+		"MICHAS":
+		{
+			"item": 
+			[
+				"UST-ID:",
+				"Datum:",
+				"Rechnungs/Lieferschein Nr:",
+				"Order:",
+				"Rechnungsbetrag EUR",
+				"Warenwert (netto) EUR",
+				"19,00% MwSt. EUR",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"UST-ID:" : ["PDF","01",[""],""],
+				"Datum:" : ["PDF","03","Datum:","Order:",["Datum:","Order:"],""],
+				"Rechnungs/Lieferschein Nr:" : ["PDF","01",[""],""],
+				"Order:" : ["PDF","01",[""],""],
+				"Rechnungsbetrag EUR" : ["PDF","01",[""],""],
+				"Warenwert (netto) EUR" : ["PDF","01",[""],""],
+				"19,00% MwSt. EUR" : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["13/C","14/C","15/C","16/C","17/C"],[""],""],
+			}
+		},
+		"Muller":
+		{
+			"item": 
+			[
+				"USt-IdNr.",
+				"Rechnungsdatum",
+				"Rechnungsnr.",
+				"Bestellnr.",
+				"Rechnungsbetrag",
+				"davon netto:",
+				"enthaltene MwSt:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr." : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["EXCEL",["21/K"],[""],""],
+				"Rechnungsnr." : ["EXCEL",["19/K"],[""],""],
+				"Bestellnr." : ["EXCEL",["23/K"],[""],""],
+				"Rechnungsbetrag" : ["PDF","01",["€"],""],
+				"davon netto:" : ["PDF","01",["€"],""],
+				"enthaltene MwSt:" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["8/D","10/D","12/D"],[""],""],
+			}
+		},
+		"MYTHERESA":
+		{
+			"item": 
+			[
+				"VAT registration number",
+				"date:",
+				"invoice no.",
+				"invoice no.:",
+				"GRAND TOTAL:",
+				"net total:",
+				"incl. VAT 19 %:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"VAT registration number" : ["PDF","01",[":"],""],
+				"date:" : ["PDF","01",[""],""],
+				"invoice no." : ["PDF","01",[":"],""],
+				"invoice no.:" : ["PDF","01",[""],""],
+				"GRAND TOTAL:" : ["PDF","01",["€"," "],""],
+				"net total:" : ["PDF","01",["€"," "],""],
+				"incl. VAT 19 %:" : ["PDF","01",["€"," "],""],
+				"ADDRESS" : ["EXCEL",["17/E","18/E","19/E"],[""],""],
+			}
+		},
+		"Nike":
+		{
+			"item": 
+			[
+				"VAT Reg. No:",
+				"Rechnungsdatum",
+				"Rechnungsnummer",
+				"Bestellnummer",
+				"Rechnungssumme gesamt:",
+				"Gesamtsumme ohne MwSt.:",
+				"MwSt.:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"VAT Reg. No:" : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["PDF","01",[""],""],
+				"Rechnungsnummer" : ["PDF","01",[""],""],
+				"Bestellnummer" : ["PDF","01",[""],""],
+				"Rechnungssumme gesamt:" : ["PDF","01",["€"],""],
+				"Gesamtsumme ohne MwSt.:" : ["PDF","01",["€"],""],
+				"MwSt.:" : ["PDF","02",["€","MwSt.:"," "],["€"],["MwSt.:"," ","€"],""],
+				"ADDRESS" : ["PDF","03","Rechnung an","Gesamtsumme",["Rechnung an","Gesamtsumme"],""],
+			}
+		},
+		"norsGAAD.de":
+		{
+			"item": 
+			[
+				"Unsere USt-IdNr:",
+				"Datum:",
+				"Rechnung Nr:",
+				"Auftragsnummer:",
+				"Rechnungssumme inkl. MwSt. EUR",
+				"Rechnungssumme o. MwSt. EUR",
+				"19,00% MwSt. EUR",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Unsere USt-IdNr:" : ["PDF","01",[""],""],
+				"Datum:" : ["PDF","01",[""],""],
+				"Rechnung Nr:" : ["PDF","01",[""],""],
+				"Auftragsnummer:" : ["PDF","01",[""],""],
+				"Rechnungssumme inkl. MwSt. EUR" : ["PDF","01",[""],""],
+				"Rechnungssumme o. MwSt. EUR" : ["PDF","01",[""],""],
+				"19,00% MwSt. EUR" : ["PDF","01",[""],""],
+				"ADDRESS" : ["PDF","03","Lieferanschrift:","Deutschland",["Lieferanschrift:"],""],
+			}
+		},
+		"okluge.de":
+		{
+			"item": 
+			[
+				"USt-IDNr.",
+				"Rechnungsdatum",
+				"Rechnungsnummer",
+				"Bestellnummer",
+				"Gesamt-Brutto",
+				"Gesamt ohne MwSt.",
+				"USt.19,00%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IDNr." : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["PDF","01",[""],""],
+				"Rechnungsnummer" : ["PDF","01",[""],""],
+				"Bestellnummer" : ["PDF","01",[""],""],
+				"Gesamt-Brutto" : ["PDF","01",["€"],""],
+				"Gesamt ohne MwSt." : ["PDF","01",["€"],""],
+				"USt.19,00%" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["10/G","12/G","14/G","15/G","16/G"],[""],""],
+			}
+		},
+		"OUTBACK":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Invoice date:",
+				"Invoice (Rechnung)",
+				"Order-No.",
+				"Gesamt Brutto):",
+				"Gesamt Netto):",
+				"MwSt.): 19,00%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","01",[""],""],
+				"Invoice date:" : ["PDF","01",[""],""],
+				"Invoice (Rechnung)" : ["PDF","01",[""],""],
+				"Order-No." : ["PDF","01",[""],""],
+				"Gesamt Brutto):" : ["PDF","01",["€"],""],
+				"Gesamt Netto):" : ["PDF","01",["€"],""],
+				"MwSt.): 19,00%" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["7/D","8/D","9/D","10/D","11/D","12/D"],[""],""],
+			}
+		},
+		"PALZ":
+		{
+			"item": 
+			[
+				"Unsere USt-Id-Nr",
+				"Datum",
+				"Rechnung",
+				"Rechnung",
+				"Rechnungssumme",
+				"netto",
+				"Mwst %",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Unsere USt-Id-Nr" : ["PDF","02",["Rabatt %","DE"],[" "],["Rabatt %"],""],
+				"Datum" : ["PDF","02",["Zahlungsart",","," "],[" "],["Zahlungsart"," ",","],""],
+				"Rechnung" : ["PDF","01",[""],""],
+				"Rechnung" : ["PDF","01",[""],""],
+				"Rechnungssumme" : ["PDF","02",["Rechnungssumme EUR"," "," "," "," "],[" "],["Rechnungssumme EUR"," "],""],
+				"netto" : ["PDF","02",["Rechnungssumme EUR"," "," "," "],[" "],["Rechnungssumme EUR"," "],""],
+				"Mwst %" : ["PDF","02",["brutto","EUR"," "," "],[" "],["brutto","EUR"," "],""],
+				"ADDRESS" : ["PDF","03","SENDEN","Rechnung",["SENDEN","Rechnung"],""],
+			}
+		},
+		"PARFUM GROUP":
+		{
+			"item": 
+			[
+				"Ust.-Ident.",
+				"Rechnungs-/Lieferdatum",
+				"Rechnungsnummer:",
+				"Bestellnummer:",
+				"Brutto",
+				"Netto",
+				"19% MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Ust.-Ident." : ["PDF","01",[""],""],
+				"Rechnungs-/Lieferdatum" : ["PDF","01",["Büdingen,"],""],
+				"Rechnungsnummer:" : ["PDF","01",[""],""],
+				"Bestellnummer:" : ["PDF","01",[""],""],
+				"Brutto" : ["PDF","01",["EUR"],""],
+				"Netto" : ["PDF","01",["EUR"],""],
+				"19% MwSt." : ["PDF","01",["EUR"],""],
+				"ADDRESS" : ["EXCEL",["4/C","5/C","6/C","7/C","8/C","9/C","10/C","10/E"],[""],""],
+			}
+		},
+		"Pieper":
+		{
+			"item": 
+			[
+				"USt.-Id-Nr.",
+				"Datum",
+				"Rechnung Nr.",
+				"Bestell-Nr.",
+				"Gesamtkosten:",
+				"Gesamtkosten Netto:",
+				"zzgl. 19 % MwSt:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt.-Id-Nr." : ["PDF","01",[":"],""],
+				"Datum" : ["PDF","01",[":"],""],
+				"Rechnung Nr." : ["PDF","01",[""],""],
+				"Bestell-Nr." : ["PDF","01",[":"],""],
+				"Gesamtkosten:" : ["PDF","01",["€"],""],
+				"Gesamtkosten Netto:" : ["PDF","01",["€"],""],
+				"zzgl. 19 % MwSt:" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["8/C","9/C","10/C","11/C"],[""],""],
+			}
+		},
+		"PUMA":
+		{
+			"item": 
+			[
+				"USt-ID:",
+				"Rechnungsdatum:",
+				"Rechnungsnummer:",
+				"Bestellnummer:",
+				"Rechnungsbetrag",
+				"Summe exkl. MwSt.",
+				"MwSt EUR",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-ID:" : ["PDF","02",["USt-ID:"," "],[" "],["USt-ID:"," "],""],
+				"Rechnungsdatum:" : ["PDF","01",[""],""]
+				"Rechnungsnummer:" : ["PDF","01",[""],""],
+				"Bestellnummer:" : ["PDF","01",[""],""],
+				"Rechnungsbetrag" : ["PDF","02",["Rechnungsbetrag","EUR"," "],[" "],["Rechnungsbetrag","EUR"," "],""],
+				"Summe exkl. MwSt." : ["PDF","02",["MwSt EUR","EUR"," "],[" "],["MwSt EUR","EUR"," "],""],
+				"MwSt EUR" : ["PDF","02",["MwSt EUR","EUR"," "," "," "],[" "],["MwSt EUR","EUR"," "],""],
+				"ADDRESS" : ["PDF","05",["2","3","4","5","6"],[""],""],
+			}
+		},
+		"RALPHLAUREN.COM":
+		{
+			"item": 
+			[
+				"MwSt-Nummer",
+				"Rechnungsdatum",
+				"Rechnungsnummer",
+				"Bestellnummer",
+				"GESAMTSUMME",
+				"ZWISCHENSUMME",
+				"GESAMTBETRAG",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"MwSt-Nummer" : ["PDF","03","MwSt-Nummer","Rechnungsnummer",["MwSt-Nummer","Rechnungsnummer"],""],
+				"Rechnungsdatum" : ["PDF","03","Rechnungsdatum","Bestellnummer",["Rechnungsdatum","Bestellnummer"],""],
+				"Rechnungsnummer" : ["PDF","03","Rechnungsnummer","Rechnungsdatum",["Rechnungsnummer","Rechnungsdatum"],""],
+				"Bestellnummer" : ["PDF","03","Bestellnummer","Bestelldatum",["Bestellnummer","Bestelldatum"],""],
+				"GESAMTSUMME" : ["PDF","02",["STANDARD/KINDER","GESAMT","€","€","€"," "],[" "],["STANDARD/KINDER","GESAMT","€"," "," "],""],
+				"ZWISCHENSUMME" : ["PDF","02",["STANDARD/KINDER","GESAMT","€"," "],[" "],["STANDARD/KINDER","GESAMT","€"," "," "],""],
+				"GESAMTBETRAG" : ["PDF","02",["STANDARD/KINDER","GESAMT","€","€"," "],[" "],["STANDARD/KINDER","GESAMT","€"," "," "],""],
+				"ADDRESS" : ["EXCEL",["14/C","15/C","16/C","17/C","18/C"],[""],""],
+			}
+		},
+		"Rare Parfum":
+		{
+			"item": 
+			[
+				"USt-ID:",
+				"Rechnung",
+				"Rechnungsnr.",
+				"Auftragsnummer:",
+				"Gesamtbetrag",
+				"Gesamt Netto (19,00%)",
+				"zzgl. 19,00% MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-ID:" : ["PDF","01",["Gläubiger-ID:"],""],
+				"Rechnung" : ["PDF","02",["USt-ID:","Rechnung"],["Kundennummer:"],["USt-ID:","Rechnung","Kundennummer:"],""],
+				"Rechnungsnr." : ["PDF","03","Rechnungsnr.","bzgl.",["Rechnungsnr.","bzgl."],""],
+				"Auftragsnummer:" : ["PDF","01",[""],""],
+				"Gesamtbetrag" : ["PDF","01",["€"],""],
+				"Gesamt Netto (19,00%)" : ["PDF","01",["€"],""],
+				"zzgl. 19,00% MwSt." : ["PDF","01",["€"],""],
+				"ADDRESS" : ["PDF","03","Seite 1/1","Lieferadresse:",["Seite 1/1","Lieferadresse:"],""],
+			}
+		},
+		"SANDRO":
+		{
+			"item": 
+			[
+				"UST-IDNR.",
+				"DATUM DER RECHNUNG",
+				"RECHNUNG NR.",
+				"BESTELLUNG NR.",
+				"Gesamtbetrag (brutto)",
+				"GESAMTBETRAG (NETTO)",
+				"GESAMTSTEUER",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"UST-IDNR." : ["PDF","01",[""],""],
+				"DATUM DER RECHNUNG" : ["PDF","03","DATUM DER RECHNUNG","BESTELLDATUM ",["DATUM DER RECHNUNG","BESTELLDATUM "],""],
+				"RECHNUNG NR." : ["PDF","03","RECHNUNG NR.","BESTELLUNG NR.",["RECHNUNG NR.","BESTELLUNG NR."],""],
+				"BESTELLUNG NR." : ["PDF","03","BESTELLUNG NR.","LIEFERADRESSE",["BESTELLUNG NR.","LIEFERADRESSE"],""],
+				"Gesamtbetrag (brutto)" : ["PDF","05",["1"],["€"],""],
+				"GESAMTBETRAG (NETTO)" : ["PDF","01",["€"],""],
+				"GESAMTSTEUER" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["PDF","03","RECHNUNGSANSCHRIFT","DATUM DER RECHNUNG",["RECHNUNGSANSCHRIFT","DATUM DER RECHNUNG"],""],
+			}
+		},
+		"SCandinavian":
+		{
+			"item": 
+			[
+				"USt-Id.",
+				"Datum",
+				"RECHNUNG  Nr.",
+				"Bestellnummer",
+				"Gesamtsumme EUR",
+				"Gesamtsumme ohne MwSt.",
+				"Steuer 19,00%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-Id." : ["PDF","01",[""],""],
+				"Datum" : ["PDF","02",["Datum"," "],[" "],["Datum"," "],""],
+				"RECHNUNG  Nr." : ["PDF","02",["RECHNUNG  Nr."," "],[" "],["RECHNUNG  Nr."," "],""],
+				"Bestellnummer" : ["PDF","01",[""],""],
+				"Gesamtsumme EUR" : ["PDF","01",[""],""],
+				"Gesamtsumme ohne MwSt." : ["PDF","01",[""],""],
+				"Steuer 19,00%" : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["7/E","8/E","9/E","10/E","11/E"],[""],""],
+			}
+		},
+		"schuster":
+		{
+			"item": 
+			[
+				"USt.IdNr.:",
+				"Rechnungsdatum",
+				"Rechnung Nr.",
+				"Bestellnummer",
+				"Zu zahlender Betrag",
+				"Netto",
+				"MwSt. Satz",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt.IdNr.:" : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["PDF","02",["Rechnungsdatum",")"," "],[" "],[")","Rechnungsdatum"," "],""],
+				"Rechnung Nr." : ["PDF","01",[""],""],
+				"Bestellnummer" : ["PDF","01",[""],""],
+				"Zu zahlender Betrag" : ["PDF","01",["€"],""],
+				"Netto" : ["PDF","02",["Brutto","19%"," "],["€"],["Brutto","19%","€"],""],
+				"MwSt. Satz" : ["PDF","02",["Brutto","€"," "],["€"],["Brutto"," ","€"],""],
+				"ADDRESS" : ["EXCEL",["10/E","11/E","12/E","13/E","14/E"],[""],""],
+			}
+		},
+		"SEGMULLER":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Rechnungsdatum",
+				"RECHNUNG",
+				"Auftrag",
+				"Rechnungsbetrag",
+				"Nettowert",
+				"19,00% entspr.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","03","USt-IdNr.:","UniCredit",["USt-IdNr.:","UniCredit"],""],
+				"Rechnungsdatum" : ["PDF","02",["Seite:"," "," "," "," "," "," "],["1 / 1"],["Seite:"," ","1 / 1"],""],
+				"RECHNUNG" : ["EXCEL",["19/C"],["RECHNUNG"],""],
+				"Auftrag" : ["EXCEL",["19/C"],["RECHNUNG"],""],
+				"Rechnungsbetrag" : ["PDF","01",[""],""],
+				"Nettowert" : ["PDF","02",["Nettowert","MwSt."],["19,00%"],["Nettowert","MwSt.","19,00%"],""],
+				"19,00% entspr." : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["7/C","8/C","9/C"],[""],""],
+			}
+		},
+		"SEPHORA":
+		{
+			"item": 
+			[
+				"USt-ID",
+				"Rechnungsdatum",
+				"RECHNUNG",
+				"Bestellung Nr.",
+				"Gesamtbetrag",
+				"(Betrag ohne MwSt.)",
+				"MwSt. 19 %",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-ID" : ["PDF","01",[""],""],
+				"Rechnungsdatum" : ["PDF","02",["Die Rechnung","vom"," "],[" "],["Die Rechnung","vom"," "],""],
+				"RECHNUNG" : ["PDF","03","Die Rechnung","vom",["Die Rechnung","vom"],""],
+				"Bestellung Nr." : ["PDF","03","Bestellung Nr.","vom",["Bestellung Nr.","vom"],""],
+				"Gesamtbetrag" : ["PDF","02",["MwSt. 19 %","Gesamtbetrag"],["EUR"],["MwSt. 19 %","Gesamtbetrag","EUR"],""],
+				"(Betrag ohne MwSt.)" : ["PDF","01",["EUR"],""],
+				"MwSt. 19 %" : ["PDF","01",["EUR"],""],
+				"ADDRESS" : ["PDF","03","RECHNUNGSADRESSE","Zahlungsdetails",["RECHNUNGSADRESSE","Zahlungsdetails"],""],
+			}
+		},
+		"SMIT SPORT":
+		{
+			"item": 
+			[
+				"USt- Id:",
+				"Datum",
+				"Ihr Beleg",
+				"Belegnummer",
+				"Endsumme",
+				"EURZwischensumme",
+				"19,00",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt- Id:" : ["PDF","01",[""],""],
+				"Datum" : ["PDF","01",[""],""],
+				"Ihr Beleg" : ["PDF","01",[""],""],
+				"Belegnummer" : ["PDF","01",[""],""],
+				"Endsumme" : ["PDF","03","Endsumme EUR","Summe",["Endsumme EUR","Summe"],""],
+				"EURZwischensumme" : ["PDF","02",["19,00 % von"," "],[" "],["19,00 % von"," "],""],
+				"19,00" : ["PDF","02",["19,00 % von"," "," "],[" "],["19,00 % von"," "],""],
+				"ADDRESS" : ["PDF","03","Rechnung","Pos.",["Rechnung","Pos."],""],
+			}
+		},
+		"SOL EXPERT":
+		{
+			"item": 
+			[
+				"USt-ID:",
+				"vom:",
+				"Rechnung",
+				"Ihre Bestellung",
+				"Betrag",
+				"Einzelpreis",
+				"19% USt:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-ID:" : ["PDF","01",[""],""],
+				"vom:" : ["PDF","01",[""],""],
+				"Rechnung" : ["PDF","01",[""],""],
+				"Ihre Bestellung" : ["PDF","03","Ihre Bestellung","vom",["Ihre Bestellung","vom"," "],""],
+				"Betrag" : ["PDF","02",["EORI:","EXPERT group","KE","€"],["€"],["EORI:","EXPERT group","€"],""],
+				"Einzelpreis" : ["PDF","02",["EORI:","EXPERT group","KE"],["€"],["EORI:","EXPERT group","€"],""],
+				"19% USt:" : ["PDF","04",["Transaction ID:","€"],[" ", " "],[""],""],
+				"ADDRESS" : ["PDF","05",["1","2","3"],[""],""],
+			}
+		},
+		"SPORT WERK":
+		{
+			"item": 
+			[
+				"Ust-Ident-Nr.:",
+				"Datum:",
+				"Rechnung-Nr.:",
+				"Bestell-Nr.:",
+				"",
+				"",
+				"",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Ust-Ident-Nr.:" : ["PDF","01",[""],""],
+				"Datum:" : ["PDF","02",["Datum:"," "," "],[" "],["Datum:"," "],""],
+				"Rechnung-Nr.:" : ["PDF","01",[""],""],
+				"Bestell-Nr.:" : ["PDF","02",["Auftrags-Nr.:","Rechnung"],["Bestell-Nr"],["Auftrags-Nr.:","Rechnung","Bestell-Nr"],""],
+				"ADDRESS" : ["PDF","03","Auftrags-Nr.:","Rechnung",["Auftrags-Nr.:","Rechnung"],""],
+			}
+		},
+		"Star Home":
+		{
+			"item": 
+			[
+				"Steuer-ID",
+				"Datum",
+				"Rechnungsnummer",
+				"Bestellnummer",
+				"Gesamt",
+				"Netto",
+				"MwSt. 19 %",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Steuer-ID" : ["PDF","01",[":"],""],
+				"Datum" : ["PDF","01",[":"],""],
+				"Rechnungsnummer" : ["PDF","01",[":"],""],
+				"Bestellnummer" : ["PDF","01",[":"],""],
+				"Gesamt" : ["PDF","02",["Zwischensumme","Gesamt"],["€"],["Zwischensumme","Gesamt","€"],""],
+				"Netto" : ["PDF","01",["€"],""],
+				"MwSt. 19 %" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["EXCEL",["11/B","12/B","13/B","14/B","15/B"],[""],""],
+			}
+		},
+		"STEIN schwimmsport":
+		{
+			"item": 
+			[
+				"USt-IdNr:",
+				"BESTELLDATUM",
+				"RECHNUNGS-NR.",
+				"RECHNUNGS-NR.",
+				"GESAMTBETRAG (EUR)",
+				"Gesamtsumme Netto",
+				"Enthaltene MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr:" : ["PDF","01",[""],""],
+				"BESTELLDATUM" : ["PDF","01",[""],""],
+				"RECHNUNGS-NR." : ["PDF","01",[""],""],
+				"RECHNUNGS-NR." : ["PDF","01",[""],""],
+				"GESAMTBETRAG (EUR)" : ["PDF","01",["€"],""],
+				"Gesamtsumme Netto" : ["PDF","01",["€"],""],
+				"Enthaltene MwSt." : ["PDF","01",["€"],""],
+				"ADDRESS" : ["PDF","03","RECHNUNGSADRESSE","VERSANDADRESSE",["RECHNUNGSADRESSE","VERSANDADRESSE"],""],
+			}
+		},
+		"SUPPA":
+		{
+			"item": 
+			[
+				"Ust-IDNr.:",
+				"Rechnungsdatum:",
+				"Rechnungsnr.:",
+				"Bestellnr.:",
+				"Gesamtbetrag",
+				"Warenwert netto:",
+				"MwSt.: 19%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Ust-IDNr.:" : ["PDF","01",[""],""],
+				"Rechnungsdatum:" : ["PDF","01",[""],""],
+				"Rechnungsnr.:" : ["PDF","01",[""],""],
+				"Bestellnr.:" : ["PDF","01",[""],""],
+				"Gesamtbetrag" : ["PDF","02",["Warenwert netto:","€","€"," "],[" "],["Warenwert netto:","€"," "],""],
+				"Warenwert netto:" : ["PDF","01",["€"],""],
+				"MwSt.: 19%" : ["PDF","03","Versand:","€",["Versand:","€"],""],
+				"ADDRESS" : ["EXCEL",["17/C","18/C","19/C","20/C"],[""],""],
+			}
+		},
+		"uhrenonline24":
+		{
+			"item": 
+			[
+				"Deutsche USt-ID :",
+				"Rechnung Nr. :",
+				"Rechnung Nr. :",
+				"Bestell-Nr. :",
+				"Gesamt-Brutto",
+				"Gesamt ohne MwSt.",
+				"incl. (19%) MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Deutsche USt-ID :" : ["PDF","02",["Deutsche USt-ID :"," "],[" "],["Deutsche USt-ID :"," "],""],
+				"Rechnung Nr. :" : ["PDF","01",[""],""],
+				"Rechnung Nr. :" : ["PDF","01",[""],""],
+				"Bestell-Nr. :" : ["PDF","03","Bestell-Nr. :","/",["Bestell-Nr. :","/"],""],
+				"Gesamt-Brutto" : ["PDF","01",["EUR"],""],
+				"Gesamt ohne MwSt." : ["PDF","01",["EUR"],""],
+				"incl. (19%) MwSt." : ["PDF","01",["EUR"],""],
+				"ADDRESS" : ["EXCEL",["10/C","11/C","12/C","13/C","14/C"],[""],""],
+			}
+		},
+		"wardow":
+		{
+			"item": 
+			[
+				"Ust-IdNr.:",
+				"Datum:",
+				"Rechnungsnr.:",
+				"Bestellnummer:",
+				"inkl. MwSt",
+				"ohne MwSt.",
+				"19% MwSt.",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"Ust-IdNr.:" : ["PDF","01",[""],""],
+				"Datum:" : ["PDF","01",[""],""],
+				"Rechnungsnr.:" : ["PDF","03","Bestellnummer:","Rechnungsnr",["Bestellnummer:","Rechnungsnr"],""],
+				"Bestellnummer:" : ["PDF","02",["Auftragsnr.:"," "," "],[" "],["Auftragsnr.:"," "],""],
+				"inkl. MwSt" : ["PDF","01",[""],""],
+				"ohne MwSt." : ["PDF","01",[""],""],
+				"19% MwSt." : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["5/C","6/C","7/C","8/C","9/C","10/C","11/C"],[""],""],
+			}
+		},
+		"WE LOVE BAGS":
+		{
+			"item": 
+			[
+				"USt-IdNr.",
+				"Belegdatum",
+				"Rechnung Nr.",
+				"Auftragsnummer",
+				"Gesamt (EUR)",
+				"Gesamtbetrag netto",
+				"MwSt.-Betrag 19%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr." : ["PDF","01",[""],""],
+				"Belegdatum" : ["PDF","05",["1"],[""],""],
+				"Rechnung Nr." : ["PDF","05",["8"],[""],""],
+				"Auftragsnummer" : ["PDF","03","Auftragsnummer","Belegdatum",["Auftragsnummer","Belegdatum"],""],
+				"Gesamt (EUR)" : ["PDF","03","MwSt.-Betrag 19%","Gesamt (EUR)",["MwSt.-Betrag 19%","Gesamt (EUR)"],""],
+				"Gesamtbetrag netto" : ["PDF","04",["MwSt.-Betrag 19%","Versandadresse"],[" ", " "],[""],""],
+				"MwSt.-Betrag 19%" : ["PDF","02",["MwSt.-Betrag 19%","Gesamt (EUR)"," "],[" "],["MwSt.-Betrag 19%","Gesamt (EUR)"," "],""],
+				"ADDRESS" : ["PDF","05",["4","5","6","7"],[""],""],
+			}
+		},
+		"WOLFZEIT":
+		{
+			"item": 
+			[
+				"USt. ID-Nummer",
+				"Rechnungsdatum:",
+				"Rechnungsnr.:",
+				"Amazonbestellnr.:",
+				"Gesamtsumme:",
+				"exkl. MwSt.:",
+				"19% MwSt:",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt. ID-Nummer" : ["PDF","03","USt. ID-Nummer","HRB",["USt. ID-Nummer","HRB"],""],
+				"Rechnungsdatum:" : ["PDF","01",[""],""],
+				"Rechnungsnr.:" : ["PDF","05",["1"],["RECHNUNG"],""],
+				"Amazonbestellnr.:" : ["PDF","01",[""],""],
+				"Gesamtsumme:" : ["PDF","03","Gesamtsumme:","€",["Gesamtsumme:","€"],""],
+				"exkl. MwSt.:" : ["PDF","01",["€"],""],
+				"19% MwSt:" : ["PDF","01",["€"],""],
+				"ADDRESS" : ["PDF","05",["2","3","4"],[""],""],
+			}
+		},
+		"YOOX":
+		{
+			"item": 
+			[
+				"VAT No:",
+				"Invoice Date:",
+				"Invoice No:",
+				"Order No:",
+				"Total Amount",
+				"VAT Base",
+				"VAT Amount 19.00%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"VAT No:" : ["PDF","01",[""],""],
+				"Invoice Date:" : ["PDF","01",[":"],""],
+				"Invoice No:" : ["PDF","01",[":"],""],
+				"Order No:" : ["PDF","01",[":"],""],
+				"Total Amount" : ["PDF","01",[""],""],
+				"VAT Base" : ["PDF","01",["(","EUR",")"],""],
+				"VAT Amount 19.00%" : ["PDF","01",["(","EUR",")"],""],
+				"ADDRESS" : ["EXCEL",["25/C","27/C","28/C"],[""],""],
+			}
+		},
+		"zalando":
+		{
+			"item": 
+			[
+				"USt-IdNr.:",
+				"Rechnung vom",
+				"Rechnungsnummer:",
+				"Bestellnummer:",
+				"Bruttogesamtbetrag EUR",
+				"Nettogesamtbetrag EUR",
+				"MwSt. Gesamtbetrag EUR",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"USt-IdNr.:" : ["PDF","02",["USt-IdNr.:"," "],[" "],["USt-IdNr.:"," "],""],
+				"Rechnung vom" : ["PDF","01",[""],""],
+				"Rechnungsnummer:" : ["PDF","01",[""],""],
+				"Bestellnummer:" : ["PDF","01",[""],""],
+				"Bruttogesamtbetrag EUR" : ["PDF","02",["Bruttogesamtbetrag EUR"," "," "," "],[" "],["Bruttogesamtbetrag EUR"," "],""],
+				"Nettogesamtbetrag EUR" : ["PDF","02",["Bruttogesamtbetrag EUR"," "],[" "],["Bruttogesamtbetrag EUR"," "],""],
+				"MwSt. Gesamtbetrag EUR" : ["PDF","02",["Bruttogesamtbetrag EUR"," "," "],[" "],["Bruttogesamtbetrag EUR"," "],""],
+				"ADDRESS" : ["PDF","03","Lieferadresse:","Deutschland",["Lieferadresse:"],""],
+			}
+		},
+		"ZARA":
+		{
+			"item": 
+			[
+				"STEUERNR.",
+				"DATUM",
+				"RECHNUNGSNUMMER",
+				"BESTELLNR.",
+				"BETRAG  EUR",
+				"NETTOBETRAG",
+				"19,00%",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"STEUERNR." : ["PDF","01",[":"],""],
+				"DATUM" : ["PDF","01",[":"],""],
+				"RECHNUNGSNUMMER" : ["PDF","01",[":"],""],
+				"BESTELLNR." : ["PDF","01",[":"],""],
+				"BETRAG  EUR" : ["PDF","02",["19,00%"," "," "],["BETRAG"],["19,00%","BETRAG"," "," "],""],
+				"NETTOBETRAG" : ["PDF","02",["MWST.","BETRAG"],["19,00%"],["MWST.","BETRAG","19,00%"],""],
+				"19,00%" : ["PDF","01",[""],""],
+				"ADDRESS" : ["EXCEL",["8/C","9/C","10/C","11/C","12/C"],[""],""],
+			}
+		},
+	}
 }

@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -35,7 +37,7 @@ import com.spire.pdf.FileFormat;
 import com.spire.pdf.PdfDocument;
 
 @SuppressWarnings("unchecked")
-public class PdfConvert {
+public class PdfConvert3 {
 
 	private static final String REPLACE_RN = "(\\r\\n|\\r|\\n|\\n\\r)";
 
@@ -57,59 +59,56 @@ public class PdfConvert {
 	private static final String EXCEL_FOLDER_NM = "HONG_EXCEL/";
 
 	public static void main(String[] args) {
-		PdfConvert pdfConvert = new PdfConvert();
+		PdfConvert3 pdfConvert = new PdfConvert3();
 		pdfConvert.prcssConvert();
 	}
 
 	public void prcssConvert() {
-
-		int index = 0;
 
 		System.out.println("## 변환시작 ..");
 		File[] files = getPdfFiles();
 		// pdf -> excel 변환
 		prcssPdfToExcel(files);
 
-		Map<String, Object> jsonMap = getSetting2();
-		Map<String, Object> typeMap = (Map<String, Object>) jsonMap.get("type");
-		Map<String, Object> propertyMap = (Map<String, Object>) jsonMap.get("property");
-		List<String> headerList = (List<String>) jsonMap.get("header");
-
-		excelData.put(String.valueOf(index++), headerList.toArray());
-
+		int index = 0;
 		for (int k = 0; k < files.length; k++) {
 
 			// PDF ------------------------------------------------------------
 			try (PDDocument document = PDDocument.load(files[k]);) {
+
 				String content = new PDFTextStripper().getText(document);
 				String contentLine = content.replaceAll(REPLACE_RN, " ");
 
 				// VAT ID 추출 (PK)
-				String vatId = getVatId(typeMap, contentLine);
-
-				// 설정정보 조회
-				//Map<String, Object> attrMap = getSetting(vatId);
+				String vatId = getVatId(contentLine);
 
 				System.out.println("## [" + StringUtils.replaceIgnoreCase(files[k].getName(), ".PDF", "") + "] 시작 .. " + vatId);
+
+				// 설정정보 조회
+				Map<String, Object> attrMap = getSetting(vatId);
+
+				// 최초한번헤더세팅
+				if (k == 0) {
+
+					List<String> headerArray = (List<String>) attrMap.get("headerCd");
+					excelData.put(String.valueOf(index++), headerArray.toArray());
+				}
 
 				List<String> extraList = new ArrayList<String>();
 				// add
 				extraList.add(files[k].getName());
 
-				if (typeMap.get(vatId) != null) {
-					String brandId = getBrandId(typeMap, contentLine, vatId);
+				if (attrMap.get("typeCd") != null) {
 					// add
-					extraList.add(brandId);
+					extraList.add((String) attrMap.get("typeCd"));
 
-					Map<String, Object> brandMap = (Map<String, Object>) propertyMap.get(brandId);
+					List<String> itemArray = (List<String>) attrMap.get("itemCd");
 
-					List<String> itemList = (List<String>) brandMap.get("item");
-
-					for (String item : itemList) {
+					for (String item : itemArray) {
 						String rslt = StringUtils.EMPTY;
 						// add
 						try {
-							rslt = processItem(files[k], content, contentLine, item, brandMap);
+							rslt = processItem(files[k], content, contentLine, item, attrMap);
 							System.out.println("# [" + item + "] 결과 [" + rslt + "]");
 						} catch (Exception e) {
 							rslt = "[ERROR] " + item + " 오류 발생";
@@ -145,13 +144,14 @@ public class PdfConvert {
 
 	}
 
-	private String processItem(File file, String content, String contentLine, String item, Map<String, Object> brandMap) {
+	private String processItem(File file, String content, String contentLine, String item, Map<String, Object> attrMap) {
 
 		String rslt = StringUtils.EMPTY;
 
 		if (StringUtils.isNotBlank(item)) {
-			List<Object> optionArray = (List<Object>) ((Map<String, Object>) brandMap.get("option")).get(item);
+			JSONArray optionArray = (JSONArray) attrMap.get(item);
 			if (optionArray != null) {
+
 				String pdfExcel = (String) optionArray.get(0);
 
 				int delStrIndx = 4;
@@ -167,8 +167,8 @@ public class PdfConvert {
 						}
 						delStrIndx = 2;
 					} else if (type.equals("02")) {
-						List<String> replaceStart = (List<String>) optionArray.get(2);
-						List<String> replaceEnd = (List<String>) optionArray.get(3);
+						JSONArray replaceStart = (JSONArray) optionArray.get(2);
+						JSONArray replaceEnd = (JSONArray) optionArray.get(3);
 						int startIdx = 0;
 						for (int i = 0; i < replaceStart.size(); i++) {
 							startIdx = StringUtils.indexOf(contentLine, replaceStart.get(i).toString(), startIdx)
@@ -189,8 +189,8 @@ public class PdfConvert {
 						rslt = contentLine.substring(startIndex, endIndex);
 						delStrIndx = 4;
 					} else if (type.equals("04")) {
-						List<String> replaceStart = (List<String>) optionArray.get(2);
-						List<String> replaceEnd = (List<String>) optionArray.get(3);
+						JSONArray replaceStart = (JSONArray) optionArray.get(2);
+						JSONArray replaceEnd = (JSONArray) optionArray.get(3);
 						int startIdx = 0;
 						for (int i = 0; i < replaceStart.size(); i++) {
 							startIdx = StringUtils.indexOf(contentLine, replaceStart.get(i).toString(), startIdx);
@@ -199,6 +199,7 @@ public class PdfConvert {
 						for (int i = 0; i < replaceEnd.size(); i++) {
 							endIdx = StringUtils.lastIndexOf(contentLine, replaceEnd.get(i).toString(), endIdx)
 									- replaceEnd.get(i).toString().length();
+							;
 						}
 						rslt = contentLine.substring(endIdx + 1, startIdx).trim();
 						delStrIndx = 4;
@@ -220,7 +221,7 @@ public class PdfConvert {
 					}
 
 					// 단어삭제
-					rslt = getDeleteText(rslt, ((List<String>) optionArray.get(delStrIndx)));
+					rslt = getDeleteText(rslt, ((JSONArray) optionArray.get(delStrIndx)));
 
 				} else if (pdfExcel.equals("EXCEL")) {
 
@@ -230,8 +231,8 @@ public class PdfConvert {
 						XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 						XSSFSheet sheet = workbook.getSheetAt(0);
 
-						List<String> rowCellArray = (List<String>) optionArray.get(1);
-						List<String> deleteArray = (List<String>) optionArray.get(2);
+						JSONArray rowCellArray = (JSONArray) optionArray.get(1);
+						JSONArray deleteArray = (JSONArray) optionArray.get(2);
 
 						for (int z = 0; z < rowCellArray.size(); z++) {
 							String rowCells[] = rowCellArray.get(z).toString().split("/");
@@ -293,98 +294,48 @@ public class PdfConvert {
 		}
 	}
 
-	// brandId 추출
-	public String getBrandId(Map<String, Object> typeMap, String contentLine, String vatId) {
-
-		String brandId = StringUtils.EMPTY;
-		if (typeMap.get(vatId) instanceof JSONObject) {
-
-			Map<String, Object> brandMap = (Map<String, Object>) typeMap.get(vatId);
-
-			if (brandMap.containsKey("TYPE_HONG_01")) {
-
-				Map<String, Object> typeHongMap = (Map<String, Object>) brandMap.get("TYPE_HONG_01");
-
-				List<Map.Entry<String, Object>> vatIdList = (List<Entry<String, Object>>) typeHongMap.entrySet().stream()
-						.collect(Collectors.toList());
-
-				for (Map.Entry<String, Object> entry : vatIdList) {
-
-					String tmpVatId = entry.getKey();
-					//System.out.println(tmpVatId);
-					Pattern pattern = Pattern.compile(tmpVatId);
-					Matcher matcher = pattern.matcher(contentLine);
-
-					if (matcher.find()) {
-						brandId = (String) typeHongMap.get(tmpVatId);
-						break;
-					}
-				}
-			} else if (brandMap.containsKey("TYPE_HONG_02")) {
-
-				Map<String, Object> typeHongMap = (Map<String, Object>) brandMap.get("TYPE_HONG_02");
-				brandId = (String) typeHongMap.get("BRAND");
-
-			} else if (brandMap.containsKey("TYPE_HONG_03")) {
-
-				//System.out.println("TYPE_HONG_03");
-			}
-
-		} else {
-			brandId = (String) typeMap.get(vatId);
-		}
-
-		return brandId;
-	}
-
 	// VAT 번호 추출
-	public String getVatId(Map<String, Object> typeMap, String contentLine) {
+	public String getVatId(String contentLine) {
 		String vatId = StringUtils.EMPTY;
+		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonRoot = (JSONObject) jsonParser.parse(reader);
+			JSONObject typeObject = (JSONObject) jsonRoot.get("type");
 
-		List<Map.Entry<String, Object>> vatIdList = (List<Entry<String, Object>>) typeMap.entrySet().stream()
-				.collect(Collectors.toList());
+			List<Map.Entry<String, Object>> vatIdList = (List<Entry<String, Object>>) typeObject.entrySet().stream()
+					.collect(Collectors.toList());
 
-		for (Map.Entry<String, Object> entry : vatIdList) {
-			String tmpVatId = entry.getKey();
-			Pattern pattern = Pattern.compile(tmpVatId);
-			Matcher matcher = pattern.matcher(contentLine);
-
-			if (matcher.find()) {
-				vatId = tmpVatId;
-				break;
-			}
-		}
-
-		if (StringUtils.isBlank(vatId)) {
-			Pattern pattern = Pattern.compile("DE[0-9]{9}|DE [0-9]{9}");
-			Matcher matcher = pattern.matcher(contentLine.replaceAll(" ", ""));
-			if (matcher.find()) {
-				vatId = matcher.group();
-			}
-		}
-
-		if (StringUtils.isBlank(vatId)) {
 			for (Map.Entry<String, Object> entry : vatIdList) {
 				String tmpVatId = entry.getKey();
-				if (typeMap.get(tmpVatId) instanceof JSONObject) {
-					Map<String, Object> brandMap = (Map<String, Object>) typeMap.get(tmpVatId);
-					if (brandMap.containsKey("TYPE_HONG_02")) {
-						Map<String, Object> typeHongMap = (Map<String, Object>) brandMap.get("TYPE_HONG_02");
-						List<String> keywordList = (List<String>) typeHongMap.get("KEYWORD");
-						int wordIdx = 0;
-						for (String keyword : keywordList) {
-							Pattern pattern = Pattern.compile(keyword);
-							Matcher matcher = pattern.matcher(contentLine);
-							if (matcher.find()) {
-								wordIdx++;
-							}
-							if (keywordList.size() == wordIdx) {
-								vatId = tmpVatId;
-							}
-						}
-					}
+				Pattern pattern = Pattern.compile(tmpVatId);
+				Matcher matcher = pattern.matcher(contentLine);
+
+				if (matcher.find()) {
+					vatId = tmpVatId;
+					break;
 				}
 			}
+
+			if (StringUtils.isBlank(vatId)) {
+				Pattern pattern = Pattern.compile("DE[0-9]{9}|DE [0-9]{9}");
+				Matcher matcher = pattern.matcher(contentLine.replaceAll(" ", ""));
+				if (matcher.find()) {
+					vatId = matcher.group();
+				}
+			}
+
+			if (vatId.equals("DE118569718")) {
+				Pattern patternDuplication = Pattern.compile("Umsatzsteuer-Identifikationsnummer");
+				Matcher matcherDuplication = patternDuplication.matcher(contentLine);
+				vatId = matcherDuplication.find() ? vatId + "H&M" : vatId + "COS";
+			}
+
+			if (StringUtils.isBlank(vatId)) {
+				vatId = "DE175944429";
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return vatId;
@@ -416,25 +367,25 @@ public class PdfConvert {
 		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
 
 			JSONParser jsonParser = new JSONParser();
-			Map<String, Object> jsonRoot = (Map<String, Object>) jsonParser.parse(reader);
+			JSONObject jsonRoot = (JSONObject) jsonParser.parse(reader);
 
-			List<String> headerArray = (List<String>) jsonRoot.get("header");
+			JSONArray headerArray = (JSONArray) jsonRoot.get("header");
 			map.put("headerCd", headerArray);
 
-			Map<String, Object> typeObject = (Map<String, Object>) jsonRoot.get("type");
+			JSONObject typeObject = (JSONObject) jsonRoot.get("type");
 			if (typeObject.get(vatId) == null) {
 				return map;
 			}
 			String typeCd = typeObject.get(vatId).toString();
 			map.put("typeCd", typeCd);
 
-			Map<String, Object> object = (Map<String, Object>) jsonRoot.get("property");
-			Map<String, Object> vatObject = (Map<String, Object>) object.get(typeCd);
+			JSONObject object = (JSONObject) jsonRoot.get("property");
+			JSONObject vatObject = (JSONObject) object.get(typeCd);
 
-			List<String> itemArray = (List<String>) vatObject.get("item");
+			JSONArray itemArray = (JSONArray) vatObject.get("item");
 			map.put("itemCd", itemArray);
 
-			Map<String, Object> optionObject = (Map<String, Object>) vatObject.get("option");
+			JSONObject optionObject = (JSONObject) vatObject.get("option");
 
 			// 옵션추가
 			for (int k = 0; k < itemArray.size(); k++) {
@@ -448,26 +399,8 @@ public class PdfConvert {
 		return map;
 	}
 
-	// 세팅정보 조회
-	public Map<String, Object> getSetting2() {
-
-		Map<String, Object> jsonMap = null;
-
-		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
-
-			JSONParser jsonParser = new JSONParser();
-			jsonMap = (Map<String, Object>) jsonParser.parse(reader);
-
-			//System.out.println(Collections.singletonList(map));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return jsonMap;
-	}
-
 	// 단어삭제
-	public String getDeleteText(String text, List<String> deleteArray) {
+	public String getDeleteText(String text, JSONArray deleteArray) {
 		if (deleteArray != null && deleteArray.size() > 0) {
 			for (int i = 0; i < deleteArray.size(); i++) {
 				String delText = deleteArray.get(i).toString();
