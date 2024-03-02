@@ -48,11 +48,11 @@ public class PdfConvert {
 
 	private static final String SETTING_FILE_PATH = "../config/hong.json";
 
-	//			private static final String EXCEL_FILE_NM = "00.HONG.xlsx";
-	//		
-	//			private static final String PDF_FOLDER_PATH = "../../";
-	//		
-	//			private static final String SETTING_FILE_PATH = "../hong.json";
+//				private static final String EXCEL_FILE_NM = "00.HONG.xlsx";
+//			
+//				private static final String PDF_FOLDER_PATH = "../../";
+//			
+//				private static final String SETTING_FILE_PATH = "../hong.json";
 
 	private static final String EXCEL_FOLDER_NM = "HONG_EXCEL/";
 
@@ -154,7 +154,7 @@ public class PdfConvert {
 			if (optionArray != null) {
 				String pdfExcel = (String) optionArray.get(0);
 
-				int delStrIndx = 4;
+				List<String> deleStrList = null;
 				if (pdfExcel.equals("PDF")) {
 					String type = optionArray.get(1).toString();
 
@@ -165,7 +165,8 @@ public class PdfConvert {
 								break;
 							}
 						}
-						delStrIndx = 2;
+						deleStrList = (List<String>) optionArray.get(2);
+
 					} else if (type.equals("02")) {
 						List<String> replaceStart = (List<String>) optionArray.get(2);
 						List<String> replaceEnd = (List<String>) optionArray.get(3);
@@ -181,13 +182,14 @@ public class PdfConvert {
 						}
 						//System.out.println("## item : " + item + "## startIdx : " + startIdx + " : endIdx : " + endIdx);
 						rslt = contentLine.substring(startIdx, endIdx).trim();
-						delStrIndx = 4;
+						deleStrList = (List<String>) optionArray.get(4);
 
 					} else if (type.equals("03")) {
 						int startIndex = contentLine.indexOf(optionArray.get(2).toString());
 						int endIndex = contentLine.indexOf(optionArray.get(3).toString(), startIndex);
 						rslt = contentLine.substring(startIndex, endIndex);
-						delStrIndx = 4;
+						deleStrList = (List<String>) optionArray.get(4);
+
 					} else if (type.equals("04")) {
 						List<String> replaceStart = (List<String>) optionArray.get(2);
 						List<String> replaceEnd = (List<String>) optionArray.get(3);
@@ -201,7 +203,7 @@ public class PdfConvert {
 									- replaceEnd.get(i).toString().length();
 						}
 						rslt = contentLine.substring(endIdx + 1, startIdx).trim();
-						delStrIndx = 4;
+						deleStrList = (List<String>) optionArray.get(4);
 
 					} else if (type.equals("05")) {
 						StringBuilder sb = new StringBuilder();
@@ -216,11 +218,14 @@ public class PdfConvert {
 							idx++;
 						}
 						rslt = sb.toString().trim();
-						delStrIndx = 3;
+						deleStrList = (List<String>) optionArray.get(3);
+
+					} else if (type.equals("06")) {
+						rslt = optionArray.get(2).toString();
 					}
 
 					// 단어삭제
-					rslt = getDeleteText(rslt, ((List<String>) optionArray.get(delStrIndx)));
+					rslt = getDeleteText(rslt, deleStrList);
 
 				} else if (pdfExcel.equals("EXCEL")) {
 
@@ -253,11 +258,9 @@ public class PdfConvert {
 						}
 						workbook.close();
 					} catch (Exception e) {
-
 						e.printStackTrace();
 					}
 				}
-
 			} else {
 				rslt = "[ERROR] " + item + " 항목에 해당하는 option 항목이 존재하지 않습니다.";
 			}
@@ -333,7 +336,6 @@ public class PdfConvert {
 		} else {
 			brandId = (String) typeMap.get(vatId);
 		}
-
 		return brandId;
 	}
 

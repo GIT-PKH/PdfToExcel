@@ -29,7 +29,7 @@
 		"DE299377687": "BSTN",
 		"DE349123312": "BUTYJANA",
 		"DE 285 277 713": "CHECK24",
-		"DE118569718": {"TYPE_HONG_01":{"Umsatzsteuer-Identifikationsnummer":"H&M","VAT number":"COS"}},
+		"DE118569718": {"TYPE_HONG_01":{"BELEG":"H&M","RECEIPT":"COS_ENG","QUITTUNG":"COS_DE"}},
 		"DE273923750": "cosmetic.de",
 		"DE200716584": "CUTCO",
 		"DE309928677": "digitalo",
@@ -467,7 +467,7 @@
 			],
 			"option": 
 			{
-				"USt-IdNr:" : ["PDF","01",[""],""],
+				"USt-IdNr:" : ["PDF","06","DE175944429"],
 				"Rechnungsdatum:" : ["PDF","03","Rechnungsdatum:","Lieferdatum:",["Rechnungsdatum:","Lieferdatum:"],""],
 				"Rechnungs-Nr.:" : ["PDF","03","Rechnungs-Nr.:","Beleg-Nr",["Rechnungs-Nr.:","Beleg-Nr"],""],
 				"Beleg-Nr.:" : ["PDF","01",[""],""],
@@ -893,7 +893,7 @@
 				"ADDRESS" : ["EXCEL",["5/C","6/C","7/C","8/C","9/C"],[""],""],
 			}
 		},
-		"COS":
+		"COS_ENG":
 		{
 			"item": 
 			[
@@ -910,12 +910,38 @@
 			"option": 
 			{
 				"VAT number" : ["PDF","01",[":"],""],
-				"RECEIPT DATE" : ["EXCEL",["5/O"],[""],""],
-				"RECEIPT NUMBER" : ["EXCEL",["7/P"],[],""],
-				"ORDER NUMBER" : ["EXCEL",["9/P"],[],""],
+				"RECEIPT DATE" : ["PDF","01",[],""],
+				"RECEIPT NUMBER" : ["PDF","01",[],""],
+				"ORDER NUMBER" : ["PDF","01",[],""],
 				"TOTAL" : ["PDF","02",["TOTAL","TOTAL","TOTAL",""],["Excluding"],["€",":","Excluding"],""],
 				"Excluding VAT" : ["PDF","01",["€"],""],
 				"VAT AMOUNT" : ["PDF","02",["VAT AMOUNT","VAT AMOUNT"],["TOTAL"],["€",":","TOTAL"],""],
+				"ADDRESS" : ["EXCEL",["8/D","11/D","13/D","15/D"],[],""],
+			}
+		},
+		"COS_DE":
+		{
+			"item": 
+			[
+				"VAT number",
+				"QUITTUNGSDATUM",
+				"QUITTUNGSNUMMER",
+				"BESTELLNUMMER",
+				"GESAMT",
+				"Ohne MwSt. / Netto",
+				"MEHRWERTSTEUER",
+				"",
+				"ADDRESS"
+			],
+			"option": 
+			{
+				"VAT number" : ["PDF","01",[":"],""],
+				"QUITTUNGSDATUM" : ["PDF","01",[],""],
+				"QUITTUNGSNUMMER" : ["PDF","01",[],""],
+				"BESTELLNUMMER" : ["PDF","01",[],""],
+				"GESAMT" : ["PDF","02",["GESAMT:","GESAMT"," "],[" "],["€"],""],
+				"Ohne MwSt. / Netto" : ["PDF","01",["€"],""],
+				"MEHRWERTSTEUER" : ["PDF","02",["MEHRWERTSTEUER","MEHRWERTSTEUER"," "],[" "],["€"],""],
 				"ADDRESS" : ["EXCEL",["8/D","11/D","13/D","15/D"],[],""],
 			}
 		},
@@ -1210,7 +1236,7 @@
 		{
 			"item": 
 			[
-				"USt-IdNr.",
+				"USt-IdNr.:",
 				"Datum",
 				"Rechnung",
 				"Order ID",
@@ -1222,7 +1248,7 @@
 			],
 			"option": 
 			{
-				"USt-IdNr.:" : ["PDF","01",[""],""],
+				"USt-IdNr.:" : ["PDF","06","DE196252995"],
 				"Datum" : ["PDF","01",[""],""],
 				"Rechnung" : ["PDF","01",[""],""],
 				"Order ID" : ["PDF","01",[""],""],
