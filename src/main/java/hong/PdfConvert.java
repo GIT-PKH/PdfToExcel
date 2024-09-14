@@ -19,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -37,26 +38,24 @@ import com.spire.pdf.PdfDocument;
 @SuppressWarnings("unchecked")
 public class PdfConvert {
 
-	private static final String REPLACE_RN = "(\\r\\n|\\r|\\n|\\n\\r)";
-
 	static Map<String, Object[]> excelData = new LinkedHashMap<>();
 
-	private static final String EXCEL_FILE_NM = "00.HONG_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"))
-			+ ".xlsx";
+	private static String excelFileNm = Constants.EXCEL_FILE_NM_DEV;
 
-	private static final String PDF_FOLDER_PATH = "../config/pdf/";
+	private static String pdfFolderPath = Constants.PDF_FOLDER_PATH_DEV;
 
-	private static final String SETTING_FILE_PATH = "../config/hong.json";
-
-//				private static final String EXCEL_FILE_NM = "00.HONG.xlsx";
-//			
-//				private static final String PDF_FOLDER_PATH = "../../";
-//			
-//				private static final String SETTING_FILE_PATH = "../hong.json";
-
-	private static final String EXCEL_FOLDER_NM = "HONG_EXCEL/";
+	private static String settingFilePath = Constants.SETTING_FILE_PATH_DEV;
 
 	public static void main(String[] args) {
+
+		// 개발, 배포 환경에 따른 파일 경로 설정
+		if (ArrayUtils.isNotEmpty(args)) {
+			excelFileNm = Constants.EXCEL_FILE_NM_PROD;
+			pdfFolderPath = Constants.PDF_FOLDER_PATH_PROD;
+			settingFilePath = Constants.SETTING_FILE_PATH_PROD;
+			System.out.println("## 실행모드 .. [PROD]");
+		}
+
 		PdfConvert pdfConvert = new PdfConvert();
 		pdfConvert.prcssConvert();
 	}
@@ -67,6 +66,7 @@ public class PdfConvert {
 
 		System.out.println("## 변환시작 ..");
 		File[] files = getPdfFiles();
+
 		// pdf -> excel 변환
 		prcssPdfToExcel(files);
 
@@ -81,24 +81,26 @@ public class PdfConvert {
 
 			// PDF ------------------------------------------------------------
 			try (PDDocument document = PDDocument.load(files[k]);) {
+
 				String content = new PDFTextStripper().getText(document);
-				String contentLine = content.replaceAll(REPLACE_RN, " ");
+				String contentLine = content.replaceAll(Constants.REPLACE_RN, " ");
 
 				// VAT ID 추출 (PK)
 				String vatId = getVatId(typeMap, contentLine);
 
 				// 설정정보 조회
-				//Map<String, Object> attrMap = getSetting(vatId);
+				// Map<String, Object> attrMap = getSetting(vatId);
 
-				System.out.println("## [" + StringUtils.replaceIgnoreCase(files[k].getName(), ".PDF", "") + "] 시작 .. " + vatId);
+				System.out.println(
+						"## [" + StringUtils.replaceIgnoreCase(files[k].getName(), ".PDF", "") + "] 시작 .. " + vatId);
 
 				List<String> extraList = new ArrayList<String>();
-				// add
+				// excel (파일명)
 				extraList.add(files[k].getName());
 
 				if (typeMap.get(vatId) != null) {
 					String brandId = getBrandId(typeMap, contentLine, vatId);
-					// add
+					// excel (구매처)
 					extraList.add(brandId);
 
 					Map<String, Object> brandMap = (Map<String, Object>) propertyMap.get(brandId);
@@ -115,21 +117,24 @@ public class PdfConvert {
 							rslt = "[ERROR] " + item + " 오류 발생";
 							e.printStackTrace();
 						}
+						// excel (세금번호, 인보이스 발행날짜, 인보이스 번호, 주문번호, 총금액, 부가세 제외, 부가세1, 부가세2, All ADD)
 						extraList.add(rslt);
 					}
 
-					// pdf 전체내용
+					// excel (All Text1, All Text2)
 					extraList.add(content);
 					extraList.add(contentLine);
 				} else {
-					// add
+					// excel (구매처)
 					extraList.add(vatId);
+					// excel (세금번호)
+					extraList.add(vatId);
+					// excel (인보이스 발행날짜)
 					extraList.add("[ERROR] " + vatId + " 설정정보를 불러 수 없습니다.");
 					System.out.println("## [ERROR] 설정정보를 불러 수 없습니다..");
 				}
 				// System.out.println(content);
 				// System.out.println(contentLine);
-
 				excelData.put(String.valueOf(index++), extraList.toArray());
 
 				document.close();
@@ -145,7 +150,8 @@ public class PdfConvert {
 
 	}
 
-	private String processItem(File file, String content, String contentLine, String item, Map<String, Object> brandMap) {
+	private String processItem(File file, String content, String contentLine, String item,
+			Map<String, Object> brandMap) {
 
 		String rslt = StringUtils.EMPTY;
 
@@ -180,7 +186,8 @@ public class PdfConvert {
 							endIdx = StringUtils.indexOf(contentLine, replaceEnd.get(i).toString(), endIdx)
 									+ replaceEnd.get(i).toString().length();
 						}
-						//System.out.println("## item : " + item + "## startIdx : " + startIdx + " : endIdx : " + endIdx);
+						// System.out.println("## item : " + item + "## startIdx : " + startIdx + " :
+						// endIdx : " + endIdx);
 						rslt = contentLine.substring(startIdx, endIdx).trim();
 						deleStrList = (List<String>) optionArray.get(4);
 
@@ -212,7 +219,7 @@ public class PdfConvert {
 						for (String text : content.split("\\n")) {
 							for (String lineNumber : readLines) {
 								if (idx == Integer.parseInt(lineNumber)) {
-									sb.append(text.replaceAll("(\\r\\n|\\r|\\n|\\n\\r)", "")).append(" ");
+									sb.append(text.replaceAll(Constants.REPLACE_RN, "")).append(" ");
 								}
 							}
 							idx++;
@@ -229,8 +236,9 @@ public class PdfConvert {
 
 				} else if (pdfExcel.equals("EXCEL")) {
 
-					try (FileInputStream fileInputStream = new FileInputStream(new File(
-							PDF_FOLDER_PATH + EXCEL_FOLDER_NM + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx")))) {
+					try (FileInputStream fileInputStream = new FileInputStream(
+							new File(pdfFolderPath + Constants.EXCEL_FOLDER_NM
+									+ StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx")))) {
 
 						XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 						XSSFSheet sheet = workbook.getSheetAt(0);
@@ -287,7 +295,7 @@ public class PdfConvert {
 				}
 			}
 		}
-		try (FileOutputStream out = new FileOutputStream(new File(PDF_FOLDER_PATH, EXCEL_FILE_NM));) {
+		try (FileOutputStream out = new FileOutputStream(new File(pdfFolderPath, excelFileNm));) {
 			workbook.write(out);
 			workbook.close();
 			out.close();
@@ -308,13 +316,13 @@ public class PdfConvert {
 
 				Map<String, Object> typeHongMap = (Map<String, Object>) brandMap.get("TYPE_HONG_01");
 
-				List<Map.Entry<String, Object>> vatIdList = (List<Entry<String, Object>>) typeHongMap.entrySet().stream()
-						.collect(Collectors.toList());
+				List<Map.Entry<String, Object>> vatIdList = (List<Entry<String, Object>>) typeHongMap.entrySet()
+						.stream().collect(Collectors.toList());
 
 				for (Map.Entry<String, Object> entry : vatIdList) {
 
 					String tmpVatId = entry.getKey();
-					//System.out.println(tmpVatId);
+					// System.out.println(tmpVatId);
 					Pattern pattern = Pattern.compile(tmpVatId);
 					Matcher matcher = pattern.matcher(contentLine);
 
@@ -330,7 +338,7 @@ public class PdfConvert {
 
 			} else if (brandMap.containsKey("TYPE_HONG_03")) {
 
-				//System.out.println("TYPE_HONG_03");
+				// System.out.println("TYPE_HONG_03");
 			}
 
 		} else {
@@ -398,15 +406,16 @@ public class PdfConvert {
 		for (File file : files) {
 			PdfDocument pdf = new PdfDocument();
 			pdf.loadFromFile(file.getPath());
-			pdf.saveToFile(PDF_FOLDER_PATH + EXCEL_FOLDER_NM + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx"),
-					FileFormat.XLSX);
-			System.out.println("# " + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx") + " 완료[" + (cnt++) + "] .. ");
+			pdf.saveToFile(pdfFolderPath + Constants.EXCEL_FOLDER_NM
+					+ StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx"), FileFormat.XLSX);
+			System.out.println(
+					"# " + StringUtils.replaceIgnoreCase(file.getName(), "PDF", "xlsx") + " 완료[" + (cnt++) + "] .. ");
 		}
 	}
 
 	// pdf 파일 목록 조회
 	public File[] getPdfFiles() {
-		File dir = new File(PDF_FOLDER_PATH);
+		File dir = new File(pdfFolderPath);
 		return dir.listFiles((FileFilter) file -> file.isFile() && file.getName().toUpperCase().endsWith("PDF"));
 	}
 
@@ -415,7 +424,7 @@ public class PdfConvert {
 
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
-		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
+		try (Reader reader = new FileReader(settingFilePath);) {
 
 			JSONParser jsonParser = new JSONParser();
 			Map<String, Object> jsonRoot = (Map<String, Object>) jsonParser.parse(reader);
@@ -442,7 +451,7 @@ public class PdfConvert {
 			for (int k = 0; k < itemArray.size(); k++) {
 				map.put(itemArray.get(k).toString(), optionObject.get(itemArray.get(k)));
 			}
-			//System.out.println(Collections.singletonList(map));
+			// System.out.println(Collections.singletonList(map));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -455,12 +464,12 @@ public class PdfConvert {
 
 		Map<String, Object> jsonMap = null;
 
-		try (Reader reader = new FileReader(SETTING_FILE_PATH);) {
+		try (Reader reader = new FileReader(settingFilePath);) {
 
 			JSONParser jsonParser = new JSONParser();
 			jsonMap = (Map<String, Object>) jsonParser.parse(reader);
 
-			//System.out.println(Collections.singletonList(map));
+			// System.out.println(Collections.singletonList(map));
 
 		} catch (Exception e) {
 			e.printStackTrace();

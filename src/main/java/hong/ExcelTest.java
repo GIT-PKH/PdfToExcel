@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelTest {
 
-	public static String filePath = "C:\\eGovFrameDev-4.1.0-64bit\\workspace\\PdfToExcel\\config\\pdf\\";
+	public static String filePath = "../config/pdf/";
 	public static String fileNm = "hong_test.xlsx";
 
 	public static void main(String[] args) {
