@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -84,16 +85,31 @@ public class PdfConvertApp extends JFrame {
 		JTextAreaAppender.setLogListener(line -> SwingUtilities.invokeLater(() -> appendLog(line)));
 	}
 
-	// 화면 구성 (상단 입력 / 중앙 로그 / 하단 실행)
+	// 화면 구성 (탭: 변환 / 설정 관리)
 	private void initUi() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(760, 500);
+		setSize(780, 560);
 		setLocationRelativeTo(null);
-		setLayout(new BorderLayout(GAP, GAP));
+		setLayout(new BorderLayout());
 
-		add(buildInputPanel(), BorderLayout.NORTH);
-		add(buildLogPanel(), BorderLayout.CENTER);
-		add(buildActionPanel(), BorderLayout.SOUTH);
+		JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane.addTab("변환", buildConvertPanel());
+		tabbedPane.addTab("설정 관리", buildSettingPanel());
+		add(tabbedPane, BorderLayout.CENTER);
+	}
+
+	// 변환 탭 (상단 입력 / 중앙 로그 / 하단 실행)
+	private JComponent buildConvertPanel() {
+		JPanel panel = new JPanel(new BorderLayout(GAP, GAP));
+		panel.add(buildInputPanel(), BorderLayout.NORTH);
+		panel.add(buildLogPanel(), BorderLayout.CENTER);
+		panel.add(buildActionPanel(), BorderLayout.SOUTH);
+		return panel;
+	}
+
+	// 설정 관리 탭 (현재 설정파일을 저장소로 로드, P3에서 편집 폼 확장 예정)
+	private JComponent buildSettingPanel() {
+		return new SettingManagerPanel(() -> settingFileField.getText().trim(), JsonSettingRepository::new);
 	}
 
 	// 상단 입력 패널 (PDF 폴더 / 설정 파일)
