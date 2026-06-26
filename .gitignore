@@ -121,6 +121,9 @@ $RECYCLE.BIN/
 # classes
 target/
 
+# config 입력 PDF 및 생성물 (실데이터/개인정보 포함 → 저장소 제외)
+config/pdf/
+
 # Eclipse Core       
 .project 
 
